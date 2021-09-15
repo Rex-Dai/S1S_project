@@ -1,6 +1,6 @@
-import React, { useRef} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {  useThree } from '@react-three/fiber'
-import Line from "./Line";
+import LinePlatform from "./LinePlatform";
 
 
 
@@ -8,17 +8,21 @@ const Scene = () => {
     const { camera, gl } = useThree()
     const ref = useRef();
 
+    useEffect(() => {
+        window.addEventListener('wheel', onMouseWheel, false);
+    })
+    useEffect(() => {
+        camera.lookAt(0,15,0);
+    })
+
+    const onMouseWheel = (event) => {
+        event.preventDefault();
+        camera.position.y -= event.deltaY*0.005;
+    }
+
     return (
         <group>
-            <Line index={-10} type={'vertical'} />
-            <Line index={-5} type={'vertical'} />
-            <Line index={0} type={'vertical'} />
-            <Line index={5} type={'vertical'} />
-            <Line index={10} type={'vertical'} />
-            <Line index={4} type={'horizontal'} />
-            <Line index={8} type={'horizontal'} />
-            <Line index={12} type={'horizontal'} />
-            <Line index={16} type={'horizontal'} />
+            <LinePlatform />
         </group>
     )
 }
