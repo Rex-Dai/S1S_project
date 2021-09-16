@@ -1,18 +1,18 @@
 import React, {useEffect, useRef} from 'react'
-import {  useThree } from '@react-three/fiber'
-import LinePlatform from "./LinePlatform";
-
+import { useThree} from '@react-three/fiber'
+import Platform from "./Platform";
 
 
 const Scene = () => {
-    const { camera, gl } = useThree()
+    const { camera, gl, scene } = useThree()
     const ref = useRef();
 
     useEffect(() => {
-        window.addEventListener('wheel', onMouseWheel, false);
+        window.addEventListener('wheel', onMouseWheel, {passive:false});
     })
     useEffect(() => {
-        camera.lookAt(0,15,0);
+        camera.position.set(0,-10,8);
+        camera.lookAt(0,5,0);
     })
 
     const onMouseWheel = (event) => {
@@ -22,7 +22,7 @@ const Scene = () => {
 
     return (
         <group>
-            <LinePlatform />
+            <Platform />
         </group>
     )
 }

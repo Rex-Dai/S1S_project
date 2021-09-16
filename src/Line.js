@@ -14,13 +14,22 @@ const Line = (props) => {
     }
 
     if (props.type === 'horizontal') {
-        x_start = -25;
-        x_end = 25;
+        x_start = -36;
+        x_end = 36;
         y_start = props.index;
         y_end = props.index;
     }
 
     if (props.type === 'monthIndicator') {
+        let month = props.index % 100 - 1, year = props.index / 100;
+        if (month === 5) {
+            x_start = -23;
+        } else {
+            x_start = -21.5;
+        }
+        x_end = -20;
+        y_start = 20 + (year - 14) * 26 + month * 2;
+        y_end = 20 + (year - 14) * 26 + month * 2;
     }
 
     const points = useMemo(() =>
@@ -30,7 +39,7 @@ const Line = (props) => {
     return (
         <line position={[0, 0, -10]} ref={ref}>
             <bufferGeometry attach="geometry" onUpdate={onUpdate}/>
-            <lineBasicMaterial attach="material" color={'#ffffff'} linewidth={100} linecap={'round'} linejoin={'round'}/>
+            <lineBasicMaterial attach="material" color={'#ffffff'} linewidth={10} linecap={'round'} linejoin={'round'}/>
         </line>
     )
 }
