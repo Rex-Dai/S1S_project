@@ -1,11 +1,22 @@
 import React, {useEffect, useRef} from 'react'
 import { useThree} from '@react-three/fiber'
-import Platform from "./Platform";
+import Platform from "./Platform/Platform";
+import EventPoints from './Events/EventPoints';
 
+
+const platformSettings = {
+    verticalStartCoordinate: -20,
+    verticalInterval: 10,
+    horizontalStartCoordinate: 20,
+    horizontalInterval: 26,
+    monthInterval:2
+}
 
 const Scene = () => {
     const { camera, gl, scene } = useThree()
     const ref = useRef();
+
+
 
     useEffect(() => {
         window.addEventListener('wheel', onMouseWheel, {passive:false});
@@ -13,7 +24,7 @@ const Scene = () => {
     useEffect(() => {
         camera.position.set(0,-10,8);
         camera.lookAt(0,5,0);
-    })
+    },[])
 
     const onMouseWheel = (event) => {
         event.preventDefault();
@@ -22,7 +33,8 @@ const Scene = () => {
 
     return (
         <group>
-            <Platform />
+            <Platform platformSettings={platformSettings} />
+            <EventPoints platformSettings={platformSettings} />
         </group>
     )
 }
