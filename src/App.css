@@ -1,0 +1,8 @@
+.info-window{
+    width: 200px;
+    height: 100px;
+    background-color: yellow;
+    z-index: 100;
+    display: block;
+    /* visibility: hidden; */
+}

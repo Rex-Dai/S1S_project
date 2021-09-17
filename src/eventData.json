@@ -6,10 +6,7 @@
             "date": "17-09-2021",
             "category": "Battle",
             "image": "urlofImage",
-            "coordinate": [
-                20,
-                20
-            ],
+            "coordinate": [0,0,0],
             "description": "This event is used for testing purposes."
         }
     ]

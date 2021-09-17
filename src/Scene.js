@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import { useThree} from '@react-three/fiber'
 import Platform from "./Platform";
 import EventPoints from './EventPoints';
+import InfoWindow from './InfoWindow';
 
 
 const Scene = () => {
@@ -25,6 +26,7 @@ const Scene = () => {
         <group>
             <Platform />
             <EventPoints />
+            
         </group>
     )
 }
