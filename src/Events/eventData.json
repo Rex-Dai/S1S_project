@@ -9,6 +9,8 @@
             "imgSrc": "urlofImage",
             "imgAlt": "Ships landing at ANZAC Cove",
             "coordinate": [0,0,0],
+            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
+            "databaseQuery": "jones",
             "description": "The landing at Anzac Cove on Sunday, 25 April 1915, also known as the landing at Gaba Tepe, and to the Turks as the Arıburnu Battle, was part of the amphibious invasion of the Gallipoli Peninsula by the forces of the British Empire, which began the land phase of the Gallipoli Campaign of the First World War."
         },
 

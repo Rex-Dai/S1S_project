@@ -8,13 +8,13 @@ export default class GalleryItem extends React.Component{
     render(){
         return(
         <figure>
-            <img src={this.props.imgSrc} alt={this.props.imgAlt}/>
+            <img src={this.props.thumbnail} alt={this.props.imgAlt}/>
             <caption>
 
-                <p class="small-caption">{this.props.smallCaption}
+                <p class="small-caption">{this.props.title}
                 </p>
 
-                <p class="large-caption">{this.props.largeCaption}
+                <p class="large-caption">{this.props.title}
                 </p>
 
             </caption>

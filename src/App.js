@@ -3,10 +3,13 @@ import {Canvas, useThree} from "@react-three/fiber";
 import Scene from './Scene'
 import { useEffect, useRef } from "react";
 import {PerspectiveCamera} from "@react-three/drei";
+import { DetailWindow } from './DetailWindow/DetailWindow';
 
 const App = () => {
 
     return (
+            //<DetailWindow id={1}/>
+
             <Canvas>
                 <Scene />
                 <color attach="background" args={0x939383}/>
