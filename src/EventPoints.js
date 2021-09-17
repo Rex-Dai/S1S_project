@@ -8,15 +8,14 @@ const EventPoints = () => {
     const eventList = [];
 
     console.log(eventData.events[0].title);
+    eventData.events.forEach( element => {
 
-    // eventData.events.foreach( element => {
-
-    //     eventList.push(<EventSphere 
-    //         coords={element.coordinate}
-    //         color="#ff00000"
-    //     />)
-    // })
-    eventList.push(<EventSphere coords={[0,0,0]} color="#ff0000"/>);
+        eventList.push(<EventSphere 
+            coords={element.coordinate}
+            category={element.category}
+        />)
+    })
+    //eventList.push(<EventSphere coords={[0,0,0]} color="#ff0000"/>);
 
     return(
         <group>
