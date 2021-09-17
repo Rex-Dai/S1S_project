@@ -1,4 +1,3 @@
-import { Sphere } from '@react-three/drei';
 import React, {useState, useRef} from 'react'
 import * as THREE from 'three'
 import InfoWindow from './InfoWindow';
@@ -12,15 +11,16 @@ import InfoWindow from './InfoWindow';
 export const EventSphere = (props) => {
     // props has coordinates as array of 3 elements.
 
-    const ref = useRef();
-    const infoWindowActive = useRef(true);
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
     var colour = "#ffffff"
     // change colour (maybe convert to texture later on.)
     switch (props.category){
-        case "Battle":
+        case "Australia":
             colour = "#ff0000"
+            break;
+        case "Global":
+            colour = "#0000ff"
             break;
         default:
             break;
@@ -40,7 +40,6 @@ export const EventSphere = (props) => {
             <sphereGeometry />
             <meshBasicMaterial color={colour}/>
             {active ? <InfoWindow top={50} left={50}/> : null}
-            {/* <InfoWindow top={50} left={50}/> */}
         </mesh>
         
     )

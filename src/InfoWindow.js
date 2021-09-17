@@ -1,8 +1,6 @@
-import React, {useState, useRef} from 'react'
+import React from 'react'
 import { Html } from '@react-three/drei';
 const InfoWindow = (props) => {
-
-    const [active, setActive] = useState(true)
     
     return (
         <Html
@@ -10,7 +8,6 @@ const InfoWindow = (props) => {
             position: 'absolute',
             top: props.top,
             left: props.left,
-            visibility: active ? "visible" : "hidden"
         }}
         >
             <div className="info-window">
@@ -20,7 +17,6 @@ const InfoWindow = (props) => {
                 </button>
             </div>
         </Html>
-        // return the info window.
     )
 }
 

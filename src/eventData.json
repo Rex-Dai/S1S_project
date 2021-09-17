@@ -4,10 +4,29 @@
             "id": 1,
             "title": "TestEvent2021",
             "date": "17-09-2021",
-            "category": "Battle",
+            "category": "Australia",
             "image": "urlofImage",
             "coordinate": [0,0,0],
             "description": "This event is used for testing purposes."
+        },
+
+        {
+            "id": 1,
+            "title": "TestEvent2021-2",
+            "date": "17-09-2021",
+            "category": "Australia",
+            "image": "urlofImage",
+            "coordinate": [-5,10,0],
+            "description": "This event is used for testing purposes2."
+        },
+        {
+            "id": 3,
+            "title": "TestEvent20213",
+            "date": "17-09-2021",
+            "category": "Global",
+            "image": "urlofImage",
+            "coordinate": [5,15,0],
+            "description": "This event is used for testing purposes3."
         }
     ]
 }
