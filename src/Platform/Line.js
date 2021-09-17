@@ -23,13 +23,14 @@ const Line = (props) => {
     if (props.type === 'monthIndicator') {
         let month = props.index % 100 - 1, year = props.index / 100;
         if (month === 5) {
-            x_start = -23;
+            x_start = props.platformSetting.verticalStartCoordinate - 3;
         } else {
-            x_start = -21.5;
+            x_start = props.platformSetting.verticalStartCoordinate - 1.5;
         }
-        x_end = -20;
-        y_start = 20 + (year - 14) * 26 + month * 2;
-        y_end = 20 + (year - 14) * 26 + month * 2;
+        x_end = props.platformSetting.verticalStartCoordinate;
+        y_start = y_end = props.platformSetting.horizontalStartCoordinate
+            + (year - 14) * props.platformSetting.horizontalInterval +
+            props.platformSetting.monthInterval * month;
     }
 
     const points = useMemo(() =>

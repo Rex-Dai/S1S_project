@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import React from 'react'
+import React, {useRef} from 'react'
+import {useLoader} from "@react-three/fiber";
 
 
 const TextLabel = (props) => {
@@ -33,6 +34,7 @@ const TextLabel = (props) => {
      This solution works but not implemented by JSX
      */
 
+    const ref = useRef();
     const loader = new THREE.FontLoader();
     const request = new XMLHttpRequest();
     request.open("GET", "/Fonts/helvetiker_regular.typeface.json", false);
@@ -54,7 +56,7 @@ const TextLabel = (props) => {
      */
 
     return (
-        <mesh rotation={[120.9,0,0]} position={props.position} >
+        <mesh rotation={[120.9,0,0]} position={props.position} ref={ref}>
             <textGeometry attach={'geometry'} args={[props.text, textOptions]}>
                 <meshToonMaterial attach={'material'}/>
             </textGeometry>

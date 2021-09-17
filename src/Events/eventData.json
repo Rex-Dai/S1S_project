@@ -3,7 +3,7 @@
         {
             "id": 1,
             "title": "TestEvent2021",
-            "date": "17-09-2021",
+            "date": "1914-1-1",
             "category": "Australia",
             "image": "urlofImage",
             "coordinate": [0,0,0],
@@ -13,7 +13,7 @@
         {
             "id": 1,
             "title": "TestEvent2021-2",
-            "date": "17-09-2021",
+            "date": "1915-2-1",
             "category": "Australia",
             "image": "urlofImage",
             "coordinate": [-5,10,0],
@@ -22,7 +22,7 @@
         {
             "id": 3,
             "title": "TestEvent20213",
-            "date": "17-09-2021",
+            "date": "1916-5-1",
             "category": "Global",
             "image": "urlofImage",
             "coordinate": [5,15,0],

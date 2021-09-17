@@ -13,7 +13,7 @@ export const EventSphere = (props) => {
 
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
-    var colour = "#ffffff"
+    let colour = "#ffffff"
     // change colour (maybe convert to texture later on.)
     switch (props.category){
         case "Australia":
