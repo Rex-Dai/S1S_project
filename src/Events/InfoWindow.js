@@ -1,5 +1,7 @@
 import React from 'react'
 import { Html } from '@react-three/drei';
+import { Link } from 'react-router-dom';
+
 const InfoWindow = (props) => {
     
     return (
@@ -11,10 +13,13 @@ const InfoWindow = (props) => {
         }}
         >
             <div className="info-window">
-                InfoWindow
-                <button onClick={() => console.log("clicked")}>
-                    set active
+                <h3>InfoWindow</h3> 
+                <a href="/detail">
+                <button type="button">
+                    Read more
                 </button>
+                </a>
+                
             </div>
         </Html>
     )
