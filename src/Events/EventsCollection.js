@@ -1,8 +1,9 @@
 import React, {useMemo, useCallback, useRef} from 'react'
 import { EventSphere } from './EventSphere';
 import {randInt} from "three/src/math/MathUtils";
+import PicEventSphere from "./PicEventSphere";
 
-const EventPoints = (props) => {
+const EventsCollection = (props) => {
 
     const eventData = require("./eventData.json")
     const eventList = [];
@@ -47,4 +48,4 @@ const EventPoints = (props) => {
     )
 }
 
-export default EventPoints;
+export default EventsCollection;

@@ -17,10 +17,10 @@ export const EventSphere = (props) => {
     // change colour (maybe convert to texture later on.)
     switch (props.category){
         case "Australia":
-            colour = "#ff0000"
+            colour = "#9E5024"
             break;
         case "Global":
-            colour = "#0000ff"
+            colour = "#34495E"
             break;
         default:
             break;
