@@ -7,7 +7,12 @@ import {controllers} from "three/examples/jsm/libs/dat.gui.module";
 
 /* 
     What draws the event spheres.
-    coords[x,y,z] = xyz coordinates of the sphere
+    For animation putpose, it was modified a bit.
+    Currently, the camera stops at coordinate that has hard-coded offset from the target object.
+    the camera angle is 
+    sphereCoords[x,y,z] = xyz coordinates of the sphere
+    targetCoords[x,y,z] = xyz coordinates of target object (picture)
+    
     color: color (hex code) of the sphere
     onClick: function to be executed onClick.
  */
@@ -20,31 +25,54 @@ const PicEventSphere = (props) => {
 
 
     const TWEEN = require('@tweenjs/tween.js');
-    const centre = new THREE.Vector3(props.coords[0], props.coords[1], props.coords[2]);
+    
+    // offset of camera from target object [xyz]
+    const cameraOffset = [0,-5,0];
+    const sphereCentre = new THREE.Vector3(props.sphereCoords[0], props.sphereCoords[1], props.sphereCoords[2]);
+    const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
+    const cameraTargetPos = new THREE.Vector3(
+        props.targetCoords[0] + cameraOffset[0],
+        props.targetCoords[1] + cameraOffset[1],
+        props.targetCoords[2] + cameraOffset[2]);
+    //const cameraAngle = new THREE.Vector3().copy( camera.rotation );
+    const targetObjectPos = new THREE.Vector3(props.targetCoords[0], props.targetCoords[1], props.targetCoords[2]);
+    
     // props has coordinates as array of 3 elements.
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
     let colour = "black"
     // change colour (maybe convert to texture later on.)
 
-    function tweenCamera( targetPosition, duration ) {
+    // this is the tween to interpolate the position
+    let posTween = new TWEEN.Tween( cameraCurrentPos )
+    .to( cameraTargetPos, props.duration )
+    .easing( TWEEN.Easing.Quadratic.Out )
+    .onUpdate( () => {
+        camera.position.copy( cameraCurrentPos );
+        camera.lookAt(targetObjectPos);
+    })
+    .onComplete( () => {
+        camera.position.copy( cameraTargetPos );
+        camera.lookAt(targetObjectPos);
+    })
+
+    // this is the tween to interpolate camera angle
+    // tried, but I think there's a better way
+    // let viewTween = new TWEEN.Tween( cameraAngle )
+    // .to( cameraTargetAngle, props.duration )
+    // .easing( TWEEN.Easing.Back.InOut )
+    // .onUpdate( function () {
+    //     camera.rotation.copy(cameraAngle);
+    // } )
+    // .onComplete( function () {
+    //     camera.rotation.copy( cameraTargetAngle );
+    // })
 
 
+    // Move camera to target position
+    function tweenCamera( coords, duration ) {
 
-        let position = new THREE.Vector3().copy( camera.position );
-
-        let tween = new TWEEN.Tween( position )
-            .to( targetPosition, duration )
-            .easing( TWEEN.Easing.Back.InOut )
-            .onUpdate( function () {
-                camera.position.copy( position );
-                camera.lookAt(targetPosition);
-            } )
-            .onComplete( function () {
-                camera.position.copy( targetPosition );
-                camera.lookAt( targetPosition );
-            } )
-            .start();
+        posTween.start();
     }
 
     useFrame(({ gl, camera, scene}) => {
@@ -56,9 +84,9 @@ const PicEventSphere = (props) => {
 
     return(
         <mesh 
-        position={centre}
+        position={sphereCentre}
         scale={hovered ? 1.2 : 1}
-        onClick={() => tweenCamera([0,0,-10], 10000)}
+        onClick={() => tweenCamera(props.targetCoords, 1000)}
         onPointerMissed={() => setActive(false)}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}

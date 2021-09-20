@@ -41,9 +41,12 @@ const EventsCollection = (props) => {
         />)
     })
 
+
     return(
         <group>
             {eventList}
+            <EventSphere coords={[30, 40, 5]}/>
+            <PicEventSphere sphereCoords={[0,0,0]} targetCoords={[30,40,5]} duration={5000}/>
         </group>
     )
 }
