@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import { useThree} from '@react-three/fiber'
 import Platform from "./Platform/Platform";
 import EventsCollection from './Events/EventsCollection';
-import PicEventSphere from './Events/PicEventSphere';
+
 
 
 const platformSettings = {

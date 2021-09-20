@@ -1,8 +1,6 @@
 import './App.css';
-import { Canvas, useThree } from "@react-three/fiber";
+import {Canvas} from "@react-three/fiber";
 import Scene from './Scene'
-import { useEffect, useRef } from "react";
-import { PerspectiveCamera } from "@react-three/drei";
 import { DetailWindow } from './DetailWindow/DetailWindow';
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -23,7 +21,7 @@ const App = () => {
                     <ambientLight color="#fff" intensity={1} />
                 </Canvas>
             </Route>
-            
+
 
         </BrowserRouter>
 

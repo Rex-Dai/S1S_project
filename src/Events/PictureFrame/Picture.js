@@ -13,7 +13,7 @@ const Picture = (props) => {
 
     return (
         <mesh rotation={[120.9,0,0]} position={props.position}>
-            <planeGeometry args={[5, 5]}/>
+            <planeGeometry args={[5, 5]} />
             <meshBasicMaterial map={texture}/>
         </mesh>
     )

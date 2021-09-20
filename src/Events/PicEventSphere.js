@@ -1,9 +1,6 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState} from 'react'
 import * as THREE from 'three'
-import InfoWindow from './InfoWindow';
 import {useFrame, useThree} from "@react-three/fiber";
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import {controllers} from "three/examples/jsm/libs/dat.gui.module";
 
 /* 
     What draws the event spheres.
@@ -27,7 +24,7 @@ const PicEventSphere = (props) => {
     const TWEEN = require('@tweenjs/tween.js');
     
     // offset of camera from target object [xyz]
-    const cameraOffset = [0,-8,0];
+    const cameraOffset = [0,-5,0];
     const sphereCentre = new THREE.Vector3(props.sphereCoords[0], props.sphereCoords[1], props.sphereCoords[2]);
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(
@@ -48,14 +45,13 @@ const PicEventSphere = (props) => {
 
     // props has coordinates as array of 3 elements.
     const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
     let colour = "black"
     // change colour (maybe convert to texture later on.)
 
     // this is the tween to interpolate the position
     let posTween = new TWEEN.Tween( cameraCurrentPos )
     .to( cameraTargetPos, props.duration )
-    .easing( TWEEN.Easing.Quadratic.Out )
+    .easing( TWEEN.Easing.Quadratic.InOut )
     .onUpdate( () => {
         camera.position.copy( cameraCurrentPos );
         //camera.lookAt(targetObjectPos);
@@ -69,14 +65,13 @@ const PicEventSphere = (props) => {
     // tried, but I think there's a better way
     let viewTween = new TWEEN.Tween( cameraCurrentQuat )
     .to( cameraTargetQuat, props.duration )
-    .easing( TWEEN.Easing.Quadratic.Out )
+    .easing( TWEEN.Easing.Quadratic.InOut )
     .onUpdate( () => camera.quaternion.copy(cameraCurrentQuat))
     .onComplete(() => camera.quaternion.copy(cameraTargetQuat))
 
 
     // Move camera to target position
-    function tweenCamera( coords, duration ) {
-
+    function tweenCamera() {
         posTween.start();
         viewTween.start();
     }
@@ -92,8 +87,7 @@ const PicEventSphere = (props) => {
         <mesh 
         position={sphereCentre}
         scale={hovered ? 1.2 : 1}
-        onClick={() => tweenCamera(props.targetCoords, 1000)}
-        onPointerMissed={() => setActive(false)}
+        onClick={() => tweenCamera()}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
         >

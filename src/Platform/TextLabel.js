@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import React, {useRef} from 'react'
-import {useLoader} from "@react-three/fiber";
 
 
 const TextLabel = (props) => {
@@ -57,9 +56,8 @@ const TextLabel = (props) => {
 
     return (
         <mesh rotation={[120.9,0,0]} position={props.position} ref={ref}>
-            <textGeometry attach={'geometry'} args={[props.text, textOptions]}>
+            <textGeometry attach={'geometry'} args={[props.text, textOptions]} />
                 <meshToonMaterial attach={'material'}/>
-            </textGeometry>
         </mesh>
     )
 
