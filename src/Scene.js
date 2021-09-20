@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import { useThree} from '@react-three/fiber'
 import Platform from "./Platform/Platform";
-import EventPoints from './Events/EventPoints';
+import EventsCollection from './Events/EventsCollection';
+import PicEventSphere from './Events/PicEventSphere';
 
 
 const platformSettings = {
@@ -34,7 +35,7 @@ const Scene = () => {
     return (
         <group>
             <Platform platformSettings={platformSettings} />
-            <EventPoints platformSettings={platformSettings} />
+            <EventsCollection platformSettings={platformSettings} />
         </group>
     )
 }
