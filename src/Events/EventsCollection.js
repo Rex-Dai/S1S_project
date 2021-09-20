@@ -2,6 +2,7 @@ import React, {useMemo, useCallback, useRef} from 'react'
 import { EventSphere } from './EventSphere';
 import {randInt} from "three/src/math/MathUtils";
 import PicEventSphere from "./PicEventSphere";
+import Picture from "./PictureFrame/Picture";
 
 const EventsCollection = (props) => {
 
@@ -46,7 +47,8 @@ const EventsCollection = (props) => {
         <group>
             {eventList}
             <EventSphere coords={[30, 40, 5]}/>
-            <PicEventSphere sphereCoords={[0,0,0]} targetCoords={[30,40,5]} duration={5000}/>
+            <PicEventSphere sphereCoords={[0,0,0]} targetCoords={[30,40,0]} duration={2000}/>
+            <Picture position={[30,40,0]}/>
         </group>
     )
 }
