@@ -27,7 +27,7 @@ const PicEventSphere = (props) => {
     const TWEEN = require('@tweenjs/tween.js');
     
     // offset of camera from target object [xyz]
-    const cameraOffset = [0,-5,0];
+    const cameraOffset = [0,-8,0];
     const sphereCentre = new THREE.Vector3(props.sphereCoords[0], props.sphereCoords[1], props.sphereCoords[2]);
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(
@@ -37,6 +37,15 @@ const PicEventSphere = (props) => {
     //const cameraAngle = new THREE.Vector3().copy( camera.rotation );
     const targetObjectPos = new THREE.Vector3(props.targetCoords[0], props.targetCoords[1], props.targetCoords[2]);
     
+    // obtain current and target quaternion
+    // is this the best way???
+    const cameraCurrentQuat = new THREE.Quaternion().copy(camera.quaternion);
+    camera.position.copy(cameraTargetPos);
+    camera.lookAt(targetObjectPos)
+    const cameraTargetQuat = new THREE.Quaternion().copy(camera.quaternion);
+    camera.position.copy(cameraCurrentPos);
+    camera.quaternion.copy(cameraCurrentQuat)
+
     // props has coordinates as array of 3 elements.
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
@@ -49,30 +58,27 @@ const PicEventSphere = (props) => {
     .easing( TWEEN.Easing.Quadratic.Out )
     .onUpdate( () => {
         camera.position.copy( cameraCurrentPos );
-        camera.lookAt(targetObjectPos);
+        //camera.lookAt(targetObjectPos);
     })
     .onComplete( () => {
         camera.position.copy( cameraTargetPos );
-        camera.lookAt(targetObjectPos);
+        //camera.lookAt(targetObjectPos);
     })
 
     // this is the tween to interpolate camera angle
     // tried, but I think there's a better way
-    // let viewTween = new TWEEN.Tween( cameraAngle )
-    // .to( cameraTargetAngle, props.duration )
-    // .easing( TWEEN.Easing.Back.InOut )
-    // .onUpdate( function () {
-    //     camera.rotation.copy(cameraAngle);
-    // } )
-    // .onComplete( function () {
-    //     camera.rotation.copy( cameraTargetAngle );
-    // })
+    let viewTween = new TWEEN.Tween( cameraCurrentQuat )
+    .to( cameraTargetQuat, props.duration )
+    .easing( TWEEN.Easing.Quadratic.Out )
+    .onUpdate( () => camera.quaternion.copy(cameraCurrentQuat))
+    .onComplete(() => camera.quaternion.copy(cameraTargetQuat))
 
 
     // Move camera to target position
     function tweenCamera( coords, duration ) {
 
         posTween.start();
+        viewTween.start();
     }
 
     useFrame(({ gl, camera, scene}) => {
