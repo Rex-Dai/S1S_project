@@ -4,19 +4,14 @@ import img from './warPic.png'
 
 const Picture = (props) => {
 
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load(img);
-    console.log(texture)
-
+    const texture = new THREE.TextureLoader().load(img);
 
     return (
         <mesh rotation={[120.9,0,0]} position={props.position}>
-            <planeGeometry attach="geometry" args={[3, 3]}>
-                <meshBasicMaterial attach="material" map={texture} side={THREE.FrontSide} />
-            </planeGeometry>
+            <planeGeometry args={[5, 5]}/>
+            <meshBasicMaterial map={texture}/>
         </mesh>
     )
-
 }
 
 
