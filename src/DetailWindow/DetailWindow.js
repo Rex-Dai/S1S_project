@@ -22,7 +22,7 @@ const DetailWindow = (props) => {
 
 
         return (
-            <Html className="detailWindow" fullscreen center >
+            <Html className="detailWindow"  center >
                 <div className="Slide">
                     <div className="main-container">
                         <div className="img-container">

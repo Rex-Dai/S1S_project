@@ -38,7 +38,7 @@ export class DetailWindowPre extends React.Component {
                 <div className="Slide">
                     <div className="main-container">
                         <div className="img-container">
-                            <img className="main-img" src={'src/Events/PictureFrame/warPic.png'}
+                            <img className="main-img" src={this.state.targetEvent.imgSrc}
                                  alt={this.state.targetEvent.imgAlt}/>
                         </div>
                         <div className="caption-container">
