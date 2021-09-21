@@ -1,5 +1,6 @@
 import React from "react"
 import GalleryItem from "./GalleryItem"
+import './Gallery.css'
 
 export default class Gallery extends React.Component {
 

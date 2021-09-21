@@ -1,8 +1,9 @@
 import './App.css';
 import {Canvas} from "@react-three/fiber";
 import Scene from './Scene'
-import { DetailWindow } from './DetailWindow/DetailWindow';
 import { BrowserRouter, Route } from "react-router-dom";
+import {DetailWindowPre} from "./DetailWindow/DetailWindowPre";
+
 
 const App = () => {
 
@@ -10,7 +11,7 @@ const App = () => {
         <BrowserRouter>
 
             <Route path="/detail">
-                <DetailWindow id={1} />
+                <DetailWindowPre id={1}/>
             </Route>
 
             <Route path='/' exact>

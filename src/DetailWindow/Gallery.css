@@ -1,0 +1,13 @@
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: auto;
+}
+
+
+.figure-container {
+    display: flex;
+    width: 100%;
+    margin: auto;
+}

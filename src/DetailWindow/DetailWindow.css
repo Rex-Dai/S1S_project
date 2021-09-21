@@ -1,0 +1,33 @@
+
+.Slide {
+    background-color:white;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*width:100%;*/
+    /*height:50%;*/
+}
+
+p {
+    font-family: 'Hina Mincho', serif;
+    font-size: 1.2em;
+}
+
+
+.main-container {
+    flex-shrink: 1;
+    margin: auto;
+    box-shadow: 3px 3px 11px #a0a0a0;
+    padding: 2em;
+    align-items: center;
+    background-color: #dad6cb;
+}
+
+.img-container {
+    display: flex;
+    width: 50%;
+}
+
+.caption-container h1, h3, p {
+    font-size: 1.5vw;
+}
