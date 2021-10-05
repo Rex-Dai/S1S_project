@@ -8,7 +8,7 @@ import './DetailWindow.css'
 const DetailWindow = (props) => {
 
         // get the state of this component.
-        const eventList = require("../Events/eventData.json")
+        const eventList = require("../../Events/eventData.json")
         // get the target event based on id
         console.log(eventList)
         const thisEvent = eventList.events.filter(element => element.id === props.id)
@@ -22,7 +22,7 @@ const DetailWindow = (props) => {
 
 
         return (
-            <Html className="detailWindow"  center >
+            <Html className="detailWindow"  >
                 <div className="Slide">
                     <div className="main-container">
                         <div className="img-container">

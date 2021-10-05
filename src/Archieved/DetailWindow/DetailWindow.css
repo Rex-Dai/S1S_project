@@ -15,7 +15,6 @@ p {
 
 
 .main-container {
-    flex-shrink: 1;
     margin: auto;
     box-shadow: 3px 3px 11px #a0a0a0;
     padding: 2em;

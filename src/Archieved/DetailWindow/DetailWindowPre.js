@@ -7,7 +7,7 @@ export class DetailWindowPre extends React.Component {
         super(props)
 
         // get the state of this component.
-        const eventList = require("../Events/eventData.json")
+        const eventList = require("../../Events/eventData.json")
         // get the target event based on id
         console.log(eventList)
         const thisEvent = eventList.events.filter(element => element.id === this.props.id)

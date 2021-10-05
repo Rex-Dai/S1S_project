@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react'
-import { useThree} from '@react-three/fiber'
+import {useFrame, useThree} from '@react-three/fiber'
 import Platform from "./Platform/Platform";
 import EventsCollection from './Events/EventsCollection';
 
@@ -14,9 +14,17 @@ const platformSettings = {
 }
 
 const Scene = () => {
+
     const { camera, gl, scene } = useThree()
     const ref = useRef();
 
+    const TWEEN = require('@tweenjs/tween.js');
+
+    // take over the rendering loop
+    useFrame(({ gl, camera, scene}) => {
+        TWEEN.update();
+        gl.render(scene,camera);
+    }, 1)
 
 
     useEffect(() => {

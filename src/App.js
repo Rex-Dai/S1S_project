@@ -2,7 +2,7 @@ import './App.css';
 import {Canvas} from "@react-three/fiber";
 import Scene from './Scene'
 import { BrowserRouter, Route } from "react-router-dom";
-import {DetailWindowPre} from "./DetailWindow/DetailWindowPre";
+import {DetailWindowPre} from "./Archieved/DetailWindow/DetailWindowPre";
 
 
 const App = () => {

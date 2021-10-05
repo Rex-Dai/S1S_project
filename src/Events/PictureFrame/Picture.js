@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import img from './warPic.png'
 import React, {useState} from "react";
 
-import DetailWindow from "../../DetailWindow/DetailWindow";
+import DetailWindow from "../../Archieved/DetailWindow/DetailWindow";
 
 
 const Picture = (props) => {
