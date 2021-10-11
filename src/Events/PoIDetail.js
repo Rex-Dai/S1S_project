@@ -25,7 +25,7 @@ const PoIDetail = (props) => {
         if (eventState === "poi") {
             setPosZ(posZ - event.deltaY * 0.005)
 
-        } else if (eventState === "timeline") {
+        } else if (eventState === "zoomed") {
             // enable x scroll, make movement slower
             setPosZ(posZ - event.deltaY * 0.001)
             setPosX(posX - event.deltaX * 0.001)
@@ -36,13 +36,19 @@ const PoIDetail = (props) => {
         if (eventState === "poi") {
             
             // move camera closer
-            tweenCamera(camera, [posX, posY, posZ - 1], 1000, () => setEventState("zoom"))
+            tweenCamera(camera, [posX, posY+1, posZ], 1000, () => setEventState("zoomed"))
             setZoomed(true)
         } else if(eventState === "zoomed"){
 
             // move camera back to original
-            tweenCamera(camera, [posX, posY, posZ - 4], 1000, () => setEventState("zoom"))
+            tweenCamera(camera, [posX, posY, posZ], 1000, () => setEventState("poi"))
             setZoomed(false)
+        }
+    }
+
+    function handlePointerMissed(){
+        if(eventState === "poi"){
+            tweenCamera(camera,props.startCoords,2000,() => setEventState("timeline"))
         }
     }
 
@@ -55,11 +61,7 @@ const PoIDetail = (props) => {
             position={[posX, posY, posZ]}
             onClick={handleClick}
             onWheel={wheelMovement}
-            onPointerMissed={() => tweenCamera(
-                camera,
-                props.startCoords,
-                2000,
-                () => setEventState("timeline"))}>
+            onPointerMissed={handlePointerMissed}>
             <planeGeometry args={[5, 10]} />
             <meshBasicMaterial map={texture} />
         </mesh>

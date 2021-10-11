@@ -47,7 +47,7 @@ const PoICollection = (props) => {
     return(
         <group>
             {eventList}
-            <PoIMarker position={[0,0,0]} targetCoords={[200,20,5]} duration={2000}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[10,20,5]} duration={2000}/>
             <PoIPicture position={[30,40,5]}/>
             <PoIDetail position={[10,20,5]} startCoords={[0,-10,8]}/>
         </group>

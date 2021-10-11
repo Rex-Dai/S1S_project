@@ -5,6 +5,7 @@ const TWEEN = require('@tweenjs/tween.js');
 // finishcallback: callback called when the transition is finished
 export default function tweenCamera(camera, targetCoords, duration, finishCallback) {
 
+    console.log(targetCoords)
     const cameraOffset = [0,-5,0];
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(
