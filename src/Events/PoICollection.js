@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useEffect, useContext, useState} from 'react'
 
 import PoIMarker from './PoIMarker';
 import PoIPicture from "../Archieved/PictureFrame/Picture";
 import PoIDetail from './PoIDetail';
+import { EventContext } from './EventContext';
+
 
 const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     const eventList = [];
+    const { eventState } = useContext(EventContext)
 
     const dateToCoordinate = (date) => {
         let x,y,z,year,month;
@@ -41,13 +44,12 @@ const PoICollection = (props) => {
         />)
     })
 
-
     return(
         <group>
             {eventList}
-            <PoIMarker position={[0,0,0]} targetCoords={[30,15,5]} duration={2000}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[200,20,5]} duration={2000}/>
             <PoIPicture position={[30,40,5]}/>
-            <PoIDetail position={[30,20,5]} />
+            <PoIDetail position={[10,20,5]} startCoords={[0,-10,8]}/>
         </group>
     )
 }

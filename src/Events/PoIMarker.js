@@ -25,8 +25,10 @@ const PoIMarker = (props) => {
     let colour = "black"
 
     function handleClick() {
-        setEventState("poi");
-        tweenCamera(camera, props.targetCoords, props.duration);
+        if(eventState === "timeline"){
+            setEventState("disabled");
+            tweenCamera(camera, props.targetCoords, props.duration, () => {setEventState("poi"); console.log(eventState)});
+        }
     }
 
     return (

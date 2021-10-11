@@ -16,7 +16,8 @@ const platformSettings = {
 const Scene = () => {
 
     const { camera, gl, scene } = useThree()
-    const ref = useRef();
+    
+    const activePoI = useRef();
 
     const { eventState, setEventState } = useContext(EventContext)
 

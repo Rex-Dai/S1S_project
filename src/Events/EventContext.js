@@ -5,6 +5,7 @@ import React from "react"
 // timeline: user can scroll timeline, click PoI objects to zoom in
 // poi: user can click empty space to go back, click gallery to change photo
 // zoomed: user can scroll to move around the poi texture
+// disabled: disable all events
 
 export const EventContext = React.createContext({
     eventState: "timeline",
