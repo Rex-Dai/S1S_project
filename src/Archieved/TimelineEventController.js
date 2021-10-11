@@ -1,5 +1,5 @@
-import { EventContext } from "./Events/EventContext";
-import Scene from "./Scene";
+import { EventContext } from "../Events/EventContext";
+import Scene from "../Scene";
 
 // this is the file that stores event system
 export const TimelineEventController = (props) => {

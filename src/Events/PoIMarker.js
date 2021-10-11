@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react'
 import tweenCamera from "./CameraTravese"
 import {useThree} from "@react-three/fiber";
 import { EventContext } from './EventContext';
+import * as THREE from "three";
 
 /* 
     This is what draws PoI objects and control events related.
@@ -18,7 +19,7 @@ import { EventContext } from './EventContext';
 
 const PoIMarker = (props) => {
 
-    const { eventState, setEventState } = useContext(EventContext)
+    let { setEventState, setTimelinePos} = useContext(EventContext)
 
     const { camera } = useThree();
 
@@ -27,10 +28,14 @@ const PoIMarker = (props) => {
     const [hovered, setHover] = useState(false)
     let colour = "black"
 
+    const curPosition = new THREE.Vector3().copy(camera.position);
+
     function handleClick() {
         setEventState("poi");
+        setTimelinePos(curPosition)
         tweenCamera(camera, props.targetCoords, props.duration);
     }
+
 
     return (
         <mesh

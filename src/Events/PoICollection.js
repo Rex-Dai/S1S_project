@@ -1,12 +1,17 @@
 import React from 'react'
 
 import PoIMarker from './PoIMarker';
-import PoIPicture from "../Archieved/PictureFrame/Picture";
+import PoIPoster from "./PoIPoster";
+import PoIAlbum from "./PoIAlbum";
 
 const PoICollection = (props) => {
 
-    const eventData = require("./eventData.json")
-    const eventList = [];
+    const eventList = require("./eventData.json")
+    const demoEvent = eventList.events.filter(element => element.id === 1)[0];
+
+
+
+    const duration = 2000;
 
     const dateToCoordinate = (date) => {
         let x,y,z,year,month;
@@ -46,9 +51,9 @@ const PoICollection = (props) => {
 
     return(
         <group>
-            {eventList}
-            <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={2000}/>
-            <PoIPicture position={[30,40,5]}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={duration}/>
+            <PoIPoster position={[30,40,5]} duration={duration} event={demoEvent}/>
+            <PoIAlbum event={demoEvent} position={[10,10,10]}/>
         </group>
     )
 }
