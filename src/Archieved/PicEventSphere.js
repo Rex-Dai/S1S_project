@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import * as THREE from 'three'
 import tweenCamera from "./CameraTravese"
 import {useThree} from "@react-three/fiber";
-
+import { EventContext } from './EventContext';
 
 /* 
     What draws the event spheres.
@@ -17,7 +17,7 @@ import {useThree} from "@react-three/fiber";
  */
 const PicEventSphere = (props) => {
 
-
+    const {eventState, setEventState} = useContext(EventContext)
 
     const {camera} = useThree();
 
@@ -27,13 +27,17 @@ const PicEventSphere = (props) => {
     let colour = "black"
     // change colour (maybe convert to texture later on.)
 
-
+    function handleClick(){
+        setEventState("poi");
+        tweenCamera(camera, props.targetCoords, props.duration);
+    }
 
     return(
         <mesh 
         position={sphereCentre}
         scale={hovered ? 1.2 : 1}
-        onClick={() => tweenCamera(camera, props.targetCoords, props.duration)}
+        onClick={handleClick}
+        // onClick={() => tweenCamera(camera, props.targetCoords, props.duration)}
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
         >

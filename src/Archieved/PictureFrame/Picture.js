@@ -1,17 +1,16 @@
 import * as THREE from 'three'
-import img from './warPic.png'
 import React, {useState} from "react";
-
+import img from '../../Images/warPic.png'
 import DetailWindow from "../../Archieved/DetailWindow/DetailWindow";
 
 
 const Picture = (props) => {
 
     
-    const texture = new THREE.TextureLoader().load(img,
-        load => console.log(load),
-        progress => console.log(progress),
-        error => console.log(error)
+    const texture = new THREE.TextureLoader().load(img
+        // ,load => console.log(load),
+        // progress => console.log(progress),
+        // error => console.log(error)
         );
     const [active, setActive] = useState(false)
 

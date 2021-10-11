@@ -6,8 +6,6 @@ const TWEEN = require('@tweenjs/tween.js');
 
 export default function tweenCamera(camera, targetCoords, duration) {
 
-
-
     const cameraOffset = [0,-5,0];
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(

@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 import * as THREE from 'three'
-import InfoWindow from './InfoWindow';
+import InfoWindow from '../Archieved/InfoWindow';
 
 /* 
     What draws the event spheres.

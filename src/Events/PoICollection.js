@@ -1,9 +1,9 @@
 import React from 'react'
-import { EventSphere } from './EventSphere';
-import PicEventSphere from "./PicEventSphere";
-import Picture from "./PictureFrame/Picture";
 
-const EventsCollection = (props) => {
+import PoIMarker from './PoIMarker';
+import PoIPicture from "../Archieved/PictureFrame/Picture";
+
+const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     const eventList = [];
@@ -33,23 +33,24 @@ const EventsCollection = (props) => {
 
 
 
-    eventData.events.forEach( element => {
-        let coordinate = dateToCoordinate(element.date)
-            eventList.push(<EventSphere
-            coords={coordinate}
-            category={element.category}
-        />)
-    })
+    // this is what renders
+    // eventData.events.forEach( element => {
+    //     let coordinate = dateToCoordinate(element.date)
+    //         eventList.push(<EventSphere
+    //         coords={coordinate}
+    //         category={element.category}
+    //         key={"" + element.date + element.category}
+    //     />)
+    // })
 
 
     return(
         <group>
             {eventList}
-            {/* <EventSphere coords={[30, 40, 5]}/> */}
-            <PicEventSphere sphereCoords={[0,0,0]} targetCoords={[32,40,4]} duration={2000}/>
-            <Picture position={[30,40,5]}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={2000}/>
+            <PoIPicture position={[30,40,5]}/>
         </group>
     )
 }
 
-export default EventsCollection;
+export default PoICollection;
