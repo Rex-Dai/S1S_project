@@ -4,7 +4,7 @@ import React from "react"
 // event context used to manage the 'state' that allows different interactions
 // timeline: user can scroll timeline, click PoI objects to zoom in
 // poi: user can click empty space to go back, click gallery to change photo
-// poi-main: user can scroll to move the poi texture
+// zoomed: user can scroll to move around the poi texture
 
 export const EventContext = React.createContext({
     eventState: "timeline",

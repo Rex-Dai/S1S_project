@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState} from 'react'
 import * as THREE from 'three'
 import InfoWindow from '../Archieved/InfoWindow';
 

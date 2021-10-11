@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import {useThree} from "@react-three/fiber";
 
 const TWEEN = require('@tweenjs/tween.js');
 

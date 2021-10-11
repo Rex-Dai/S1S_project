@@ -19,12 +19,9 @@ import { EventContext } from './EventContext';
 const PoIMarker = (props) => {
 
     const { eventState, setEventState } = useContext(EventContext)
-
     const { camera } = useThree();
-
-    // props has coordinates as array of 3 elements.
-    
     const [hovered, setHover] = useState(false)
+    
     let colour = "black"
 
     function handleClick() {

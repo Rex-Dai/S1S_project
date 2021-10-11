@@ -1,6 +1,5 @@
 import './App.css';
 import { Canvas } from "@react-three/fiber";
-import Scene from './Scene'
 import React, { useContext } from 'react';
 import { SceneEventController } from './Scene';
 

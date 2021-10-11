@@ -2,6 +2,7 @@ import React from 'react'
 
 import PoIMarker from './PoIMarker';
 import PoIPicture from "../Archieved/PictureFrame/Picture";
+import PoIDetail from './PoIDetail';
 
 const PoICollection = (props) => {
 
@@ -31,24 +32,22 @@ const PoICollection = (props) => {
         return [x,y,z];
     }
 
-
-
-    // this is what renders
-    // eventData.events.forEach( element => {
-    //     let coordinate = dateToCoordinate(element.date)
-    //         eventList.push(<EventSphere
-    //         coords={coordinate}
-    //         category={element.category}
-    //         key={"" + element.date + element.category}
-    //     />)
-    // })
+    // Render the elements
+    eventData.events.forEach( element => {
+        let coordinate = dateToCoordinate(element.date)
+            eventList.push(<PoIMarker
+            position={coordinate}
+            key={"" + element.date + element.category}
+        />)
+    })
 
 
     return(
         <group>
             {eventList}
-            <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={2000}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[30,15,5]} duration={2000}/>
             <PoIPicture position={[30,40,5]}/>
+            <PoIDetail position={[30,20,5]} />
         </group>
     )
 }
