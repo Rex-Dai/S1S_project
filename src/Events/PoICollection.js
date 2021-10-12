@@ -1,16 +1,17 @@
-import React, {useEffect, useContext, useState} from 'react'
+import React from 'react'
 
 import PoIMarker from './PoIMarker';
-import PoIPicture from "../Archieved/PictureFrame/Picture";
-import PoIDetail from './PoIDetail';
-import { EventContext } from './EventContext';
-
+import PoIPoster from "./PoIPoster";
+import PoIAlbum from "./PoIAlbum";
 
 const PoICollection = (props) => {
 
-    const eventData = require("./eventData.json")
-    const eventList = [];
-    const { eventState } = useContext(EventContext)
+    const eventList = require("./eventData.json")
+    const demoEvent = eventList.events.filter(element => element.id === 1)[0];
+
+
+
+    const duration = 2000;
 
     const dateToCoordinate = (date) => {
         let x,y,z,year,month;
@@ -35,21 +36,24 @@ const PoICollection = (props) => {
         return [x,y,z];
     }
 
-    // Render the elements
-    eventData.events.forEach( element => {
-        let coordinate = dateToCoordinate(element.date)
-            eventList.push(<PoIMarker
-            position={coordinate}
-            key={"" + element.date + element.category}
-        />)
-    })
+
+
+    // this is what renders
+    // eventData.events.forEach( element => {
+    //     let coordinate = dateToCoordinate(element.date)
+    //         eventList.push(<EventSphere
+    //         coords={coordinate}
+    //         category={element.category}
+    //         key={"" + element.date + element.category}
+    //     />)
+    // })
+
 
     return(
         <group>
-            {eventList}
-            <PoIMarker position={[0,0,0]} targetCoords={[10,20,5]} duration={2000}/>
-            <PoIPicture position={[30,40,5]}/>
-            <PoIDetail position={[10,20,5]} startCoords={[0,-10,8]}/>
+            <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={duration}/>
+            <PoIPoster position={[30,40,5]} duration={duration} event={demoEvent}/>
+
         </group>
     )
 }

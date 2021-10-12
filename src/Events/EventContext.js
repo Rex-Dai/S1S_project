@@ -9,5 +9,7 @@ import React from "react"
 
 export const EventContext = React.createContext({
     eventState: "timeline",
-    setEventState: () => { } // assigned by provider
+    setEventState: () => { }, // assigned by provider
+    timelinePos: [0,0,0],
+    setTimelinePos: () => {}
 })

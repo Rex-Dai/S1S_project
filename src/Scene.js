@@ -38,7 +38,7 @@ const Scene = () => {
         return () => {
             window.removeEventListener('wheel', onMouseWheel);
         }
-    })
+    },[])
 
     function onMouseWheel(event) {
         event.preventDefault();
@@ -61,7 +61,8 @@ const Scene = () => {
 export const SceneEventController = () => {
 
     const [eventState, setEventState] = useState("timeline");
-    const value = { eventState, setEventState };
+    const [timelinePos, setTimelinePos] = useState([0,0,0])
+    const value = { eventState, setEventState, timelinePos, setTimelinePos};
 
     return (
         <EventContext.Provider value={value}>

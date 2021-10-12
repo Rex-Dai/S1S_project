@@ -1,11 +1,11 @@
 import * as THREE from "three";
+import {useThree} from "@react-three/fiber";
 
 const TWEEN = require('@tweenjs/tween.js');
 
-// finishcallback: callback called when the transition is finished
-export default function tweenCamera(camera, targetCoords, duration, finishCallback) {
 
-    console.log(targetCoords)
+export default function tweenCamera(camera, targetCoords, duration, timelineView = false) {
+
     const cameraOffset = [0,-5,0];
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(
@@ -18,9 +18,17 @@ export default function tweenCamera(camera, targetCoords, duration, finishCallba
 // obtain current and target quaternion
 // is this the best way???
     const cameraCurrentQuat = new THREE.Quaternion().copy(camera.quaternion);
-    camera.position.copy(cameraTargetPos);
-    camera.lookAt(targetObjectPos)
-    const cameraTargetQuat = new THREE.Quaternion().copy(camera.quaternion);
+    let cameraTargetQuat;
+    if (!timelineView) {
+        camera.position.copy(cameraTargetPos);
+        camera.lookAt(targetObjectPos);
+        cameraTargetQuat = new THREE.Quaternion().copy(camera.quaternion);
+
+    } else {
+        camera.position.set(0, -10, 8)
+        camera.lookAt(0,5,0)
+        cameraTargetQuat = new THREE.Quaternion().copy(camera.quaternion);
+    }
     camera.position.copy(cameraCurrentPos);
     camera.quaternion.copy(cameraCurrentQuat)
 
@@ -34,7 +42,6 @@ export default function tweenCamera(camera, targetCoords, duration, finishCallba
         })
         .onComplete( () => {
             camera.position.copy( cameraTargetPos );
-            finishCallback();
             //camera.lookAt(targetObjectPos);
         })
 
