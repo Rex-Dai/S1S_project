@@ -15,6 +15,7 @@ const PoIAlbum = (props) => {
 
     const [isLoaded, setIsLoaded] = useState(false)
 
+
     // const initialState = {count: 0};
     //
     // function reducer(state, action) {
@@ -48,13 +49,14 @@ const PoIAlbum = (props) => {
      U need allow CORS to run following code
      */
 
+
     const filteredPicTexture = useMemo(() => {
         return items.filter(element => {
             const date = new Date(element["Temporal"]);
             const eventDate = new Date(props.event["date"])
             return eventDate.getFullYear() === date.getFullYear() && eventDate.getMonth() === date.getMonth();
         }).map(item => {
-            return loader.load(item["Thumbnail image"]);
+            return loader.load(item["High resolution image"]);
         })
     }, [isLoaded])
 

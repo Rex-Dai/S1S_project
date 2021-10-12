@@ -31,9 +31,10 @@ const PoIMarker = (props) => {
     const curPosition = new THREE.Vector3().copy(camera.position);
 
     function handleClick() {
-        setEventState("poi");
+        setEventState("disabled");
         setTimelinePos(curPosition)
-        tweenCamera(camera, props.targetCoords, props.duration);
+        tweenCamera(camera, props.targetCoords, props.duration, false,() => setEventState("poi")
+        );
     }
 
 
