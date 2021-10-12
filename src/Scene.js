@@ -38,13 +38,12 @@ const Scene = () => {
         return () => {
             window.removeEventListener('wheel', onMouseWheel);
         }
-    },[])
+    },[eventState])
 
     function onMouseWheel(event) {
         event.preventDefault();
         if(eventState === "timeline"){
             camera.position.y -= event.deltaY * 0.005;
-
         } else{
 
         }
