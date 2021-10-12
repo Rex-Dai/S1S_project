@@ -14,22 +14,58 @@ const PoIPoster = (props) => {
 
     const { camera } = useThree();
 
+    const [posZ, setPosZ] = useState(props.position[2])
+    const [posX, setPosX] = useState(props.position[0])
+    const posY = props.position[1]
+
+    function wheelMovement(event) {
+
+        if (eventState === "poi") {
+            setPosZ(posZ - event.deltaY * 0.005)
+
+        } else if (eventState === "zoomed") {
+            // enable x scroll, make movement slower
+            setPosZ(posZ - event.deltaY * 0.001)
+        }
+    }
+
+    function handleClick() {
+        if (eventState === "poi") {
+
+            // move camera closer
+            setEventState("disabled")
+            tweenCamera(camera, [posX, posY+1, posZ], 1000, false,() => {setEventState('zoomed')})
+            // setZoomed(true)
+        } else if(eventState === "zoomed"){
+
+            // move camera back to original
+            setEventState("disabled")
+            tweenCamera(camera, [posX, posY, posZ], 1000, false, () => setEventState("poi"))
+        }
+    }
+
+
     const texture = useMemo(() => new THREE.TextureLoader().load(img
         // ,load => console.log(load),
         // progress => console.log(progress),
         // error => console.log(error)
         ), []);
+
     const handleTraverseBack = () => {
         if (eventState === "poi") {
-            setEventState("timeline")
-            tweenCamera(camera, [timelinePos.x,timelinePos.y + 5,timelinePos.z], props.duration, true)
+
+            setEventState("disabled")
+            tweenCamera(camera, [timelinePos.x,timelinePos.y + 5,timelinePos.z], props.duration, true,
+                () => setEventState("timeline"))
         }
     }
 
     return (
-        <group position={props.position}
-               rotation={[120.9,0,0]}
-               onPointerMissed={() => handleTraverseBack()}
+        <group rotation={[120.9,0,0]}
+               position={[posX, posY, posZ]}
+               onClick={handleClick}
+               onWheel={wheelMovement}
+               onPointerMissed={handleTraverseBack}>
                >
             <mesh >
                 <planeGeometry args={[5, 5]} />
