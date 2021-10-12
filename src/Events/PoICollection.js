@@ -53,7 +53,7 @@ const PoICollection = (props) => {
         <group>
             <PoIMarker position={[0,0,0]} targetCoords={[32,40,4]} duration={duration}/>
             <PoIPoster position={[30,40,5]} duration={duration} event={demoEvent}/>
-            <PoIAlbum event={demoEvent} position={[10,10,10]}/>
+
         </group>
     )
 }

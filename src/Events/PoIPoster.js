@@ -29,12 +29,13 @@ const PoIPoster = (props) => {
     return (
         <group position={props.position}
                rotation={[120.9,0,0]}
-               onPointerMissed={() => handleTraverseBack()}>
+               onPointerMissed={() => handleTraverseBack()}
+               >
             <mesh >
                 <planeGeometry args={[5, 5]} />
                 <meshBasicMaterial map={texture}/>
             </mesh>
-
+            <PoIAlbum event={props.event} position={[5,0,0]}/>
         </group>
     )
 }

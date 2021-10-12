@@ -1,5 +1,5 @@
 import Line from './Line'
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TextLabel from "./TextLabel";
 
 
@@ -16,16 +16,17 @@ const Platform = (props) => {
     const indicator = [];
     const label = []
 
+
     // the index props for vertical line stands for the coordinate at x axis
     for (let i = 0; i < 5; i++) {
         lineList.push(<Line index={verStart +
-        i * verInt} type={'vertical'} key={"ver" +i}/>);
+        i * verInt} type={'vertical'} key={"ver" + i}/>);
     }
 
     // the index props for horizontal line stands for the y coordinate
     for (let i = 0; i < 6; i++) {
         lineList.push(<Line index={horiStart +
-        i * horiInt} type={'horizontal'} key={"hor"+i}/>);
+        i * horiInt} type={'horizontal'} key={"hor" + i}/>);
     }
 
     // the index props for monthIndicator stands for the year and month
@@ -33,16 +34,17 @@ const Platform = (props) => {
     for (let i = 14; i < 19; i++) {
         for (let j = 2; j < 13; j++) {
             indicator.push(<Line index={i * 100 + j} type={'monthIndicator'}
-            platformSetting={props.platformSettings} key={100*i + j}/>);
+                                 platformSetting={props.platformSettings} key={100 * i + j}/>);
         }
         label.push(<TextLabel position={[verStart - 15,
             horiStart + (i - 14) * horiInt, -18]} text={(1900 + i).toString()}
-            key={i}/>)
+                              key={i}/>)
     }
     label.push(<TextLabel position={[verStart - 15,
         horiStart + (19 - 14) * horiInt, -18]} text={(1900 + 19).toString()}
-        key="end"/>);
+                          key="end"/>);
 
+    console.log(label.length)
 
     return (
         <group>
