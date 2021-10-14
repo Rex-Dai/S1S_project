@@ -1,5 +1,6 @@
 import React, {useMemo, useCallback, useRef} from 'react'
 import * as THREE from 'three'
+import { MeshLambertMaterial } from 'three';
 
 const Line = (props) => {
     const ref = useRef();
@@ -41,6 +42,7 @@ const Line = (props) => {
         <line position={[0, 0, -10]} ref={ref}>
             <bufferGeometry attach="geometry" onUpdate={onUpdate}/>
             <lineBasicMaterial attach="material" color={'#ffffff'} linewidth={10} linecap={'round'} linejoin={'round'}/>
+            {/* <meshLambertMaterial attach="material" emissive={'#ffffff'}/> */}
         </line>
     )
 }

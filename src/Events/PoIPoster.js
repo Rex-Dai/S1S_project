@@ -60,18 +60,23 @@ const PoIPoster = (props) => {
         }
     }
 
+    // const target = useMemo(() => new THREE.Object3D())
+    // target.position.set(30, 40, 5)
+
     return (
         <group rotation={[120.9,0,0]}
                position={[posX, posY, posZ]}
                onClick={handleClick}
                onWheel={wheelMovement}
                onPointerMissed={handleTraverseBack}>
-               >
-            <mesh >
+               
+            <mesh>
                 <planeGeometry args={[5, 5]} />
-                <meshBasicMaterial map={texture}/>
+                <meshStandardMaterial map={texture}/>
             </mesh>
             <PoIAlbum event={props.event} position={[5,0,0]}/>
+            {/* <spotLight color="#fff0f0" position={[20, 40, 5]} target={target} intensity={5}/> */}
+            
         </group>
     )
 }
