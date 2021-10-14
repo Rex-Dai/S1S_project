@@ -15,8 +15,8 @@ const Line = (props) => {
     }
 
     if (props.type === 'horizontal') {
-        x_start = -36;
-        x_end = 36;
+        x_start = -26;
+        x_end = 20;
         y_start = props.index;
         y_end = props.index;
     }
@@ -35,7 +35,7 @@ const Line = (props) => {
     }
 
     const points = useMemo(() =>
-        [new THREE.Vector3(x_start, y_start, -5), new THREE.Vector3(x_end, y_end, -5)], []);
+        [new THREE.Vector3(x_start, y_start, 0), new THREE.Vector3(x_end, y_end, 0)], []);
     const onUpdate = useCallback(self => self.setFromPoints(points), [points]);
 
     return (

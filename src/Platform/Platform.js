@@ -37,11 +37,14 @@ const Platform = (props) => {
                                  platformSetting={props.platformSettings} key={100 * i + j}/>);
         }
         label.push(<TextLabel position={[verStart - 15,
-            horiStart + (i - 14) * horiInt, -18]} text={(1900 + i).toString()}
+            horiStart + (i - 14) * horiInt, -13]} text={(1900 + i).toString()}
                               key={i}/>)
+        // label.push(<TextLabel position={[verStart - 15,
+        //     horiStart + (i - 14) * horiInt, -13]} text={(1900 + i).toString()}
+        //                       key={i}/>)
     }
     label.push(<TextLabel position={[verStart - 15,
-        horiStart + (19 - 14) * horiInt, -18]} text={(1900 + 19).toString()}
+        horiStart + (19 - 14) * horiInt, -13]} text={(1900 + 19).toString()}
                           key="end"/>);
 
     console.log(label.length)

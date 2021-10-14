@@ -9,14 +9,15 @@ import PoIAlbum from "./PoIAlbum";
 
 const PoIPoster = (props) => {
 
-
+    const textureImg = require('./img/warPic.png')
     const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
 
     const [posZ, setPosZ] = useState(props.position[2])
-    const [posX, setPosX] = useState(props.position[0])
+
     const posY = props.position[1]
+    const posX = props.position[0]
 
     function wheelMovement(event) {
 
@@ -45,11 +46,7 @@ const PoIPoster = (props) => {
     }
 
 
-    const texture = useMemo(() => new THREE.TextureLoader().load(img
-        // ,load => console.log(load),
-        // progress => console.log(progress),
-        // error => console.log(error)
-        ), []);
+    const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     const handleTraverseBack = () => {
         if (eventState === "poi") {
@@ -60,8 +57,6 @@ const PoIPoster = (props) => {
         }
     }
 
-    // const target = useMemo(() => new THREE.Object3D())
-    // target.position.set(30, 40, 5)
 
     return (
         <group rotation={[120.9,0,0]}
