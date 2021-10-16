@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import Platform from "./Platform/Platform";
 
-import { EventContext } from './Events/EventContext';
+import { EventContext, TimelineState } from './Events/EventContext';
 import PoICollection from './Events/PoICollection';
 
 const platformSettings = {
@@ -16,10 +16,8 @@ const platformSettings = {
 const Scene = () => {
 
     const { camera, gl, scene } = useThree()
-    
-    const activePoI = useRef();
 
-    const { eventState, setEventState } = useContext(EventContext)
+    const { eventState} = useContext(EventContext)
 
     const TWEEN = require('@tweenjs/tween.js');
     // take over the rendering loop
@@ -42,7 +40,7 @@ const Scene = () => {
 
     function onMouseWheel(event) {
         event.preventDefault();
-        if(eventState === "timeline"){
+        if(eventState === TimelineState.TIMELINE){
             camera.position.y -= event.deltaY * 0.005;
         } else{
 
@@ -57,9 +55,12 @@ const Scene = () => {
     )
 }
 
+
+export default Scene;
+
 export const SceneEventController = () => {
 
-    const [eventState, setEventState] = useState("timeline");
+    const [eventState, setEventState] = useState(TimelineState.TIMELINE);
     const [timelinePos, setTimelinePos] = useState([0,0,0])
     const value = { eventState, setEventState, timelinePos, setTimelinePos};
 
@@ -69,5 +70,3 @@ export const SceneEventController = () => {
         </EventContext.Provider>
     );
 }
-
-export default Scene;

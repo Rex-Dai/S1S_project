@@ -13,3 +13,11 @@ export const EventContext = React.createContext({
     timelinePos: [0,0,0],
     setTimelinePos: () => {}
 })
+
+export const TimelineState = {
+    TIMELINE: "timeline",
+    PoI: "poi",
+    ZOOM: "zoomed",
+    DISABLED: "disabled"
+}
+

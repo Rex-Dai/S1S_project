@@ -2,8 +2,8 @@
 import * as THREE from 'three'
 import img from '../Images/warPic.png'
 import React, { useState, useContext } from "react";
-import { EventContext } from './EventContext';
-import tweenCamera from './CameraTravese';
+import { EventContext } from '../Events/EventContext';
+import tweenCamera from '../Events/CameraTravese';
 import { useThree } from "@react-three/fiber";
 
 const PoIDetail = (props) => {
@@ -52,9 +52,6 @@ const PoIDetail = (props) => {
         }
     }
 
-    // function onTransitionEnd() {
-    //     setEventState("timeline")
-    // }
 
     return (
         <mesh rotation={[120.9, 0, 0]}

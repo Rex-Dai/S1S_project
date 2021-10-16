@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import tweenCamera from "./CameraTravese"
 import {useThree} from "@react-three/fiber";
-import { EventContext } from './EventContext';
+import { EventContext, TimelineState} from './EventContext';
 import * as THREE from "three";
 
 /* 
@@ -31,9 +31,9 @@ const PoIMarker = (props) => {
     const curPosition = new THREE.Vector3().copy(camera.position);
 
     function handleClick() {
-        setEventState("disabled");
+        setEventState(TimelineState.DISABLED);
         setTimelinePos(curPosition)
-        tweenCamera(camera, props.targetCoords, props.duration, false,() => setEventState("poi")
+        tweenCamera(camera, props.targetCoords, props.duration, false,() => setEventState(TimelineState.PoI)
         );
     }
 

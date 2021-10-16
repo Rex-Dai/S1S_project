@@ -1,8 +1,7 @@
 // This is the object to display detailed PoI album
-import React, {useLayoutEffect, useMemo, useReducer, useState} from "react";
+import React, {useContext, useEffect, useLayoutEffect, useMemo, useReducer, useState} from "react";
 import * as THREE from "three";
-import {useThree} from "@react-three/fiber";
-import {mapLinear} from "three/src/math/MathUtils";
+import {EventContext, TimelineState} from "./EventContext";
 
 
 const PoIAlbum = (props) => {
@@ -13,7 +12,13 @@ const PoIAlbum = (props) => {
 
     const [items, setItems] = useState([]);
 
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    const [index, setIndex] = useState(0);
+
+    const [visibility, setVisibility] = useState(false);
+
+    const {eventState} = useContext(EventContext);
 
 
     // const initialState = {count: 0};
@@ -30,7 +35,6 @@ const PoIAlbum = (props) => {
     // }
     // const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [index, setIndex] = useState(0);
 
 
     useLayoutEffect(() => {
@@ -60,7 +64,10 @@ const PoIAlbum = (props) => {
         })
     }, [isLoaded])
 
-    const geometry = new THREE.PlaneGeometry(5, 5);
+    useEffect(() => {
+        setVisibility(eventState === TimelineState.PoI)
+    }, [eventState])
+
     let flag = false
     if (filteredPicTexture[0] && !flag) {
         flag = !flag;
@@ -70,7 +77,7 @@ const PoIAlbum = (props) => {
         // const mesh = new THREE.Mesh(geometry,material);
         // scene.add(mesh);
         container.push(
-            <mesh  position={props.position}
+            <mesh  position={props.position} visible={visibility}
                   onClick={() => setIndex((index + 1) % filteredPicTexture.length)}>
                 <planeGeometry args={[5, 5]}/>
                 <meshBasicMaterial map={filteredPicTexture[index]}/>

@@ -2,9 +2,10 @@ import * as THREE from 'three'
 import img from '../Images/warPic.png'
 import React, {useContext, useMemo, useState} from "react";
 import tweenCamera from "./CameraTravese";
-import {EventContext} from "./EventContext";
+import {EventContext, TimelineState} from "./EventContext";
 import {useThree} from "@react-three/fiber";
 import PoIAlbum from "./PoIAlbum";
+import PoIButton from "./PoIButton";
 
 
 const PoIPoster = (props) => {
@@ -20,27 +21,29 @@ const PoIPoster = (props) => {
 
     function wheelMovement(event) {
 
-        if (eventState === "poi") {
+        if (eventState === TimelineState.PoI) {
             setPosZ(posZ - event.deltaY * 0.005)
 
-        } else if (eventState === "zoomed") {
+        } else if (eventState === TimelineState.ZOOM) {
             // enable x scroll, make movement slower
             setPosZ(posZ - event.deltaY * 0.001)
         }
     }
 
     function handleClick() {
-        if (eventState === "poi") {
+        if (eventState === TimelineState.PoI) {
 
             // move camera closer
-            setEventState("disabled")
-            tweenCamera(camera, [posX, posY+1, posZ], 1000, false,() => {setEventState('zoomed')})
+            setEventState(TimelineState.DISABLED)
+            tweenCamera(camera, [posX, posY+1, posZ], 1000, false,
+                () => {setEventState(TimelineState.ZOOM)})
             // setZoomed(true)
-        } else if(eventState === "zoomed"){
+        } else if(eventState === TimelineState.ZOOM){
 
             // move camera back to original
-            setEventState("disabled")
-            tweenCamera(camera, [posX, posY, posZ], 1000, false, () => setEventState("poi"))
+            setEventState(TimelineState.DISABLED)
+            tweenCamera(camera, [posX, posY, posZ], 1000, false,
+                () => setEventState(TimelineState.PoI))
         }
     }
 
@@ -52,26 +55,24 @@ const PoIPoster = (props) => {
         ), []);
 
     const handleTraverseBack = () => {
-        if (eventState === "poi") {
+        if (eventState === TimelineState.PoI) {
 
-            setEventState("disabled")
+            setEventState(TimelineState.DISABLED)
             tweenCamera(camera, [timelinePos.x,timelinePos.y + 5,timelinePos.z], props.duration, true,
-                () => setEventState("timeline"))
+                () => setEventState(TimelineState.TIMELINE))
         }
     }
 
     return (
         <group rotation={[120.9,0,0]}
                position={[posX, posY, posZ]}
-               onClick={handleClick}
-               onWheel={wheelMovement}
-               onPointerMissed={handleTraverseBack}>
                >
-            <mesh >
+            <mesh onClick={handleClick} onWheel={wheelMovement}>
                 <planeGeometry args={[5, 5]} />
                 <meshBasicMaterial map={texture}/>
             </mesh>
             <PoIAlbum event={props.event} position={[5,0,0]}/>
+            <PoIButton position={[-3,2,0]} clickEvent={handleTraverseBack}/>
         </group>
     )
 }
