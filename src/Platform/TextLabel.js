@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
+import { MeshLambertMaterial } from 'three';
 
 
 const TextLabel = (props) => {
@@ -55,9 +56,10 @@ const TextLabel = (props) => {
      */
 
     return (
-        <mesh rotation={[120.9,0,0]} position={props.position} ref={ref}>
+        <mesh rotation={[120.9, 0, 0]} position={props.position} ref={ref}>
             <textGeometry attach={'geometry'} args={[props.text, textOptions]} />
-                <meshToonMaterial attach={'material'}/>
+            {/* <meshToonMaterial attach={'material'} color={'#ffffff'}/> */}
+            <meshLambertMaterial attach="material" emissive={'#ffffff'}/>
         </mesh>
     )
 

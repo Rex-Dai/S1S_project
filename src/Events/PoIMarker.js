@@ -26,7 +26,7 @@ const PoIMarker = (props) => {
     // props has coordinates as array of 3 elements.
     
     const [hovered, setHover] = useState(false)
-    let colour = "black"
+    let colour = "white"
 
     const curPosition = new THREE.Vector3().copy(camera.position);
 
@@ -47,7 +47,7 @@ const PoIMarker = (props) => {
             onPointerOut={() => setHover(false)}
         >
             <sphereGeometry />
-            <meshBasicMaterial color={colour} />
+            <meshStandardMaterial color={colour} />
         </mesh>
 
     )
