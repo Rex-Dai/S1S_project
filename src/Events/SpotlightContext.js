@@ -1,6 +1,6 @@
 // this is the context file for spotlight context
 import React from "react"
 
-export const EventContext = React.createContext({
+export const SpotlightContext = React.createContext({
     spotlight: null,
 })

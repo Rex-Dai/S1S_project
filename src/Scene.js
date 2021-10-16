@@ -4,6 +4,7 @@ import Platform from "./Platform/Platform";
 
 import { EventContext, TimelineState } from './Events/EventContext';
 import PoICollection from './Events/PoICollection';
+import { SpotlightContext } from './Events/SpotlightContext';
 
 const platformSettings = {
     verticalStartCoordinate: -20,
@@ -69,4 +70,16 @@ export const SceneEventController = () => {
             <Scene />
         </EventContext.Provider>
     );
+}
+
+const SceneSpotlightProvider = () => {
+    const [spotlight, setSpotLight] = useState();
+    const PosterSpotLight = <spotlight />
+    setSpotLight(PosterSpotLight)
+    
+    return(
+        <SpotlightContext.Provider value = {spotlight}>
+            <Scene />
+        </SpotlightContext.Provider>
+    )
 }

@@ -24,13 +24,19 @@ export const PoIThumbnail = (props) => {
         );
     }
 
+    function handleHoverIn(){
+        props.hoverIn(props.index)
+    }
+
     // load thumbnail texture
     const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     return (
         <mesh rotation={props.rotation}
             position={props.position}
-            onClick={handleClick} 
+            onClick={handleClick}
+            onPointerEnter={handleHoverIn}
+            onPointerLeave={props.hoverOut}
         >
             <planeGeometry args={[9, 9]} />
             <meshStandardMaterial map={texture} />

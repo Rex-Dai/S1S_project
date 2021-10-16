@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-
+import React, { useMemo, useState } from 'react'
+import * as THREE from 'three'
 import PoIMarker from './PoIMarker';
 import PoIPoster from "./PoIPoster";
 import { PoIThumbnail } from './PoIThumbnail';
@@ -8,11 +8,18 @@ const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     const demoEvent = eventData.events.filter(element => element.id === 0)[0];
+    // const [spotlightPos, SetSpotlightPos] = useState([0,0,0])
+    // const [spotlightTarget, SetSpotlightTarget] = useState([0,0,0])
+    // const [spotlightIntensity, setSpotlightIntensity] = useState([0])
+    // const [poiSpotlight, SetSpotlight] = useState()
+
     const posterPosList = useMemo(() => calcPosterPos(), [])
     const posterList = useMemo(() => makePosters(), [])
     const thumbnailList = useMemo(() => makeThumbnails(), [])
+    const poiSpotlight = useMemo(() => new THREE.SpotLight(0xffffff))
     const duration = 2000;
-
+    // const spotlighttemp = new THREE.SpotLight( 0xffffff)
+    // SetSpotlight(spotlighttemp)
     const dateToCoordinate = (date) => {
         // used to calculate the position of markers
         let x, y, z, year, month;
@@ -72,9 +79,12 @@ const PoICollection = (props) => {
                 pos[0] = 50
                 rot[1] = -90
             }
-            thumbnails.push(<PoIThumbnail
+            thumbnails.push(<PoIThumbnail 
+                index={index}
                 position={pos}
                 rotation={deg2rad(rot)}
+                hoverIn={onHoverIn}
+                hoverOut={onHoverOut}
                 targetCoords={posterPosList[index]} // to be calculated
                 key={"thumbnail " + index}
             />)
@@ -108,12 +118,23 @@ const PoICollection = (props) => {
         return radArray
     }
 
+    function onHoverIn(index){
+        console.log(poiSpotlight)
+        poiSpotlight.intensity = 1;
+        poiSpotlight.position.set(posterPosList[index][0],posterPosList[index][1] - 3, posterPosList[index][2] + 3)
+    }
+
+    function onHoverOut(){
+        poiSpotlight.intensity = 0;
+    }
+
     return (
         <group>
             <PoIMarker position={dateToCoordinate(demoEvent.date)} targetCoords={[32, 40, 4]} duration={duration} />
             {/* <PoIPoster position={[30,40,5]} duration={duration} event={demoEvent}/> */}
             {thumbnailList}
             {posterList}
+            {poiSpotlight}
             {/* <PoIThumbnail position={[20,40,5]} rotation={deg2rad([90,-90,0])} /> */}
         </group>
     )
