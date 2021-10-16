@@ -41,13 +41,13 @@ const PoICollection = (props) => {
         const positions = []
         eventData.events.forEach((element, index) => {
             
-            let pos = [0, 0, -10]
+            let pos = [0, 0, 0]
             pos[1] = Math.round(index / 2 - 0.5) * 13
                 + props.platformSettings.horizontalStartCoordinate
             if (index % 2 === 0) {
-                pos[0] = -60
+                pos[0] = -30
             } else {
-                pos[0] = 60
+                pos[0] = 30
             }
             positions.push(pos)
         })
@@ -61,15 +61,15 @@ const PoICollection = (props) => {
         eventData.events.forEach((element, index) => {
 
             let targetPos = [0, 0, 0]
-            let pos = [0, 0, 3]
+            let pos = [0, 0, 5]
             let rot = [90, 0, 0]
             // y coordinate
             pos[1] = Math.round(index / 2 - 0.5) * 13 + props.platformSettings.horizontalStartCoordinate
             if (index % 2 === 0) {
-                pos[0] = -20
+                pos[0] = -50
                 rot[1] = 90
             } else {
-                pos[0] = 20
+                pos[0] = 50
                 rot[1] = -90
             }
             thumbnails.push(<PoIThumbnail
