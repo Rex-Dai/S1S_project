@@ -86,6 +86,7 @@ const PoICollection = (props) => {
                 rot[1] = -90
             }
             thumbnails.push(<PoIThumbnail
+                event={element}
                 index={index}
                 position={pos}
                 rotation={deg2rad(rot)}
@@ -106,7 +107,7 @@ const PoICollection = (props) => {
 
             posters.push(<PoIPoster
                 position={posterPosList[index]}
-                event={demoEvent}
+                event={element}
                 key={"poster " + index}
             />)
         })
@@ -135,8 +136,6 @@ const PoICollection = (props) => {
     
     function onHoverOut() {
         if(eventState === TimelineState.TIMELINE){
-            console.log(eventState)
-            console.log("light off")
             SetlightIntensity(0)
         }
     }

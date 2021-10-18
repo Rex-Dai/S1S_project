@@ -10,7 +10,7 @@ import PoIButton from "./PoIButton";
 
 const PoIPoster = (props) => {
 
-
+    const posterImg = require("../Images/POI-posters/Australia/" + props.event.poster)
     const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
@@ -48,11 +48,7 @@ const PoIPoster = (props) => {
     }
 
 
-    const texture = useMemo(() => new THREE.TextureLoader().load(img
-        // ,load => console.log(load),
-        // progress => console.log(progress),
-        // error => console.log(error)
-        ), []);
+    const texture = useMemo(() => new THREE.TextureLoader().load(posterImg.default), []);
 
     const handleTraverseBack = () => {
         if (eventState === TimelineState.PoI) {

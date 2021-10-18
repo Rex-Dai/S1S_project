@@ -9,7 +9,7 @@ import PoIAlbum from "./PoIAlbum";
 
 export const PoIThumbnail = (props) => {
 
-    const textureImg = require('./img/warPic.png')
+    const textureImg = require("../Images/POI-thumbnails/Australia/" + props.event.thumbnail)
     const { eventState, setEventState, timelinePos, setTimelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
@@ -32,6 +32,7 @@ export const PoIThumbnail = (props) => {
     }
 
     // load thumbnail texture
+    // const texture = useMemo(() => new THREE.TextureLoader().load(eventData.events[props.index].thumbnail.default), []);
     const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     return (
