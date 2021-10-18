@@ -128,7 +128,8 @@ const PoICollection = (props) => {
 
     function onHoverIn(index) {
         if(eventState === TimelineState.TIMELINE){
-            SetlightPos([posterPosList[index][0], posterPosList[index][1], posterPosList[index][2] + 3])
+            // this sets the offset
+            SetlightPos([posterPosList[index][0], posterPosList[index][1] -5, posterPosList[index][2] + 5])
             SetlightTarget([posterPosList[index][0],  posterPosList[index][1], posterPosList[index][2]])
             SetlightIntensity(3)
         }
@@ -136,12 +137,12 @@ const PoICollection = (props) => {
     
     function onHoverOut() {
         if(eventState === TimelineState.TIMELINE){
-            SetlightIntensity(0)
+            SetlightIntensity(0.1)
         }
     }
 
     function lightOn(){
-        SetlightIntensity(1)
+        SetlightIntensity(3)
     }
 
     return (

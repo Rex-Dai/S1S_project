@@ -64,7 +64,7 @@ const PoIPoster = (props) => {
                position={[posX, posY, posZ]}
                >
             <mesh onClick={handleClick} onWheel={wheelMovement}>
-                <planeGeometry args={[5, 5]} />
+                <planeGeometry args={[5, props.event.posterHeight/280]} />
                 <meshStandardMaterial map={texture}/>
             </mesh>
             <PoIAlbum event={props.event} position={[5,0,0]}/>
