@@ -56,7 +56,7 @@ const PoIPoster = (props) => {
 
     const handleTraverseBack = () => {
         if (eventState === TimelineState.PoI) {
-
+            console.log(eventState)
             setEventState(TimelineState.DISABLED)
             tweenCamera(camera, [timelinePos.x,timelinePos.y + 5,timelinePos.z], props.duration, true,
                 () => setEventState(TimelineState.TIMELINE))
@@ -69,7 +69,7 @@ const PoIPoster = (props) => {
                >
             <mesh onClick={handleClick} onWheel={wheelMovement}>
                 <planeGeometry args={[5, 5]} />
-                <meshBasicMaterial map={texture}/>
+                <meshStandardMaterial map={texture}/>
             </mesh>
             <PoIAlbum event={props.event} position={[5,0,0]}/>
             <PoIButton position={[-3,2,0]} clickEvent={handleTraverseBack}/>
