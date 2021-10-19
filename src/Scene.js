@@ -57,9 +57,12 @@ const Scene = () => {
     dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
     loader.setDRACOLoader( dracoLoader );
 
-    loader.load( 'src/Models/vr-bros-framed-vr-delaware-crossing-photo/source/eghhjdfg.glb', function ( gltf ) {
+    loader.load( './Models/need_some_space/scene.gltf', function ( gltf ) {
         console.log(gltf)
+        gltf.scene.position.set(-650,100,-300)
+        gltf.scene.scale.set(5,5,5)
         scene.add( gltf.scene );
+
 
     }, undefined, function ( error ) {
 
@@ -90,7 +93,7 @@ export const SceneEventController = () => {
     return (
         <EventContext.Provider value={value}>
             <Scene />
-            <Stars factor={7} fade={true}/>
+            <Stars count={10000} factor={7} fade={true}/>
         </EventContext.Provider>
     );
 }
