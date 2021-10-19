@@ -6,6 +6,7 @@ import PoICollection from './Events/PoICollection';
 import * as THREE from 'three'
 import {Stars} from "@react-three/drei";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 
 
 const platformSettings = {
@@ -52,9 +53,13 @@ const Scene = () => {
 
     const loader = new GLTFLoader();
 
-    loader.load( 'src/Models/need_some_space/scene.gltf', function ( gltf ) {
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
+    loader.setDRACOLoader( dracoLoader );
 
-        scene.add( gltf );
+    loader.load( 'src/Models/vr-bros-framed-vr-delaware-crossing-photo/source/eghhjdfg.glb', function ( gltf ) {
+        console.log(gltf)
+        scene.add( gltf.scene );
 
     }, undefined, function ( error ) {
 
