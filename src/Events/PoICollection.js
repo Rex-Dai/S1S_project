@@ -147,7 +147,7 @@ const PoICollection = (props) => {
     function onHoverIn(index) {
         if(eventState === TimelineState.TIMELINE){
             // this sets the offset
-            SetlightPos([posterPosList[index][0], posterPosList[index][1] -5, posterPosList[index][2] + 5])
+            SetlightPos([posterPosList[index][0], posterPosList[index][1] -5, posterPosList[index][2] + 10])
             SetlightTarget([posterPosList[index][0],  posterPosList[index][1], posterPosList[index][2]])
             SetlightIntensity(3)
         }
@@ -168,7 +168,6 @@ const PoICollection = (props) => {
             {markerList}
             {thumbnailList}
             {posterList}
-
             {light}
         </group>
     )
