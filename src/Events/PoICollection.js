@@ -14,6 +14,7 @@ const PoICollection = (props) => {
     const [lightIntensity, SetlightIntensity] = useState([0])
 
     const posterPosList = useMemo(() => calcPosterPos(), [])
+    const markerList = useMemo(() => makeMarkers(), [])
     const posterList = useMemo(() => makePosters(), [])
     const thumbnailList = useMemo(() => makeThumbnails(), [])
     const light = useMemo(() => <rectAreaLight
@@ -26,7 +27,7 @@ const PoICollection = (props) => {
 
     const duration = 2000;
     
-    const dateToCoordinate = (date) => {
+    function dateToCoordinate(date){
         // used to calculate the position of markers
         let x, y, z, year, month;
 
@@ -47,6 +48,7 @@ const PoICollection = (props) => {
 
         //todo need to decide the mapping of event at z axis
         z = 0;
+        console.log([x,y,z])
         return [x, y, z];
     }
 
@@ -114,6 +116,22 @@ const PoICollection = (props) => {
         return posters
     }
 
+    function makeMarkers(){
+        const markers = []
+        console.log("Markers created")
+        eventData.events.forEach((element, index) => {
+
+            markers.push(
+                <PoIMarker 
+                position={dateToCoordinate(element.date)} 
+                targetCoords={[32, 40, 4]} 
+                duration={2000} 
+                targetCoords={posterPosList[index]}
+                key={"marker " + index}/>)
+        })
+        return markers
+    }
+
     // convert degree array to radians. 
     // Used to convert array of degrees to radians
     function deg2rad(degArray) {
@@ -147,7 +165,7 @@ const PoICollection = (props) => {
 
     return (
         <group>
-            <PoIMarker position={dateToCoordinate(demoEvent.date)} targetCoords={[32, 40, 4]} duration={duration} />
+            {markerList}
             {thumbnailList}
             {posterList}
             {light}
