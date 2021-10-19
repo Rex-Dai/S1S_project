@@ -8,8 +8,8 @@ import PoIAlbum from "./PoIAlbum";
 
 
 export const PoIThumbnail = (props) => {
-
-    const textureImg = require("../Images/POI-thumbnails/Australia/" + props.event.thumbnail)
+    const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
+    // const textureImg = require("../Images/POI-thumbnails/Australia/" + props.event.thumbnail)
     const { eventState, setEventState, timelinePos, setTimelinePos } = useContext(EventContext)
 
     const { camera } = useThree();

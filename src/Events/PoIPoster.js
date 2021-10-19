@@ -10,8 +10,11 @@ import PoIButton from "./PoIButton";
 
 const PoIPoster = (props) => {
 
-    const posterImg = require("../Images/POI-posters/Australia/" + props.event.poster)
-    console.log(posterImg.default)
+    var category = props.event.category;
+    const posterImg = require("../Images/POI-posters/" + props.event.category +"/" + props.event.poster)
+
+    
+    console.log(posterImg)
     const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
