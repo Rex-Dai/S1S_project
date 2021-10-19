@@ -36,15 +36,12 @@ const Platform = (props) => {
             indicator.push(<Line index={i * 100 + j} type={'monthIndicator'}
                                  platformSetting={props.platformSettings} key={100 * i + j}/>);
         }
-        label.push(<TextLabel position={[verStart - 15,
-            horiStart + (i - 14) * horiInt, -13]} text={(1900 + i).toString()}
+        label.push(<TextLabel position={[verStart - 9,
+            horiStart + (i - 14) * horiInt, -3]} text={(1900 + i).toString()}
                               key={i}/>)
-        // label.push(<TextLabel position={[verStart - 15,
-        //     horiStart + (i - 14) * horiInt, -13]} text={(1900 + i).toString()}
-        //                       key={i}/>)
     }
-    label.push(<TextLabel position={[verStart - 15,
-        horiStart + (19 - 14) * horiInt, -13]} text={(1900 + 19).toString()}
+    label.push(<TextLabel position={[verStart - 9,
+        horiStart + (19 - 14) * horiInt, -3]} text={(1900 + 19).toString()}
                           key="end"/>);
 
     console.log(label.length)

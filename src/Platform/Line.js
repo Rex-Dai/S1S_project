@@ -15,7 +15,7 @@ const Line = (props) => {
     }
 
     if (props.type === 'horizontal') {
-        x_start = -26;
+        x_start = -20;
         x_end = 20;
         y_start = props.index;
         y_end = props.index;
@@ -39,7 +39,7 @@ const Line = (props) => {
     const onUpdate = useCallback(self => self.setFromPoints(points), [points]);
 
     return (
-        <line position={[0, 0, -10]} ref={ref}>
+        <line position={[0, 0, -1]} ref={ref}>
             <bufferGeometry attach="geometry" onUpdate={onUpdate}/>
             <lineBasicMaterial attach="material" color={'#ffffff'} linewidth={10} linecap={'round'} linejoin={'round'}/>
             {/* <meshLambertMaterial attach="material" emissive={'#ffffff'}/> */}

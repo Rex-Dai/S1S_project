@@ -9,8 +9,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 
 const platformSettings = {
-    verticalStartCoordinate: -20,
-    verticalInterval: 10,
+    verticalStartCoordinate: -10,
+    verticalInterval: 5,
     horizontalStartCoordinate: 20,
     horizontalInterval: 26,
     monthInterval: 2

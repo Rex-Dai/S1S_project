@@ -5,31 +5,6 @@ import { MeshLambertMaterial } from 'three';
 
 const TextLabel = (props) => {
 
-    //const font = useLoader(THREE.FontLoader,'/Fonts/helvetiker_regular.typeface.json');
-    /*
-    \ There might be some internal bug with the useLoader hook!
-     */
-
-    // const {scene} = useThree()
-    // loader.load('/Fonts/helvetiker_regular.typeface.json', (font) => {
-    //     const text = 'three.js';
-    //     const geometry = new THREE.TextBufferGeometry(text, {
-    //         font: font,
-    //         size: 3,
-    //         height: 0.2,
-    //         curveSegments: 12,
-    //         bevelEnabled: true,
-    //         bevelThickness: 0.15,
-    //         bevelSize: 0.3,
-    //         bevelSegments: 5,
-    //     });
-    //     let textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
-    //
-    //     let mesh = new THREE.Mesh( geometry, textMaterial );
-    //     mesh.position.set( -10, 10, 0 );
-    //     scene.add( mesh );
-    // });
-
     /*
      This solution works but not implemented by JSX
      */
@@ -44,7 +19,7 @@ const TextLabel = (props) => {
 
     const textOptions = {
         font,
-        size: 2.5,
+        size: 1.5,
         height: 0.2,
     };
 
@@ -58,7 +33,6 @@ const TextLabel = (props) => {
     return (
         <mesh rotation={[120.9, 0, 0]} position={props.position} ref={ref}>
             <textGeometry attach={'geometry'} args={[props.text, textOptions]} />
-            {/* <meshToonMaterial attach={'material'} color={'#ffffff'}/> */}
             <meshLambertMaterial attach="material" emissive={'#ffffff'}/>
         </mesh>
     )
