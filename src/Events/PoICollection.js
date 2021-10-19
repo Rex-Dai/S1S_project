@@ -166,7 +166,7 @@ const PoICollection = (props) => {
             {/* {markerList} */}
             <PoIMarkerGroup eventData={eventData} platformSettings={props.platformSettings} posterPosList={posterPosList}/>
             {thumbnailList}
-            {posterList}
+            {/* {posterList} */}
             {light}
         </group>
     )
