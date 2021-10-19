@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import Platform from "./Platform/Platform";
-
 import { EventContext, TimelineState } from './Events/EventContext';
 import PoICollection from './Events/PoICollection';
+import * as THREE from 'three'
+import {Stars} from "@react-three/drei";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 
 const platformSettings = {
     verticalStartCoordinate: -20,
@@ -47,6 +50,18 @@ const Scene = () => {
         }
     }
 
+    const loader = new GLTFLoader();
+
+    loader.load( 'src/Models/need_some_space/scene.gltf', function ( gltf ) {
+
+        scene.add( gltf );
+
+    }, undefined, function ( error ) {
+
+        console.error( error );
+
+    } );
+
     return (
         <group>
             <Platform platformSettings={platformSettings} />
@@ -62,11 +77,15 @@ export const SceneEventController = () => {
 
     const [eventState, setEventState] = useState(TimelineState.TIMELINE);
     const [timelinePos, setTimelinePos] = useState([0,0,0])
-    const value = { eventState, setEventState, timelinePos, setTimelinePos};
+    const spotLight = new THREE.SpotLight("white")
+    const { scene } = useThree();
+    // scene.add(spotLight);
+    const value = { eventState, setEventState, timelinePos, setTimelinePos, spotLight};
 
     return (
         <EventContext.Provider value={value}>
             <Scene />
+            <Stars factor={7} fade={true}/>
         </EventContext.Provider>
     );
 }

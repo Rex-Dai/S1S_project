@@ -47,7 +47,7 @@ const PoIMarker = (props) => {
             onPointerOut={() => setHover(false)}
         >
             <sphereGeometry />
-            <meshStandardMaterial color={colour} />
+            <meshBasicMaterial color={colour} />
         </mesh>
 
     )

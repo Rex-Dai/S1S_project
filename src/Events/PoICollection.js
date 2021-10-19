@@ -1,18 +1,31 @@
-import React, { useMemo } from 'react'
-
+import React, { useMemo, useState, useContext } from 'react'
 import PoIMarker from './PoIMarker';
 import PoIPoster from "./PoIPoster";
 import { PoIThumbnail } from './PoIThumbnail';
+import {EventContext, TimelineState} from "./EventContext";
 
 const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     const demoEvent = eventData.events.filter(element => element.id === 0)[0];
+    const { eventState } = useContext(EventContext)
+    const [lightPos, SetlightPos] = useState([0, -1, 1])
+    const [lightTarget, SetlightTarget] = useState([0,0,0])
+    const [lightIntensity, SetlightIntensity] = useState([0])
+
     const posterPosList = useMemo(() => calcPosterPos(), [])
     const posterList = useMemo(() => makePosters(), [])
     const thumbnailList = useMemo(() => makeThumbnails(), [])
-    const duration = 2000;
+    const light = useMemo(() => <rectAreaLight
+        position={lightPos}
+        intensity={lightIntensity}
+        angle={0.1}
+        lookAt={lightTarget}
+         />,
+        [lightPos, lightIntensity, lightTarget])
 
+    const duration = 2000;
+    
     const dateToCoordinate = (date) => {
         // used to calculate the position of markers
         let x, y, z, year, month;
@@ -40,7 +53,7 @@ const PoICollection = (props) => {
     function calcPosterPos() {
         const positions = []
         eventData.events.forEach((element, index) => {
-            
+
             let pos = [0, 0, 0]
             pos[1] = Math.round(index / 2 - 0.5) * 13
                 + props.platformSettings.horizontalStartCoordinate
@@ -73,8 +86,13 @@ const PoICollection = (props) => {
                 rot[1] = -90
             }
             thumbnails.push(<PoIThumbnail
+                event={element}
+                index={index}
                 position={pos}
                 rotation={deg2rad(rot)}
+                hoverIn={onHoverIn}
+                hoverOut={onHoverOut}
+                lightOn={lightOn}
                 targetCoords={posterPosList[index]} // to be calculated
                 key={"thumbnail " + index}
             />)
@@ -89,7 +107,7 @@ const PoICollection = (props) => {
 
             posters.push(<PoIPoster
                 position={posterPosList[index]}
-                event={demoEvent}
+                event={element}
                 key={"poster " + index}
             />)
         })
@@ -108,13 +126,31 @@ const PoICollection = (props) => {
         return radArray
     }
 
+    function onHoverIn(index) {
+        if(eventState === TimelineState.TIMELINE){
+            // this sets the offset
+            SetlightPos([posterPosList[index][0], posterPosList[index][1] -5, posterPosList[index][2] + 10])
+            SetlightTarget([posterPosList[index][0],  posterPosList[index][1], posterPosList[index][2]])
+            SetlightIntensity(3)
+        }
+    }
+    
+    function onHoverOut() {
+        if(eventState === TimelineState.TIMELINE){
+            SetlightIntensity(0.1)
+        }
+    }
+
+    function lightOn(){
+        SetlightIntensity(3)
+    }
+
     return (
         <group>
             <PoIMarker position={dateToCoordinate(demoEvent.date)} targetCoords={[32, 40, 4]} duration={duration} />
-            {/* <PoIPoster position={[30,40,5]} duration={duration} event={demoEvent}/> */}
             {thumbnailList}
             {posterList}
-            {/* <PoIThumbnail position={[20,40,5]} rotation={deg2rad([90,-90,0])} /> */}
+            {light}
         </group>
     )
 }

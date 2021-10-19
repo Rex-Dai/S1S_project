@@ -10,7 +10,7 @@ import PoIButton from "./PoIButton";
 
 const PoIPoster = (props) => {
 
-
+    const posterImg = require("../Images/POI-posters/Australia/" + props.event.poster)
     const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
@@ -48,15 +48,11 @@ const PoIPoster = (props) => {
     }
 
 
-    const texture = useMemo(() => new THREE.TextureLoader().load(img
-        // ,load => console.log(load),
-        // progress => console.log(progress),
-        // error => console.log(error)
-        ), []);
+    const texture = useMemo(() => new THREE.TextureLoader().load(posterImg.default), []);
 
     const handleTraverseBack = () => {
         if (eventState === TimelineState.PoI) {
-
+            console.log(eventState)
             setEventState(TimelineState.DISABLED)
             tweenCamera(camera, [timelinePos.x,timelinePos.y + 5,timelinePos.z], props.duration, true,
                 () => setEventState(TimelineState.TIMELINE))
@@ -68,8 +64,8 @@ const PoIPoster = (props) => {
                position={[posX, posY, posZ]}
                >
             <mesh onClick={handleClick} onWheel={wheelMovement}>
-                <planeGeometry args={[5, 5]} />
-                <meshBasicMaterial map={texture}/>
+                <planeGeometry args={[5, props.event.posterHeight/280]} />
+                <meshStandardMaterial map={texture}/>
             </mesh>
             <PoIAlbum event={props.event} position={[5,0,0]}/>
             <PoIButton position={[-3,2,0]} clickEvent={handleTraverseBack}/>
