@@ -9,7 +9,6 @@ import PoIAlbum from "./PoIAlbum";
 
 export const PoIThumbnail = (props) => {
     const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
-    // const textureImg = require("../Images/POI-thumbnails/Australia/" + props.event.thumbnail)
     const { eventState, setEventState, timelinePos, setTimelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
@@ -17,15 +16,12 @@ export const PoIThumbnail = (props) => {
 
     function handleClick() {
 
-
-        
         // same as poimarker
         if(eventState === TimelineState.TIMELINE){
             setEventState(TimelineState.DISABLED)
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI); props.lightOn()}
-            );
-            
+            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
+            props.togglePoster(props.index)
         }
     }
 

@@ -67,7 +67,11 @@ const PoIPoster = (props) => {
         <group rotation={[120.9,0,0]}
                position={[posX, posY, posZ]}
                >
-            <mesh onClick={handleClick} onWheel={wheelMovement}>
+            <mesh 
+            onClick={
+                props.active? handleClick:null
+            } 
+            onWheel={props.active? wheelMovement:null}>
                 <planeGeometry args={[5, props.event.posterHeight/280]} />
                 <meshStandardMaterial map={texture}/>
             </mesh>

@@ -1,6 +1,5 @@
 import PoIMarker from './PoIMarker';
-import React, { useMemo, useState, useContext } from 'react'
-import {EventContext, TimelineState} from "./EventContext";
+import React, { useMemo } from 'react'
 
 export const PoIMarkerGroup = (props) => {
     const markerList = useMemo(() => makeMarkers(), [])
@@ -27,7 +26,7 @@ export const PoIMarkerGroup = (props) => {
 
         //todo need to decide the mapping of event at z axis
         z = 0;
-        console.log([x,y,z])
+        // console.log([x,y,z])
         return [x, y, z];
     }
 
@@ -42,6 +41,10 @@ export const PoIMarkerGroup = (props) => {
                 targetCoords={[32, 40, 4]} 
                 duration={2000} 
                 targetCoords={props.posterPosList[index]}
+                index={index}
+                togglePoster={props.togglePoster}
+                hoverIn={props.hoverIn}
+                hoverOut={props.hoverOut}
                 key={"marker " + index}/>)
         })
         return markers
