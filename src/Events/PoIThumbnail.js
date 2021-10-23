@@ -9,7 +9,7 @@ import PoIAlbum from "./PoIAlbum";
 
 export const PoIThumbnail = (props) => {
     const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
-    const { eventState, setEventState, timelinePos, setTimelinePos } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
     const curPosition = new THREE.Vector3().copy(camera.position);
@@ -21,7 +21,7 @@ export const PoIThumbnail = (props) => {
             setEventState(TimelineState.DISABLED)
             setTimelinePos(curPosition)
             tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
-            props.togglePoster(props.index)
+            setActivePoster(props.index)
         }
     }
 

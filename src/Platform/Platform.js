@@ -44,7 +44,6 @@ const Platform = (props) => {
         horiStart + (19 - 14) * horiInt, -3]} text={(1900 + 19).toString()}
                           key="end"/>);
 
-    console.log(label.length)
 
     return (
         <group>

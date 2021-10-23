@@ -15,7 +15,7 @@ const PoIPoster = (props) => {
 
     
     // console.log(posterImg)
-    const { eventState, setEventState, timelinePos } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, activePoster } = useContext(EventContext)
 
     const { camera } = useThree();
 
@@ -25,29 +25,35 @@ const PoIPoster = (props) => {
 
     function wheelMovement(event) {
 
-        if (eventState === TimelineState.PoI) {
-            setPosZ(posZ - event.deltaY * 0.005)
+        if(activePoster === props.index){
+            if (eventState === TimelineState.PoI) {
+                setPosZ(posZ - event.deltaY * 0.005)
+    
+            } else if (eventState === TimelineState.ZOOM) {
+                // enable x scroll, make movement slower
+                setPosZ(posZ - event.deltaY * 0.001)
+            }
 
-        } else if (eventState === TimelineState.ZOOM) {
-            // enable x scroll, make movement slower
-            setPosZ(posZ - event.deltaY * 0.001)
         }
     }
 
     function handleClick() {
-        if (eventState === TimelineState.PoI) {
+        if(activePoster === props.index){
+            if (eventState === TimelineState.PoI) {
+    
+                // move camera closer
+                setEventState(TimelineState.DISABLED)
+                tweenCamera(camera, [posX, posY+1, posZ], 1000, false,
+                    () => {setEventState(TimelineState.ZOOM)})
+                // setZoomed(true)
+            } else if(eventState === TimelineState.ZOOM){
+    
+                // move camera back to original
+                setEventState(TimelineState.DISABLED)
+                tweenCamera(camera, [posX, posY, posZ], 1000, false,
+                    () => setEventState(TimelineState.PoI))
+            }
 
-            // move camera closer
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [posX, posY+1, posZ], 1000, false,
-                () => {setEventState(TimelineState.ZOOM)})
-            // setZoomed(true)
-        } else if(eventState === TimelineState.ZOOM){
-
-            // move camera back to original
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [posX, posY, posZ], 1000, false,
-                () => setEventState(TimelineState.PoI))
         }
     }
 
@@ -68,10 +74,10 @@ const PoIPoster = (props) => {
                position={[posX, posY, posZ]}
                >
             <mesh 
-            onClick={
-                props.active? handleClick:null
+            onClick={handleClick
             } 
-            onWheel={props.active? wheelMovement:null}>
+            onWheel={wheelMovement}
+            >
                 <planeGeometry args={[5, props.event.posterHeight/280]} />
                 <meshStandardMaterial map={texture}/>
             </mesh>

@@ -34,7 +34,7 @@ export const PoIThumbnailGroup = (props) => {
                 hoverIn={props.hoverIn}
                 hoverOut={props.hoverOut}
                 targetCoords={props.posterPosList[index]} // to be calculated
-                key={"thumbnail " + index}
+                key={"thumbnail " + element.id}
             />)
         })
         return thumbnails

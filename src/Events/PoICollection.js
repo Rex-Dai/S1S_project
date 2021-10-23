@@ -21,7 +21,8 @@ const PoICollection = (props) => {
         [lightPos, lightIntensity, lightTarget])
 
     // lists for collection
-    const activeStateList = []
+    // const activeStateList = Array.apply(null, Array(20)).map(() => false)
+    // this indicates what poster is active
     const posterPosList = useMemo(() => calcPosterPos(), [])
 
     function calcPosterPos() {
@@ -48,8 +49,7 @@ const PoICollection = (props) => {
 
     // function to activate poster of given index
     function togglePosterState(index) {
-        activeStateList[index] = !activeStateList[index]
-        console.log("State:" +index + " " + activeStateList[index])
+        // SetActivePoster(index)
     }
 
     function onHoverIn(index) {
@@ -86,7 +86,7 @@ const PoICollection = (props) => {
             <PoIPosterGroup
                 eventData={eventData}
                 posterPosList={posterPosList}
-                activeStates={activeStateList}
+                // activePoster={activePoster}
             />
             {light}
         </group>

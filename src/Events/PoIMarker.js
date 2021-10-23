@@ -19,7 +19,7 @@ import * as THREE from "three";
 
 const PoIMarker = (props) => {
 
-    let { eventState, setEventState, setTimelinePos } = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
 
@@ -38,7 +38,7 @@ const PoIMarker = (props) => {
             tweenCamera(camera, props.targetCoords, props.duration, false, () => setEventState(TimelineState.PoI)
             );
             // activate poster
-            props.togglePoster(props.index)
+            setActivePoster(props.index)
         }
     }
 
