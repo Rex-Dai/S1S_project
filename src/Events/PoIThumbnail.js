@@ -17,18 +17,30 @@ export const PoIThumbnail = (props) => {
 
     function handleClick() {
 
+
+        
         // same as poimarker
         if(eventState === TimelineState.TIMELINE){
-            setEventState("disabled");
+            setEventState(TimelineState.DISABLED)
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState("poi"); props.lightOn()}
+            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI); props.lightOn()}
             );
             
         }
     }
 
     function handleHoverIn(){
-        props.hoverIn(props.index)
+        
+        if(eventState === TimelineState.TIMELINE){
+            props.hoverIn(props.index)
+        }
+    }
+
+    function handleHoverOut(){
+
+        if(eventState === TimelineState.TIMELINE){
+            props.hoverOut()
+        }
     }
 
     // load thumbnail texture
@@ -40,7 +52,7 @@ export const PoIThumbnail = (props) => {
             position={props.position}
             onClick={handleClick}
             onPointerEnter={handleHoverIn}
-            onPointerLeave={props.hoverOut}
+            onPointerLeave={handleHoverOut}
         >
             <planeGeometry args={[9, 9]} />
             <meshBasicMaterial map={texture} />

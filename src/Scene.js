@@ -45,8 +45,6 @@ const Scene = () => {
         event.preventDefault();
         if(eventState === TimelineState.TIMELINE){
             camera.position.y -= event.deltaY * 0.005;
-        } else{
-
         }
     }
 

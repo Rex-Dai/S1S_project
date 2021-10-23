@@ -14,7 +14,7 @@ const PoIPoster = (props) => {
     const posterImg = require("../Images/POI-posters/" + props.event.category +"/" + props.event.poster)
 
     
-    console.log(posterImg)
+    // console.log(posterImg)
     const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera } = useThree();
