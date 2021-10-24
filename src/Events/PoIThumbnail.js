@@ -9,8 +9,7 @@ import PoIAlbum from "./PoIAlbum";
 
 export const PoIThumbnail = (props) => {
     const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
-    // const textureImg = require("../Images/POI-thumbnails/Australia/" + props.event.thumbnail)
-    const { eventState, setEventState, timelinePos, setTimelinePos } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
     const curPosition = new THREE.Vector3().copy(camera.position);
@@ -19,17 +18,25 @@ export const PoIThumbnail = (props) => {
 
         // same as poimarker
         if(eventState === TimelineState.TIMELINE){
-            setEventState("disabled");
+            setEventState(TimelineState.DISABLED)
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () =>
-                {setEventState(TimelineState.PoI); props.lightOn(); console.log('done', eventState);}
-            );
-
+            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
+            setActivePoster(props.index)
         }
     }
 
     function handleHoverIn(){
-        props.hoverIn(props.index)
+        
+        if(eventState === TimelineState.TIMELINE){
+            props.hoverIn(props.index)
+        }
+    }
+
+    function handleHoverOut(){
+
+        if(eventState === TimelineState.TIMELINE){
+            props.hoverOut()
+        }
     }
 
     // load thumbnail texture
@@ -41,7 +48,7 @@ export const PoIThumbnail = (props) => {
             position={props.position}
             onClick={handleClick}
             onPointerEnter={handleHoverIn}
-            onPointerLeave={props.hoverOut}
+            onPointerLeave={handleHoverOut}
         >
             <planeGeometry args={[9, 9]} />
             <meshBasicMaterial map={texture} />

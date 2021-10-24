@@ -6,7 +6,6 @@ import PoICollection from './Events/PoICollection';
 import * as THREE from 'three'
 import {Stars} from "@react-three/drei";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 
 
 const platformSettings = {
@@ -33,23 +32,6 @@ const Scene = () => {
     useEffect(() => {
         camera.position.set(0, -10, 8);
         camera.lookAt(0, 5, 0);
-        const loader = new GLTFLoader();
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
-        loader.setDRACOLoader( dracoLoader );
-
-        loader.load( 'scene.gltf', function ( gltf ) {
-
-            gltf.scene.position.set(-650,100,-300)
-            gltf.scene.scale.set(5,5,5)
-            scene.add(gltf.scene);
-            console.log("added")
-
-        }, undefined, function ( error ) {
-
-            console.error( error );
-
-        } );
     }, [])
 
     useEffect(() => {
@@ -63,12 +45,20 @@ const Scene = () => {
         event.preventDefault();
         if(eventState === TimelineState.TIMELINE){
             camera.position.y -= event.deltaY * 0.005;
-        } else{
-
         }
     }
 
+    const loader = new GLTFLoader();
 
+    loader.load( 'src/Models/need_some_space/scene.gltf', function ( gltf ) {
+
+        scene.add( gltf );
+
+    }, undefined, function ( error ) {
+
+        console.error( error );
+
+    } );
 
     return (
         <group>
@@ -85,14 +75,16 @@ export const SceneEventController = () => {
 
     const [eventState, setEventState] = useState(TimelineState.TIMELINE);
     const [timelinePos, setTimelinePos] = useState([0,0,0])
+    const [activePoster, setActivePoster] = useState(null)
+    // const spotLight = new THREE.SpotLight("white")
     const { scene } = useThree();
     // scene.add(spotLight);
-    const value = { eventState, setEventState, timelinePos, setTimelinePos};
+    const value = { eventState, setEventState, timelinePos, setTimelinePos, activePoster, setActivePoster};
 
     return (
         <EventContext.Provider value={value}>
             <Scene />
-            <Stars count={10000} factor={8} saturation={0.25} fade={true}/>
+            <Stars factor={7} fade={true}/>
         </EventContext.Provider>
     );
 }

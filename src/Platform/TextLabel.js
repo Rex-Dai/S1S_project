@@ -33,7 +33,7 @@ const TextLabel = (props) => {
     return (
         <mesh rotation={[120.9, 0, 0]} position={props.position} ref={ref}>
             <textGeometry attach={'geometry'} args={[props.text, textOptions]} />
-            <meshLambertMaterial attach="material" emissive={'#ffffff'}/>
+            <meshLambertMaterial attach="material" emissive={props.colour}/>
         </mesh>
     )
 

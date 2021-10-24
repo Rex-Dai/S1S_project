@@ -1,5 +1,5 @@
 import Line from './Line'
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import TextLabel from "./TextLabel";
 
 
@@ -20,13 +20,13 @@ const Platform = (props) => {
     // the index props for vertical line stands for the coordinate at x axis
     for (let i = 0; i < 5; i++) {
         lineList.push(<Line index={verStart +
-        i * verInt} type={'vertical'} key={"ver" + i}/>);
+            i * verInt} type={'vertical'} key={"ver" + i} />);
     }
 
     // the index props for horizontal line stands for the y coordinate
     for (let i = 0; i < 6; i++) {
         lineList.push(<Line index={horiStart +
-        i * horiInt} type={'horizontal'} key={"hor" + i}/>);
+            i * horiInt} type={'horizontal'} key={"hor" + i} />);
     }
 
     // the index props for monthIndicator stands for the year and month
@@ -34,21 +34,35 @@ const Platform = (props) => {
     for (let i = 14; i < 19; i++) {
         for (let j = 2; j < 13; j++) {
             indicator.push(<Line index={i * 100 + j} type={'monthIndicator'}
-                                 platformSetting={props.platformSettings} key={100 * i + j}/>);
+                platformSetting={props.platformSettings} key={100 * i + j} />);
         }
         label.push(<TextLabel position={[verStart - 9,
-            horiStart + (i - 14) * horiInt, -3]} text={(1900 + i).toString()}
-                              key={i}/>)
+        horiStart + (i - 14) * horiInt, -3]} text={(1900 + i).toString()}
+            colour={"#ffffff"}
+            key={i} />)
     }
     label.push(<TextLabel position={[verStart - 9,
-        horiStart + (19 - 14) * horiInt, -3]} text={(1900 + 19).toString()}
-                          key="end"/>);
+    horiStart + (19 - 14) * horiInt, -3]} text={(1900 + 19).toString()}
+        colour={"#ffffff"}
+        key="end" />);
+    // these are the category labels
+    label.push(<TextLabel position={[verStart,
+        horiStart, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
+    label.push(<TextLabel position={[verStart + 12.5,
+        horiStart, -3]} text={"World"} key="Australia" colour={"#ffff00"} />)
 
     return (
         <group>
             {lineList}
             {indicator}
             {label}
+            {/* <mesh
+            position={[-5,18.5,0]}
+            rotation={[0,0,0]}
+            >
+                <planeGeometry args={[10,3,1]}/>
+                <meshBasicMaterial color={"#ffffff"}/>
+            </mesh> */}
         </group>
     )
 

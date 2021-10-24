@@ -1,7 +1,7 @@
-import React, {useContext, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import tweenCamera from "./CameraTravese"
-import {useThree} from "@react-three/fiber";
-import { EventContext, TimelineState} from './EventContext';
+import { useThree } from "@react-three/fiber";
+import { EventContext, TimelineState } from './EventContext';
 import * as THREE from "three";
 
 /* 
@@ -19,32 +19,55 @@ import * as THREE from "three";
 
 const PoIMarker = (props) => {
 
-    let { setEventState, setTimelinePos} = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
 
     // props has coordinates as array of 3 elements.
-    
+
     const [hovered, setHover] = useState(false)
-    let colour = "white"
+    let colour = "red"
 
     const curPosition = new THREE.Vector3().copy(camera.position);
 
     function handleClick() {
-        setEventState(TimelineState.DISABLED);
-        setTimelinePos(curPosition)
-        tweenCamera(camera, props.targetCoords, props.duration, false,() => setEventState(TimelineState.PoI)
-        );
+
+        if (eventState === TimelineState.TIMELINE) {
+            setEventState(TimelineState.DISABLED);
+            setTimelinePos(curPosition)
+            tweenCamera(camera, props.targetCoords, props.duration, false, () => setEventState(TimelineState.PoI)
+            );
+            // activate poster
+            setActivePoster(props.index)
+        }
     }
+
+    function handleHoverIn() {
+
+        if (eventState === TimelineState.TIMELINE) {
+            props.hoverIn(props.index)
+            setHover(true)
+            // display info window
+        }
+    }
+
+    function handleHoverOut() {
+
+        if (eventState === TimelineState.TIMELINE) {
+            props.hoverOut()
+            setHover(false)
+        }
+    }
+
 
 
     return (
         <mesh
             position={props.position}
-            scale={hovered ? 1.2 : 1}
+            scale={hovered ? 1 : 0.8}
             onClick={handleClick}
-            onPointerOver={() => setHover(true)}
-            onPointerOut={() => setHover(false)}
+            onPointerOver={handleHoverIn}
+            onPointerOut={handleHoverOut}
         >
             <sphereGeometry />
             <meshBasicMaterial color={colour} />

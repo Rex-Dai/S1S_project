@@ -11,7 +11,9 @@ export const EventContext = React.createContext({
     eventState: "timeline",
     setEventState: () => { }, // assigned by provider
     timelinePos: [0,0,0],
-    setTimelinePos: () => {}
+    setTimelinePos: () => {},
+    activePoster: null,
+    setActivePoster: () => {}
 })
 
 export const TimelineState = {

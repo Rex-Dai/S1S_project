@@ -1,13 +1,13 @@
 import * as THREE from 'three'
 import img from '../Images/warPic.png'
-import React, {useContext, useEffect, useLayoutEffect, useMemo, useState} from "react";
+import React, { useContext, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import tweenCamera from "./CameraTravese";
-import {EventContext, TimelineState} from "./EventContext";
-import {useThree} from "@react-three/fiber";
+import { EventContext, TimelineState } from "./EventContext";
+import { useThree } from "@react-three/fiber";
 import PoIAlbum from "./PoIAlbum";
 import PoIButton from "./PoIButton";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 
 const PoIPoster = (props) => {
@@ -15,6 +15,9 @@ const PoIPoster = (props) => {
     const container = []
 
     const category = props.event.category;
+
+    // console.log(posterImg)
+    const { eventState, setEventState, timelinePos, activePoster } = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
@@ -25,9 +28,9 @@ const PoIPoster = (props) => {
     // img.src = posterImg.default
 
 
-    const {eventState, setEventState, timelinePos} = useContext(EventContext)
+    const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
-    const {camera, scene} = useThree();
+    const { camera, scene } = useThree();
 
     const [imageHeight, setImageHeight] = useState(0);
 
@@ -46,28 +49,35 @@ const PoIPoster = (props) => {
 
     function wheelMovement(event) {
 
-        if (eventState === TimelineState.ZOOM) {
-            // enable x scroll, make movement slower
-            setPosZ(posZ - event.deltaY * 0.001)
+        if (activePoster === props.index) {
+            if (eventState === TimelineState.PoI) {
+                setPosZ(posZ - event.deltaY * 0.005)
+
+            } else if (eventState === TimelineState.ZOOM) {
+                // enable x scroll, make movement slower
+                setPosZ(posZ - event.deltaY * 0.001)
+            }
+
         }
     }
 
     function handleClick() {
-        if (eventState === TimelineState.PoI) {
+        if (activePoster === props.index) {
+            if (eventState === TimelineState.PoI) {
 
-            // move camera closer
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [posX, posY + 1, posZ], 1000, false,
-                () => {
-                    setEventState(TimelineState.ZOOM);
-                })
-            // setZoomed(true)
-        } else if (eventState === TimelineState.ZOOM) {
+                // move camera closer
+                setEventState(TimelineState.DISABLED)
+                tweenCamera(camera, [posX, posY + 1, posZ], 1000, false,
+                    () => { setEventState(TimelineState.ZOOM) })
+                // setZoomed(true)
+            } else if (eventState === TimelineState.ZOOM) {
 
-            // move camera back to original
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [posX, posY, posZ], 1000, false,
-                () => setEventState(TimelineState.PoI))
+                // move camera back to original
+                setEventState(TimelineState.DISABLED)
+                tweenCamera(camera, [posX, posY, posZ], 1000, false,
+                    () => setEventState(TimelineState.PoI))
+            }
+
         }
     }
 
@@ -88,17 +98,17 @@ const PoIPoster = (props) => {
         loader.load('frame.gltf'
             , (gltf) => {
 
-            gltf.scene.position.set(posX, posY + 0.1, posZ)
-            gltf.scene.scale.set(8, 7, 7)
-            gltf.scene.rotation.set(120.9, 0, 0)
-            setModel(gltf);
-            scene.add(gltf.scene);
+                gltf.scene.position.set(posX, posY + 0.1, posZ)
+                gltf.scene.scale.set(8, 7, 7)
+                gltf.scene.rotation.set(120.9, 0, 0)
+                setModel(gltf);
+                scene.add(gltf.scene);
 
-        }, undefined, (error) => {
+            }, undefined, (error) => {
 
-            console.error(error);
+                console.error(error);
 
-        })
+            })
 
         jimp.read(posterImg.default)
             .then(image => {
@@ -121,9 +131,9 @@ const PoIPoster = (props) => {
 
     if (croppedTexture) {
         container.push(
-            <mesh onClick={handleClick} onWheel={wheelMovement} visible={eventState !== TimelineState.ZOOM}>
-                <planeGeometry args={[6.5, 7.7]}/>
-                <meshStandardMaterial map={croppedTexture} needsUpdate={true}/>
+            <mesh onClick={handleClick} visible={eventState !== TimelineState.ZOOM}>
+                <planeGeometry args={[6.5, 7.7]} />
+                <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
             </mesh>)
     } else {
         container.push('')
@@ -137,14 +147,19 @@ const PoIPoster = (props) => {
 
     return (
         <group rotation={[120.9, 0, 0]}
-               position={[posX, posY, posZ]}>
+            position={[posX, posY, posZ]}>
             {container}
-            <mesh visible={eventState === TimelineState.ZOOM}>
-                <planeGeometry args={[6.5, imageHeight/220]}/>
-                <meshStandardMaterial map={texture} needsUpdate={true}/>
+            <mesh visible={eventState === TimelineState.ZOOM}
+
+                onClick={handleClick
+                }
+                onWheel={wheelMovement}
+            >
+                <planeGeometry args={[6.5, imageHeight / 220]} />
+                <meshStandardMaterial map={texture} needsUpdate={true} />
             </mesh>
-            <PoIAlbum event={props.event} position={[5, 0, 0]}/>
-            <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack}/>
+            <PoIAlbum event={props.event} position={[5, 0, 0]} />
+            <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} />
         </group>
     )
 }
