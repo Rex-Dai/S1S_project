@@ -47,8 +47,6 @@ const PoIPoster = (props) => {
                 // enable x scroll, make movement slower
                 setPosZ(posZ - event.deltaY * 0.001)
             }
-
-        
     }
 
     function handleClick() {
@@ -149,7 +147,7 @@ const PoIPoster = (props) => {
                 <meshStandardMaterial map={texture} needsUpdate={true} />
             </mesh>
             <PoIAlbum event={props.event} position={[5, 0, 0]} />
-            <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} />
+            {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )
 }

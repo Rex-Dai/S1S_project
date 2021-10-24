@@ -1,12 +1,16 @@
 import React, { useMemo, useState, useContext } from 'react'
-import { EventContext } from "./EventContext";
+import { EventContext, TimelineState } from "./EventContext";
 import { PoIMarkerGroup } from './PoIMarkerGroup';
 import { PoIThumbnailGroup } from './PoIThumbnailGroup';
 import { PoIPosterGroup } from './PoIPosterGroup';
+import { useThree } from "@react-three/fiber";
+import tweenCamera from "./CameraTravese";
 
 const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
+    const { eventState, setEventState, timelinePos } = useContext(EventContext)
+    const { camera } = useThree();
 
     // spotlight related
     const [lightPos, SetlightPos] = useState([0, -1, 1])
@@ -61,8 +65,18 @@ const PoICollection = (props) => {
         SetlightIntensity(0.1)
     }
 
+    const handleTraverseBack = () => {
+        if (eventState === TimelineState.PoI) {
+            setEventState(TimelineState.DISABLED)
+            tweenCamera(camera, [timelinePos.x, timelinePos.y + 5, timelinePos.z], props.duration, true,
+                () => setEventState(TimelineState.TIMELINE))
+        }
+    }
+
     return (
-        <group>
+        <group
+            onPointerMissed={handleTraverseBack}
+        >
             <PoIMarkerGroup
                 eventData={eventData}
                 platformSettings={props.platformSettings}
