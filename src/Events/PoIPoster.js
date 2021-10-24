@@ -28,7 +28,7 @@ const PoIPoster = (props) => {
     // img.src = posterImg.default
 
 
-    const { eventState, setEventState, timelinePos } = useContext(EventContext)
+    // const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera, scene } = useThree();
 
@@ -77,7 +77,6 @@ const PoIPoster = (props) => {
                 tweenCamera(camera, [posX, posY, posZ], 1000, false,
                     () => setEventState(TimelineState.PoI))
             }
-
         }
     }
 

@@ -49,7 +49,7 @@ const PoICollection = (props) => {
 
     // function to activate poster of given index
     function togglePosterState(index) {
-        // SetActivePoster(index)
+        SetActivePoster(index)
     }
 
     function onHoverIn(index) {
