@@ -17,7 +17,8 @@ const PoIButton = (props) => {
     }, [eventState])
 
     return (
-        <mesh position={props.position} onClick={props.clickEvent} visible={visibility}>
+        <mesh position={props.position} onClick={props.clickEvent} visible={visibility}
+        rotation={props.rotation}>
             <planeGeometry args={[1, 1]} />
             <meshBasicMaterial map={buttonTexture}/>
         </mesh>
