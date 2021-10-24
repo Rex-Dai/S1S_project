@@ -48,7 +48,6 @@ export const PoIMarkerGroup = (props) => {
                 duration={2000} 
                 targetCoords={props.posterPosList[index]}
                 index={index}
-                togglePoster={props.togglePoster}
                 hoverIn={props.hoverIn}
                 hoverOut={props.hoverOut}
                 key={"marker " + element.id}/>)

@@ -54,14 +54,14 @@ const PoIPoster = (props) => {
         if (activePoster === props.index) {
             if (eventState === TimelineState.PoI) {
 
-                // move camera closer
+                // transition to zoom in state
                 setEventState(TimelineState.DISABLED)
                 tweenCamera(camera, [posX, posY + 1, posZ], 1000, false,
                     () => { setEventState(TimelineState.ZOOM) })
                 // setZoomed(true)
             } else if (eventState === TimelineState.ZOOM) {
 
-                // move camera back to original
+                // transition back to POI state
                 setEventState(TimelineState.DISABLED)
                 tweenCamera(camera, [posX, posY, posZ], 1000, false,
                     () => setEventState(TimelineState.PoI))
