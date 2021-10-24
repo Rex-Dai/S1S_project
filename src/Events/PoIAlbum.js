@@ -65,7 +65,7 @@ const PoIAlbum = (props) => {
     }, [isLoaded])
 
     useEffect(() => {
-        setVisibility(eventState === TimelineState.PoI)
+        setVisibility(eventState === TimelineState.ZOOM)
     }, [eventState])
 
     let flag = false

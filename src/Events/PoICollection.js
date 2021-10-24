@@ -24,43 +24,19 @@ const PoICollection = (props) => {
         lookAt={lightTarget}
          />,
         [lightPos, lightIntensity, lightTarget])
-    
-    // function dateToCoordinate(date){
-    //     // used to calculate the position of markers
-    //     let x, y, z, year, month;
 
-    //     try {
-    //         date = new Date(date);
-    //         year = date.getFullYear();
-    //         month = date.getMonth();
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-
-    //     // todo need to decide the x axis mapping;
-    //     x = ((-1) ^ ((month + year) % 2)) * (month + year) % 5;
-
-    //     y = (year - 1914) * props.platformSettings.horizontalInterval +
-    //         props.platformSettings.horizontalStartCoordinate +
-    //         month * props.platformSettings.monthInterval;
-
-    //     //todo need to decide the mapping of event at z axis
-    //     z = 0;
-    //     console.log([x,y,z])
-    //     return [x, y, z];
-    // }
 
     function calcPosterPos() {
         const positions = []
         eventData.events.forEach((element, index) => {
 
-            let pos = [0, 0, 0]
+            let pos = [0, 0, -5]
             pos[1] = Math.round(index / 2 - 0.5) * 13
                 + props.platformSettings.horizontalStartCoordinate
             if (index % 2 === 0) {
-                pos[0] = -20
+                pos[0] = -30
             } else {
-                pos[0] = 20
+                pos[0] = 30
             }
             positions.push(pos)
         })
@@ -153,6 +129,7 @@ const PoICollection = (props) => {
     
     function onHoverOut() {
         if(eventState === TimelineState.TIMELINE){
+            console.log(eventState)
             SetlightIntensity(0.1)
         }
     }
@@ -166,7 +143,7 @@ const PoICollection = (props) => {
             {/* {markerList} */}
             <PoIMarkerGroup eventData={eventData} platformSettings={props.platformSettings} posterPosList={posterPosList}/>
             {thumbnailList}
-            {/* {posterList} */}
+             {posterList}
             {light}
         </group>
     )

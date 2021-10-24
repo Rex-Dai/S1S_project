@@ -21,9 +21,10 @@ export const PoIThumbnail = (props) => {
         if(eventState === TimelineState.TIMELINE){
             setEventState("disabled");
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState("poi"); props.lightOn()}
+            tweenCamera(camera, props.targetCoords, props.duration, false, () =>
+                {setEventState(TimelineState.PoI); props.lightOn(); console.log('done', eventState);}
             );
-            
+
         }
     }
 
