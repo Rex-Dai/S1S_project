@@ -26,7 +26,7 @@ const PoIMarker = (props) => {
 
     const [hovered, setHover] = useState(false)
     let colour = "red"
-
+    const cameraOffset = [0,-5,0]
 
 
     function handleClick() {
@@ -34,7 +34,7 @@ const PoIMarker = (props) => {
         if (eventState === TimelineState.TIMELINE) {
             setEventState(TimelineState.DISABLED);
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () => setEventState(TimelineState.PoI)
+            tweenCamera(camera, cameraOffset, props.targetCoords, props.duration, false, () => setEventState(TimelineState.PoI)
             );
             // activate poster
             setActivePoster(props.index)

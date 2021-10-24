@@ -4,7 +4,6 @@ import React, { useMemo } from 'react'
 export const PoIThumbnailGroup = (props) => {
     const thumbnailList = useMemo(() => makeThumbnails(), [])
 
-
     // render thumbnails
     function makeThumbnails() {
         

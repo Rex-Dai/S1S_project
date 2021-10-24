@@ -12,6 +12,7 @@ export const PoIThumbnail = (props) => {
     const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
+    const cameraOffset = [0,-5,0]
 
     function handleClick() {
         const curPosition = new THREE.Vector3().copy(camera.position);
@@ -20,7 +21,7 @@ export const PoIThumbnail = (props) => {
             setEventState(TimelineState.DISABLED)
             console.log(curPosition)
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
+            tweenCamera(camera, cameraOffset, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
             setActivePoster(props.index)
         }
     }

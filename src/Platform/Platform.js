@@ -49,7 +49,7 @@ const Platform = (props) => {
     label.push(<TextLabel position={[verStart,
         horiStart, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
     label.push(<TextLabel position={[verStart + 12.5,
-        horiStart, -3]} text={"World"} key="Australia" colour={"#ffff00"} />)
+        horiStart, -3]} text={"World"} key="World" colour={"#ffff00"} />)
 
     return (
         <group>

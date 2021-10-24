@@ -34,12 +34,14 @@ const PoIPoster = (props) => {
 
     const [posZ, setPosZ] = useState(props.position[2]);
 
-    const [posX, setPosX] = useState(props.position[0]);
-
+    // const [posX, setPosX] = useState(props.position[0]);
+    const posX = props.position[0]
     const posY = props.position[1];
 
     const texture = useMemo(() => new THREE.TextureLoader().load(posterImg.default), []);
 
+    const zoomedOffset = [0,-3,0]
+    const normalOffset = [0,-6.3,0]
 
     function wheelMovement(event) {
 
@@ -56,15 +58,19 @@ const PoIPoster = (props) => {
 
                 // transition to zoom in state
                 setEventState(TimelineState.DISABLED)
-                tweenCamera(camera, [posX, posY + 1, posZ], 1000, false,
+                setPosZ(props.position[2])
+                console.log([posX, posY, posZ])
+                tweenCamera(camera, zoomedOffset, props.position, 1000, false,
                     () => { setEventState(TimelineState.ZOOM) })
                 // setZoomed(true)
             } else if (eventState === TimelineState.ZOOM) {
 
                 // transition back to POI state
                 setEventState(TimelineState.DISABLED)
-                tweenCamera(camera, [posX, posY, posZ], 1000, false,
+                console.log([posX, posY, posZ])
+                tweenCamera(camera, normalOffset, props.position, 1000, false,
                     () => setEventState(TimelineState.PoI))
+                
             }
         }
     }
@@ -118,12 +124,13 @@ const PoIPoster = (props) => {
     // }, [isLoaded])
 
     if (croppedTexture) {
-        container.push(
-            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
-                  visible={eventState !== TimelineState.ZOOM} position={props.position}>
-                <planeGeometry args={[6.5, 7.7]} />
-                <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
-            </mesh>)
+        container.push('')
+        // container.push(
+        //     <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
+        //           visible={eventState !== TimelineState.ZOOM} position={props.position}>
+        //         <planeGeometry args={[6.5, 7.7]} />
+        //         <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
+        //     </mesh>)
     } else {
         container.push('')
     }

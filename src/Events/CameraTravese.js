@@ -4,9 +4,9 @@ import {useThree} from "@react-three/fiber";
 const TWEEN = require('@tweenjs/tween.js');
 
 
-export default function tweenCamera(camera, targetCoords, duration, timelineView = false, finishCallback) {
+export default function tweenCamera(camera, cameraOffset, targetCoords, duration, timelineView = false, finishCallback) {
 
-    const cameraOffset = [0,-5,0];
+    // const cameraOffset = [0,-5,0];
     const cameraCurrentPos = new THREE.Vector3().copy( camera.position );
     const cameraTargetPos = new THREE.Vector3(
         targetCoords[0] + cameraOffset[0],
