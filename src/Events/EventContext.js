@@ -13,7 +13,8 @@ export const EventContext = React.createContext({
     timelinePos: [0,0,0],
     setTimelinePos: () => {},
     activePoster: null,
-    setActivePoster: () => {}
+    setActivePoster: () => {},
+    cameraOffset: [0,0,0]
 })
 
 export const TimelineState = {

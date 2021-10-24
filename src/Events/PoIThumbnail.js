@@ -9,10 +9,11 @@ import PoIAlbum from "./PoIAlbum";
 
 export const PoIThumbnail = (props) => {
     const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
-    const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
 
     const { camera } = useThree();
-    const cameraOffset = [0,-5,0]
+    // offset from poster
+    // const cameraOffset = [0,-5.5,0]
 
     function handleClick() {
         const curPosition = new THREE.Vector3().copy(camera.position);
@@ -21,7 +22,10 @@ export const PoIThumbnail = (props) => {
             setEventState(TimelineState.DISABLED)
             console.log(curPosition)
             setTimelinePos(curPosition)
-            tweenCamera(camera, cameraOffset, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
+
+            tweenCamera(camera, props.targetCoords, "toPoster", () => setEventState(TimelineState.PoI)
+            );
+            // tweenCamera(camera, cameraOffset, props.targetCoords, [0,0,0], props.duration, false, () => {setEventState(TimelineState.PoI)});
             setActivePoster(props.index)
         }
     }

@@ -17,7 +17,7 @@ const PoIPoster = (props) => {
     const category = props.event.category;
 
     
-    const { eventState, setEventState, timelinePos, activePoster } = useContext(EventContext)
+    const { eventState, setEventState, activePoster, cameraOffset } = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
@@ -41,7 +41,7 @@ const PoIPoster = (props) => {
     const texture = useMemo(() => new THREE.TextureLoader().load(posterImg.default), []);
 
     const zoomedOffset = [0,-3,0]
-    const normalOffset = [0,-6.3,0]
+    
 
     function wheelMovement(event) {
 
@@ -57,19 +57,29 @@ const PoIPoster = (props) => {
             if (eventState === TimelineState.PoI) {
 
                 // transition to zoom in state
+                console.log(imageHeight/220)
                 setEventState(TimelineState.DISABLED)
-                setPosZ(props.position[2])
-                console.log([posX, posY, posZ])
-                tweenCamera(camera, zoomedOffset, props.position, 1000, false,
-                    () => { setEventState(TimelineState.ZOOM) })
+                setPosZ(props.position[2] - imageHeight/440 + 2.5)
+                console.log(posZ)
+
+                tweenCamera(camera, props.position, "poiZoomIn", () => setEventState(TimelineState.ZOOM)
+                );
+
+                // tweenCamera(camera, zoomedOffset, props.position, [0,0,-0.3],
+                //     1000, false,
+                //     () => { setEventState(TimelineState.ZOOM) })
                 // setZoomed(true)
             } else if (eventState === TimelineState.ZOOM) {
 
                 // transition back to POI state
                 setEventState(TimelineState.DISABLED)
                 console.log([posX, posY, posZ])
-                tweenCamera(camera, normalOffset, props.position, 1000, false,
-                    () => setEventState(TimelineState.PoI))
+
+                tweenCamera(camera, props.position, "poiZoomOut", () => setEventState(TimelineState.PoI)
+                );
+
+                // tweenCamera(camera, cameraOffset, props.position, [0,0,0], 1000, false,
+                //     () => setEventState(TimelineState.PoI))
                 
             }
         }
@@ -124,13 +134,13 @@ const PoIPoster = (props) => {
     // }, [isLoaded])
 
     if (croppedTexture) {
-        container.push('')
-        // container.push(
-        //     <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
-        //           visible={eventState !== TimelineState.ZOOM} position={props.position}>
-        //         <planeGeometry args={[6.5, 7.7]} />
-        //         <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
-        //     </mesh>)
+
+        container.push(
+            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
+                  visible={eventState !== TimelineState.ZOOM} position={props.position}>
+                <planeGeometry args={[6.5, 7.7]} />
+                <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
+            </mesh>)
     } else {
         container.push('')
     }
@@ -152,7 +162,7 @@ const PoIPoster = (props) => {
                 <planeGeometry args={[6.5, imageHeight / 220]} />
                 <meshStandardMaterial map={texture} needsUpdate={true} />
             </mesh>
-            <PoIAlbum event={props.event} position={[5, 0, 0]} rotation={[120.9, 0, 0]} />
+            <PoIAlbum event={props.event} position={[1, 0, 0]} rotation={[120.9, 0, 0]} />
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )

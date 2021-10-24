@@ -84,10 +84,11 @@ export const SceneEventController = () => {
     const [eventState, setEventState] = useState(TimelineState.TIMELINE);
     const [timelinePos, setTimelinePos] = useState([0,0,0])
     const [activePoster, setActivePoster] = useState(null)
+    const cameraOffset = [0, -5.5, 0.3]
     // const spotLight = new THREE.SpotLight("white")
     const { scene } = useThree();
     // scene.add(spotLight);
-    const value = { eventState, setEventState, timelinePos, setTimelinePos, activePoster, setActivePoster};
+    const value = { eventState, setEventState, timelinePos, setTimelinePos, activePoster, setActivePoster, cameraOffset};
 
     return (
         <EventContext.Provider value={value}>

@@ -45,7 +45,7 @@ export const PoIMarkerGroup = (props) => {
                 <PoIMarker 
                 position={dateToCoordinate(element.date, element.category)} 
                 targetCoords={[32, 40, 4]} 
-                duration={2000} 
+                duration={1000} 
                 targetCoords={props.posterPosList[index]}
                 index={index}
                 hoverIn={props.hoverIn}

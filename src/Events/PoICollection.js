@@ -9,14 +9,13 @@ import tweenCamera from "./CameraTravese";
 const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
-    const { eventState, setEventState, timelinePos } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, cameraOffset } = useContext(EventContext)
     const { camera } = useThree();
 
     // spotlight related
     const [lightPos, SetlightPos] = useState([0, -1, 1])
     const [lightTarget, SetlightTarget] = useState([0, 0, 0])
     const [lightIntensity, SetlightIntensity] = useState([0])
-    const cameraOffset = [0,-5,0]
     const light = useMemo(() => <rectAreaLight
         position={lightPos}
         intensity={lightIntensity}
@@ -76,7 +75,7 @@ const PoICollection = (props) => {
     const handleTraverseBack = () => {
         if (eventState === TimelineState.PoI) {
             setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, cameraOffset, [timelinePos.x, timelinePos.y + 5, timelinePos.z], props.duration, true,
+            tweenCamera(camera, [timelinePos.x, timelinePos.y, timelinePos.z], "toTimeline",
                 () => setEventState(TimelineState.TIMELINE))
         }
     }

@@ -18,7 +18,7 @@ import * as THREE from "three";
  */
 const PoIMarker = (props) => {
 
-    let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
 
     const { camera } = useThree();
 
@@ -26,7 +26,7 @@ const PoIMarker = (props) => {
 
     const [hovered, setHover] = useState(false)
     let colour = "red"
-    const cameraOffset = [0,-5,0]
+    // const cameraOffset = [0,-5,0]
 
 
     function handleClick() {
@@ -34,7 +34,7 @@ const PoIMarker = (props) => {
         if (eventState === TimelineState.TIMELINE) {
             setEventState(TimelineState.DISABLED);
             setTimelinePos(curPosition)
-            tweenCamera(camera, cameraOffset, props.targetCoords, props.duration, false, () => setEventState(TimelineState.PoI)
+            tweenCamera(camera, props.targetCoords, "timeline", () => setEventState(TimelineState.PoI)
             );
             // activate poster
             setActivePoster(props.index)
