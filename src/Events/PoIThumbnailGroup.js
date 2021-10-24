@@ -11,26 +11,32 @@ export const PoIThumbnailGroup = (props) => {
         const rotY = 90 * Math.PI / 180
         const rotX = 90 * Math.PI / 180
         const offsetX = 30
+        const offsetY = 35
         const thumbnails = []
+        let ausIndex = 0
+        let worldIndex = 0
         props.eventData.events.forEach((element, index) => {
 
             let pos = [0, 0, 5]
             let rot = [rotX, 0, 0]
-            // y coordinate
-            pos[1] = Math.round(index / 2 - 0.5) * 13 + 20
-            if (index % 2 === 0) {
+            if(element.category === "Australia"){
                 pos[0] = -offsetX
+                pos[1] = ausIndex * 13 + offsetY
+                ausIndex++
                 rot[1] = rotY
-            } else {
+            } else{
+
                 pos[0] = offsetX
+                pos[1] = worldIndex * 13 + offsetY
+                worldIndex++
                 rot[1] = -rotY
             }
+
             thumbnails.push(<PoIThumbnail
                 event={element}
                 index={index}
                 position={pos}
                 rotation={rot}
-                togglePoster={props.togglePoster}
                 hoverIn={props.hoverIn}
                 hoverOut={props.hoverOut}
                 targetCoords={props.posterPosList[index]} // to be calculated

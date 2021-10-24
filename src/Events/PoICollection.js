@@ -32,18 +32,25 @@ const PoICollection = (props) => {
     function calcPosterPos() {
 
         const posterXOffset = 20
+        const posterYOffset = 40
         const posterYInterval = 13
         const posterZ = 0
         const positions = []
+        let australiaIndex = 0
+        let worldIndex = 0
 
         eventData.events.forEach((element, index) => {
 
             let pos = [0, 0, posterZ]
-            pos[1] = Math.round(index / 2 - 0.5) * posterYInterval
-                + props.platformSettings.horizontalStartCoordinate
-            if (index % 2 === 0) {
+            if(element.category === "Australia"){
+
+                pos[1] = australiaIndex * posterYInterval + posterYOffset
+                australiaIndex++
                 pos[0] = -posterXOffset
-            } else {
+            } else{
+
+                pos[1] = worldIndex * posterYInterval + posterYOffset
+                worldIndex++
                 pos[0] = posterXOffset
             }
             positions.push(pos)
