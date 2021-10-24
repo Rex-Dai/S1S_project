@@ -27,10 +27,10 @@ const PoIMarker = (props) => {
     const [hovered, setHover] = useState(false)
     let colour = "red"
 
-    const curPosition = new THREE.Vector3().copy(camera.position);
+
 
     function handleClick() {
-
+        const curPosition = new THREE.Vector3().copy(camera.position);
         if (eventState === TimelineState.TIMELINE) {
             setEventState(TimelineState.DISABLED);
             setTimelinePos(curPosition)

@@ -69,13 +69,13 @@ const PoIPoster = (props) => {
         }
     }
 
-    const handleTraverseBack = () => {
-        if (eventState === TimelineState.PoI) {
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [timelinePos.x, timelinePos.y + 5, timelinePos.z], props.duration, true,
-                () => setEventState(TimelineState.TIMELINE))
-        }
-    }
+    // const handleTraverseBack = () => {
+    //     if (eventState === TimelineState.PoI) {
+    //         setEventState(TimelineState.DISABLED)
+    //         tweenCamera(camera, [timelinePos.x, timelinePos.y + 5, timelinePos.z], props.duration, true,
+    //             () => setEventState(TimelineState.TIMELINE))
+    //     }
+    // }
 
     useLayoutEffect(() => {
         const loader = new GLTFLoader();
@@ -118,7 +118,6 @@ const PoIPoster = (props) => {
     // }, [isLoaded])
 
     if (croppedTexture) {
-        console.log(props.position)
         container.push(
             <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
                   visible={eventState !== TimelineState.ZOOM} position={props.position}>

@@ -12,13 +12,13 @@ export const PoIThumbnail = (props) => {
     const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
 
     const { camera } = useThree();
-    const curPosition = new THREE.Vector3().copy(camera.position);
 
     function handleClick() {
-
+        const curPosition = new THREE.Vector3().copy(camera.position);
         // same as poimarker
         if(eventState === TimelineState.TIMELINE){
             setEventState(TimelineState.DISABLED)
+            console.log(curPosition)
             setTimelinePos(curPosition)
             tweenCamera(camera, props.targetCoords, props.duration, false, () => {setEventState(TimelineState.PoI)});
             setActivePoster(props.index)
