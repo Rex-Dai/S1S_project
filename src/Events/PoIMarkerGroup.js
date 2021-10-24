@@ -5,20 +5,20 @@ export const PoIMarkerGroup = (props) => {
     const markerList = useMemo(() => makeMarkers(), [])
 
 
-    function dateToCoordinate(date){
+    function dateToCoordinate(date, category){
         // used to calculate the position of markers
-        let x, y, z, year, month;
-
+        let x, y, z, year, month, day;
         try {
             date = new Date(date);
             year = date.getFullYear();
             month = date.getMonth();
+            day = date.getDate();
         } catch (error) {
             console.error(error)
         }
 
         // todo need to decide the x axis mapping;
-        x = ((-1) ^ ((month + year) % 2)) * (month + year) % 5;
+        x = day/31 * 8
 
         y = (year - 1914) * props.platformSettings.horizontalInterval +
             props.platformSettings.horizontalStartCoordinate +
@@ -26,6 +26,12 @@ export const PoIMarkerGroup = (props) => {
 
         //todo need to decide the mapping of event at z axis
         z = 0;
+
+        // category offset
+        if(category === "Australia"){
+            x = x - 8
+        }
+
         // console.log([x,y,z])
         return [x, y, z];
     }
@@ -37,7 +43,7 @@ export const PoIMarkerGroup = (props) => {
 
             markers.push(
                 <PoIMarker 
-                position={dateToCoordinate(element.date)} 
+                position={dateToCoordinate(element.date, element.category)} 
                 targetCoords={[32, 40, 4]} 
                 duration={2000} 
                 targetCoords={props.posterPosList[index]}

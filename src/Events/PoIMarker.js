@@ -26,7 +26,7 @@ const PoIMarker = (props) => {
     // props has coordinates as array of 3 elements.
 
     const [hovered, setHover] = useState(false)
-    let colour = "white"
+    let colour = "red"
 
     const curPosition = new THREE.Vector3().copy(camera.position);
 
@@ -46,6 +46,8 @@ const PoIMarker = (props) => {
 
         if (eventState === TimelineState.TIMELINE) {
             props.hoverIn(props.index)
+            setHover(true)
+            // display info window
         }
     }
 
@@ -53,6 +55,7 @@ const PoIMarker = (props) => {
 
         if (eventState === TimelineState.TIMELINE) {
             props.hoverOut()
+            setHover(false)
         }
     }
 
@@ -61,7 +64,7 @@ const PoIMarker = (props) => {
     return (
         <mesh
             position={props.position}
-            scale={hovered ? 1.2 : 1}
+            scale={hovered ? 1 : 0.8}
             onClick={handleClick}
             onPointerOver={handleHoverIn}
             onPointerOut={handleHoverOut}
