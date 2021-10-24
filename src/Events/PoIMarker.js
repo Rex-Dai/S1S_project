@@ -16,7 +16,6 @@ import * as THREE from "three";
     color: color (hex code) of the sphere
     onClick: function to be executed onClick.
  */
-
 const PoIMarker = (props) => {
 
     let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)

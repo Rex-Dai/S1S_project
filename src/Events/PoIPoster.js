@@ -16,19 +16,13 @@ const PoIPoster = (props) => {
 
     const category = props.event.category;
 
-    // console.log(posterImg)
+    
     const { eventState, setEventState, timelinePos, activePoster } = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
     // the default ??????
     const jimp = require('jimp').default;
-
-    // const img = new Image();
-    // img.src = posterImg.default
-
-
-    // const { eventState, setEventState, timelinePos } = useContext(EventContext)
 
     const { camera, scene } = useThree();
 
@@ -49,19 +43,16 @@ const PoIPoster = (props) => {
 
     function wheelMovement(event) {
 
-        if (activePoster === props.index) {
-            if (eventState === TimelineState.PoI) {
-                setPosZ(posZ - event.deltaY * 0.005)
-
-            } else if (eventState === TimelineState.ZOOM) {
+        if (activePoster === props.index && eventState === TimelineState.ZOOM){
                 // enable x scroll, make movement slower
                 setPosZ(posZ - event.deltaY * 0.001)
             }
 
-        }
+        
     }
 
     function handleClick() {
+
         if (activePoster === props.index) {
             if (eventState === TimelineState.PoI) {
 
@@ -130,7 +121,7 @@ const PoIPoster = (props) => {
 
     if (croppedTexture) {
         container.push(
-            <mesh onClick={handleClick} visible={eventState !== TimelineState.ZOOM}>
+            <mesh onClick={handleClick} onWheel={wheelMovement} visible={eventState !== TimelineState.ZOOM}>
                 <planeGeometry args={[6.5, 7.7]} />
                 <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
             </mesh>)
@@ -148,7 +139,7 @@ const PoIPoster = (props) => {
         <group rotation={[120.9, 0, 0]}
             position={[posX, posY, posZ]}>
             {container}
-            <mesh visible={eventState === TimelineState.ZOOM}
+            <mesh visible={eventState === TimelineState.ZOOM && activePoster === props.index}
 
                 onClick={handleClick
                 }

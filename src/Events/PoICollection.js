@@ -47,11 +47,6 @@ const PoICollection = (props) => {
         return positions
     }
 
-    // function to activate poster of given index
-    function togglePosterState(index) {
-        SetActivePoster(index)
-    }
-
     function onHoverIn(index) {
         
         // this sets the offset
@@ -72,14 +67,12 @@ const PoICollection = (props) => {
                 eventData={eventData}
                 platformSettings={props.platformSettings}
                 posterPosList={posterPosList}
-                togglePoster={togglePosterState}
                 hoverIn={onHoverIn}
                 hoverOut={onHoverOut}
             />
             <PoIThumbnailGroup
                 eventData={eventData}
                 posterPosList={posterPosList}
-                togglePoster={togglePosterState}
                 hoverIn={onHoverIn}
                 hoverOut={onHoverOut}
             />
