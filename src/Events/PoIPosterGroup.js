@@ -4,6 +4,10 @@ import React, { useMemo } from 'react'
 export const PoIPosterGroup = (props) => {
     const posterList = useMemo(() => makePosters(), [])
 
+    const brickTexture = useMemo(() => {
+
+    })
+
     function makePosters() {
         const posters = []
         props.eventData.events.forEach((element, index) => {

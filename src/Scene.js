@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, {useContext, useEffect, useMemo, useRef, useState} from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import Platform from "./Platform/Platform";
 import { EventContext, TimelineState } from './Events/EventContext';
@@ -6,6 +6,7 @@ import PoICollection from './Events/PoICollection';
 import * as THREE from 'three'
 import {Stars} from "@react-three/drei";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 
 
 const platformSettings = {
@@ -32,6 +33,23 @@ const Scene = () => {
     useEffect(() => {
         camera.position.set(0, -10, 8);
         camera.lookAt(0, 5, 0);
+        const loader = new GLTFLoader();
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
+        loader.setDRACOLoader( dracoLoader );
+
+        loader.load( 'scene.gltf', function ( gltf ) {
+
+            gltf.scene.position.set(-650,100,-300)
+            gltf.scene.scale.set(5,5,5)
+            scene.add(gltf.scene);
+            console.log("added")
+
+        }, undefined, function ( error ) {
+
+            console.error( error );
+
+        } );
     }, [])
 
     useEffect(() => {
@@ -48,22 +66,12 @@ const Scene = () => {
         }
     }
 
-    const loader = new GLTFLoader();
 
-    loader.load( 'src/Models/need_some_space/scene.gltf', function ( gltf ) {
-
-        scene.add( gltf );
-
-    }, undefined, function ( error ) {
-
-        console.error( error );
-
-    } );
 
     return (
         <group>
             <Platform platformSettings={platformSettings} />
-            <PoICollection platformSettings={platformSettings} />
+            <PoICollection platformSettings={platformSettings} />\
         </group>
     )
 }
