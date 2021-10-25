@@ -8,6 +8,7 @@ import PoIAlbum from "./PoIAlbum";
 import PoIButton from "./PoIButton";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { ModelContext } from './ModelContext';
 
 
 const PoIPoster = (props) => {
@@ -15,9 +16,10 @@ const PoIPoster = (props) => {
     const container = []
 
     const category = props.event.category;
-
     
     const { eventState, setEventState, activePoster, cameraOffset } = useContext(EventContext)
+
+    // const { frameModel } = useContext(ModelContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
@@ -94,6 +96,16 @@ const PoIPoster = (props) => {
     // }
 
     useLayoutEffect(() => {
+
+        // const gltf = JSON.parse(JSON.stringify(frameModel))
+        // // console.log("ss" + gltf)
+        // gltf.scene.position.set(posX, posY + 0.1, posZ)
+        // gltf.scene.scale.set(8, 7, 7)
+        // gltf.scene.rotation.set(1.5708, 0, 0)
+
+        // setModel(gltf);
+        // scene.add(gltf.scene);
+        
         const loader = new GLTFLoader();
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('/examples/js/libs/draco/');

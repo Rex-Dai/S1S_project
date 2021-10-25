@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useMemo } from 'react'
 import tweenCamera from "./CameraTravese"
 import { useThree } from "@react-three/fiber";
 import { EventContext, TimelineState } from './EventContext';
 import * as THREE from "three";
+import { ModelContext } from './ModelContext';
 
 /* 
     This is what draws PoI objects and control events related.
@@ -17,15 +18,15 @@ import * as THREE from "three";
     onClick: function to be executed onClick.
  */
 const PoIMarker = (props) => {
-
+    // const textureImg = require("../Images/earth-reduced.jpg")
     let { eventState, setEventState, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
-
+    let { globeTexture} = useContext(ModelContext)
     const { camera } = useThree();
 
     // props has coordinates as array of 3 elements.
 
     const [hovered, setHover] = useState(false)
-    let colour = "red"
+    
     // const cameraOffset = [0,-5,0]
 
 
@@ -58,7 +59,7 @@ const PoIMarker = (props) => {
         }
     }
 
-
+    // const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default, console.log), []);
 
     return (
         <mesh
@@ -69,7 +70,7 @@ const PoIMarker = (props) => {
             onPointerOut={handleHoverOut}
         >
             <sphereGeometry />
-            <meshBasicMaterial color={colour} />
+            <meshBasicMaterial map={globeTexture}/>
         </mesh>
 
     )
