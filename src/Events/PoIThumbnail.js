@@ -5,11 +5,13 @@ import tweenCamera from "./CameraTravese";
 import { EventContext, TimelineState } from "./EventContext";
 import { useThree } from "@react-three/fiber";
 import PoIAlbum from "./PoIAlbum";
+import {TextureLoader} from "three";
 
 
 export const PoIThumbnail = (props) => {
     const textureImg = require("../Images/POI-thumbnails/" + props.event.category +"/" + props.event.thumbnail)
     const { eventState, setEventState, timelinePos, setTimelinePos, setActivePoster } = useContext(EventContext)
+
 
     const { camera } = useThree();
 
@@ -44,16 +46,22 @@ export const PoIThumbnail = (props) => {
     const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     return (
-        <mesh rotation={props.rotation}
+
+        <group rotation={props.rotation}
             position={props.position}
             onClick={handleClick}
             onPointerEnter={handleHoverIn}
             onPointerLeave={handleHoverOut}
         >
-            <planeGeometry args={[9, 9]} />
-            <meshBasicMaterial map={texture} />
-        </mesh>
-        // <spotLight color="#fff0f0" position={[20, 40, 5]} target={target} intensity={5}/>
+            <mesh>
+                <planeGeometry args={[9, 9]} />
+                <meshBasicMaterial map={texture} />
+            </mesh>
+            <mesh position={[0,0,-0.3]}>
+                <boxGeometry args={[12.9,10.8,0.5]}/>
+                <meshBasicMaterial map={props.brickTexture}/>
+            </mesh>
+        </group>
     )
 }
 

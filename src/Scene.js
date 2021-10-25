@@ -1,12 +1,13 @@
-import React, {useContext, useEffect, useMemo, useRef, useState} from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import React, {useContext, useEffect, useState} from 'react'
+import {useFrame, useThree} from '@react-three/fiber'
 import Platform from "./Platform/Platform";
-import { EventContext, TimelineState } from './Events/EventContext';
+import {EventContext, TimelineState} from './Events/EventContext';
 import PoICollection from './Events/PoICollection';
-import * as THREE from 'three'
 import {Stars} from "@react-three/drei";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
+import TextLabel from "./Platform/TextLabel";
+import {copyValue} from "three/examples/jsm/libs/ecsy.module";
 
 
 const platformSettings = {
@@ -22,6 +23,16 @@ const Scene = () => {
     const { camera, gl, scene } = useThree()
 
     const { eventState} = useContext(EventContext)
+
+    const [labelY, setLabelY] = useState(platformSettings.horizontalStartCoordinate)
+
+    const categoryLabel =[];
+
+    categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate,
+        labelY, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
+    categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate + 12.5,
+        labelY, -3]} text={"World"} key="Australia" colour={"#ffff00"} />)
+
 
     const TWEEN = require('@tweenjs/tween.js');
     // take over the rendering loop
@@ -59,12 +70,17 @@ const Scene = () => {
         }
     },[eventState])
 
+
+
     function onMouseWheel(event) {
         event.preventDefault();
         if(eventState === TimelineState.TIMELINE){
             camera.position.y -= event.deltaY * 0.005;
+            // setLabelY(labelY - event.deltaY * 0.005);
+            // console.log(labelY)
         }
     }
+
 
 
 
@@ -72,6 +88,7 @@ const Scene = () => {
         <group>
             <Platform platformSettings={platformSettings} />
             <PoICollection platformSettings={platformSettings} />\
+            {categoryLabel}
         </group>
     )
 }
@@ -84,10 +101,12 @@ export const SceneEventController = () => {
     const [eventState, setEventState] = useState(TimelineState.TIMELINE);
     const [timelinePos, setTimelinePos] = useState([0,0,0])
     const [activePoster, setActivePoster] = useState(null)
+    const [items, setItems] = useState([])
     // const spotLight = new THREE.SpotLight("white")
     const { scene } = useThree();
     // scene.add(spotLight);
-    const value = { eventState, setEventState, timelinePos, setTimelinePos, activePoster, setActivePoster};
+    const value = { eventState, setEventState, timelinePos, setTimelinePos,
+        activePoster, setActivePoster, items, setItems};
 
     return (
         <EventContext.Provider value={value}>

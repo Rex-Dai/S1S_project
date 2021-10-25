@@ -10,16 +10,9 @@ const PoIAlbum = (props) => {
 
     const loader = new THREE.TextureLoader();
 
-    const [items, setItems] = useState([]);
-
-    const [isLoaded, setIsLoaded] = useState(false);
-
     const [index, setIndex] = useState(0);
 
-    const [visibility, setVisibility] = useState(false);
-
-    const {eventState} = useContext(EventContext);
-
+    const {eventState, items} = useContext(EventContext);
 
     // const initialState = {count: 0};
     //
@@ -37,47 +30,30 @@ const PoIAlbum = (props) => {
 
 
 
-    useLayoutEffect(() => {
-        const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
-        // make api call
-        fetch(databaseUrl + '?q=' + props.event.databaseQuery + '&resource_id=' + props.event.databaseID)
-            .then(res => res.json())
-            .then(response => {
-                setItems(response.result.records);
-                setIsLoaded(true)
-            })
-    }, [])
-
-
     /*
      U need allow CORS to run following code
      */
-
-
     const filteredPicTexture = useMemo(() => {
         return items.filter(element => {
             const date = new Date(element["Temporal"]);
             const eventDate = new Date(props.event["date"])
-            return eventDate.getFullYear() === date.getFullYear() && eventDate.getMonth() === date.getMonth();
+            return eventDate.getFullYear() === date.getFullYear() &&
+                date.getMonth() >= eventDate.getMonth() - 1 &&
+                date.getMonth() <= eventDate.getMonth() + 1
         }).map(item => {
             return loader.load(item["High resolution image"]);
         })
-    }, [isLoaded])
+    }, [items])
 
-    useEffect(() => {
-        setVisibility(eventState === TimelineState.ZOOM)
-    }, [eventState])
 
-    let flag = false
-    if (filteredPicTexture[0] && !flag) {
-        flag = !flag;
+    if (filteredPicTexture[0]) {
         // const material = new THREE.MeshBasicMaterial();
         // material.map = filteredPicTexture[0];
         // material.needsUpdate = true
         // const mesh = new THREE.Mesh(geometry,material);
         // scene.add(mesh);
         container.push(
-            <mesh  position={props.position} visible={visibility}
+            <mesh  position={props.position} visible={eventState === TimelineState.ZOOM} rotation={props.rotation}
                   onClick={() => setIndex((index + 1) % filteredPicTexture.length)}>
                 <planeGeometry args={[5, 5]}/>
                 <meshBasicMaterial map={filteredPicTexture[index]}/>

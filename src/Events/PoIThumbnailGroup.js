@@ -1,23 +1,29 @@
 import PoIThumbnail from './PoIThumbnail';
 import React, { useMemo } from 'react'
+import {TextureLoader} from "three";
+
 
 export const PoIThumbnailGroup = (props) => {
-    const thumbnailList = useMemo(() => makeThumbnails(), [])
+
+    const brickTexture = useMemo(() => {
+        return new TextureLoader().load(require('../Images/pexels-tim-mossholder-3105407.jpeg').default)
+    },[])
 
 
+    const thumbnailList = useMemo(() => makeThumbnails(), [brickTexture])
     // render thumbnails
     function makeThumbnails() {
         
         const rotY = 90 * Math.PI / 180
         const rotX = 90 * Math.PI / 180
-        const offsetX = 30
+        const offsetX = 40
         const offsetY = 35
         const thumbnails = []
         let ausIndex = 0
         let worldIndex = 0
         props.eventData.events.forEach((element, index) => {
 
-            let pos = [0, 0, 5]
+            let pos = [0, 0, 8]
             let rot = [rotX, 0, 0]
             if(element.category === "Australia"){
                 pos[0] = -offsetX
@@ -41,6 +47,7 @@ export const PoIThumbnailGroup = (props) => {
                 hoverOut={props.hoverOut}
                 targetCoords={props.posterPosList[index]} // to be calculated
                 key={"thumbnail " + element.id}
+                brickTexture={brickTexture}
             />)
         })
         return thumbnails

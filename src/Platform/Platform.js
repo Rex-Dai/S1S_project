@@ -46,10 +46,7 @@ const Platform = (props) => {
         colour={"#ffffff"}
         key="end" />);
     // these are the category labels
-    label.push(<TextLabel position={[verStart,
-        horiStart, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
-    label.push(<TextLabel position={[verStart + 12.5,
-        horiStart, -3]} text={"World"} key="Australia" colour={"#ffff00"} />)
+
 
     return (
         <group>
