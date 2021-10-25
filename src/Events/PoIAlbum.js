@@ -43,7 +43,7 @@ const PoIAlbum = (props) => {
                 date.getMonth() <= eventDate.getMonth() + 4
         }).slice(0, 3)
             .map(item => {
-                const subStr = item["Title of image"].split(",");
+                const subStr = item["Title of image"].replaceAll(",", "\n");
                 return [loader.load(item["High resolution image"]), subStr];
             })
     }, [items])
@@ -58,19 +58,13 @@ const PoIAlbum = (props) => {
         // const mesh = new THREE.Mesh(geometry,material);
         // scene.add(mesh);
         container.push(
-            <group position={props.position} visible={true}>
+            <group position={props.position} visible={eventState === TimelineState.ZOOM}>
                 <mesh rotation={props.rotation}
                       onClick={() => setIndex((index + 1) % filteredPicTexture.length)}>
                     <planeGeometry args={[5, 5]}/>
                     <meshBasicMaterial map={filteredPicTexture[index][0]}/>
                 </mesh>
-                <TextLabel position={[-2, 0, -3]} text={filteredPicTexture[index][1][0]}
-                           colour={"#ffff00"} height={0.04} size={0.3}/>
-                <TextLabel position={[-2, 0, -3.4]} text={filteredPicTexture[index][1][1]}
-                           colour={"#ffff00"} height={0.04} size={0.3}/>
-                <TextLabel position={[-2, 0, -3.8]} text={filteredPicTexture[index][1][2]}
-                           colour={"#ffff00"} height={0.04} size={0.3}/>
-                <TextLabel position={[-2, 0, -4.2]} text={filteredPicTexture[index][1][3]}
+                <TextLabel position={[-2, 0, -3]} text={filteredPicTexture[index][1]}
                            colour={"#ffff00"} height={0.04} size={0.3}/>
             </group>
         )
