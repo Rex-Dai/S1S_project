@@ -23,6 +23,11 @@ const TextLabel = (props) => {
         height: 0.2,
     };
 
+    if (props.height && props.size) {
+        textOptions.height = props.height
+        textOptions.size = props.size
+    }
+
     /*
     The JSX implementation
     The loader.parse needs a json obj, the JSON.parse need a serialized string as arg
