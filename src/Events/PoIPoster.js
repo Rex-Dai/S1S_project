@@ -57,10 +57,10 @@ const PoIPoster = (props) => {
             if (eventState === TimelineState.PoI) {
 
                 // transition to zoom in state
-                console.log(imageHeight/220)
+                
                 setEventState(TimelineState.DISABLED)
-                setPosZ(props.position[2] - imageHeight/440 + 2.5)
-                console.log(posZ)
+                setPosZ(props.position[2] - imageHeight/440 + 4)
+                
 
                 tweenCamera(camera, props.position, "poiZoomIn", () => setEventState(TimelineState.ZOOM)
                 );
@@ -104,7 +104,7 @@ const PoIPoster = (props) => {
 
                 gltf.scene.position.set(posX, posY + 0.1, posZ)
                 gltf.scene.scale.set(8, 7, 7)
-                gltf.scene.rotation.set(120.9, 0, 0)
+                gltf.scene.rotation.set(1.5708, 0, 0)
                 setModel(gltf);
                 scene.add(gltf.scene);
 
@@ -136,7 +136,7 @@ const PoIPoster = (props) => {
     if (croppedTexture) {
 
         container.push(
-            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[120.9, 0, 0]}
+            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[1.5708, 0, 0]}
                   visible={eventState !== TimelineState.ZOOM} position={props.position}>
                 <planeGeometry args={[6.5, 7.7]} />
                 <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
@@ -155,14 +155,14 @@ const PoIPoster = (props) => {
         <group>
             {container}
             <mesh visible={eventState === TimelineState.ZOOM && activePoster === props.index}
-                  position={[posX,posY,posZ]} rotation={[120.9, 0, 0]}
+                  position={[posX,posY,posZ]} rotation={[1.5708, 0, 0]}
                 onClick={handleClick}
                 onWheel={wheelMovement}
             >
                 <planeGeometry args={[6.5, imageHeight / 220]} />
                 <meshStandardMaterial map={texture} needsUpdate={true} />
             </mesh>
-            <PoIAlbum event={props.event} position={[1, 0, 0]} rotation={[120.9, 0, 0]} />
+            <PoIAlbum event={props.event} position={[1, 0, 0]} rotation={[1.5708, 0, 0]} />
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )
