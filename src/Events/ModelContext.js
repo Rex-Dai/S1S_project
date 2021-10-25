@@ -10,6 +10,7 @@ import React from "react"
 export const ModelContext = React.createContext({
     
     globeTexture: null,
+    australiaTexture: null,
     frameModel: null
 
 })

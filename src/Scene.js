@@ -8,6 +8,7 @@ import { Stars } from "@react-three/drei";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { ModelContext } from './Events/ModelContext';
+import { Vector2 } from 'three';
 
 const platformSettings = {
     verticalStartCoordinate: -10,
@@ -103,6 +104,9 @@ const ModelContextProvider = () => {
     // const [globeTexture, SetGloveTexture] = useState();
     const globeImg = require("./Images/earth-reduced.jpg")
     const globeTexture = useMemo(() => new THREE.TextureLoader().load(globeImg.default), [])
+    const australiaImg = require("./Images/australia-reduced.jpg")
+    const australiaTexture = useMemo(() => new THREE.TextureLoader().load(australiaImg.default), [])
+    // australiaTexture.offset = new Vector2(0, 0.8)
 
     // load the 3d model for frame
     // const [frameModel, setFrameModel] = useState(null);
@@ -122,7 +126,7 @@ const ModelContextProvider = () => {
     // })
     // console.log(frameModel)
     // const value = { globeTexture, frameModel };
-    const value = {globeTexture}
+    const value = {globeTexture, australiaTexture}
 
     return (
         <ModelContext.Provider value={value}>

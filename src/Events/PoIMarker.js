@@ -20,8 +20,13 @@ import { ModelContext } from './ModelContext';
 const PoIMarker = (props) => {
     // const textureImg = require("../Images/earth-reduced.jpg")
     let { eventState, setEventState, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
-    let { globeTexture} = useContext(ModelContext)
+    let { globeTexture, australiaTexture} = useContext(ModelContext)
     const { camera } = useThree();
+    const geometry = props.category === "Australia" ? 
+        <planeGeometry 
+        args={[3,2]}
+        /> :
+        <sphereGeometry />
 
     // props has coordinates as array of 3 elements.
 
@@ -58,6 +63,7 @@ const PoIMarker = (props) => {
             setHover(false)
         }
     }
+    // const geo = <sphereGeometry />
 
     // const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default, console.log), []);
 
@@ -65,12 +71,15 @@ const PoIMarker = (props) => {
         <mesh
             position={props.position}
             scale={hovered ? 1 : 0.8}
+            rotation={[1.5708, 0, 0]}
             onClick={handleClick}
             onPointerOver={handleHoverIn}
             onPointerOut={handleHoverOut}
         >
-            <sphereGeometry />
-            <meshBasicMaterial map={globeTexture}/>
+            {geometry}
+            {/* <sphereGeometry /> */}
+            {/* <boxGeometry /> */}
+            <meshBasicMaterial map={props.category === "World" ? globeTexture : australiaTexture}/>
         </mesh>
 
     )
