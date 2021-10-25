@@ -1,38 +1,33 @@
 import * as THREE from 'three'
-import img from '../Images/warPic.png'
-import React, { useContext, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import React, {useContext, useEffect, useLayoutEffect, useMemo, useState} from "react";
 import tweenCamera from "./CameraTravese";
-import { EventContext, TimelineState } from "./EventContext";
-import { useThree } from "@react-three/fiber";
+import {EventContext, TimelineState} from "./EventContext";
+import {useThree} from "@react-three/fiber";
 import PoIAlbum from "./PoIAlbum";
-import PoIButton from "./PoIButton";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { ModelContext } from './ModelContext';
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 
 
 const PoIPoster = (props) => {
 
-    const container = []
+    const [model, setModel] = useState(null);
 
     const category = props.event.category;
     
-    const { eventState, setEventState, activePoster, cameraOffset } = useContext(EventContext)
+    const container = []
 
-    // const { frameModel } = useContext(ModelContext)
+    const {eventState, setEventState, timelinePos, activePoster} = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
     // the default ??????
     const jimp = require('jimp').default;
 
-    const { camera, scene } = useThree();
+    const {camera, scene} = useThree();
 
     const [imageHeight, setImageHeight] = useState(0);
 
     const [croppedTexture, setCroppedTexture] = useState(null);
-
-    const [model, setModel] = useState(null);
 
     const [posZ, setPosZ] = useState(props.position[2]);
 
@@ -47,10 +42,10 @@ const PoIPoster = (props) => {
 
     function wheelMovement(event) {
 
-        if (activePoster === props.index && eventState === TimelineState.ZOOM){
-                // enable x scroll, make movement slower
-                setPosZ(posZ - event.deltaY * 0.001)
-            }
+        if (activePoster === props.index && eventState === TimelineState.ZOOM) {
+            // enable x scroll, make movement slower
+            setPosZ(posZ - event.deltaY * 0.001)
+        }
     }
 
     function handleClick() {
@@ -96,36 +91,6 @@ const PoIPoster = (props) => {
     // }
 
     useLayoutEffect(() => {
-
-        // const gltf = JSON.parse(JSON.stringify(frameModel))
-        // // console.log("ss" + gltf)
-        // gltf.scene.position.set(posX, posY + 0.1, posZ)
-        // gltf.scene.scale.set(8, 7, 7)
-        // gltf.scene.rotation.set(1.5708, 0, 0)
-
-        // setModel(gltf);
-        // scene.add(gltf.scene);
-        
-        const loader = new GLTFLoader();
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('/examples/js/libs/draco/');
-        loader.setDRACOLoader(dracoLoader);
-
-        loader.load('frame.gltf'
-            , (gltf) => {
-
-                gltf.scene.position.set(posX, posY + 0.1, posZ)
-                gltf.scene.scale.set(8, 7, 7)
-                gltf.scene.rotation.set(1.5708, 0, 0)
-                setModel(gltf);
-                scene.add(gltf.scene);
-
-            }, undefined, (error) => {
-
-                console.error(error);
-
-            })
-
         jimp.read(posterImg.default)
             .then(image => {
                 setImageHeight(image.bitmap.height)
@@ -136,7 +101,30 @@ const PoIPoster = (props) => {
                     })
             })
             .catch(e => console.log(e))
+
+        const loader = new GLTFLoader();
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('/examples/js/libs/draco/');
+        loader.setDRACOLoader(dracoLoader);
+
+        loader.load('frame.gltf'
+            , (gltf) => {
+
+                gltf.scene.position.set(posX, posY + 0.1, posZ)
+                gltf.scene.scale.set(8, 7, 7)
+
+                gltf.scene.rotation.set(1.5708, 0, 0)
+                setModel(gltf.scene)
+                 scene.add(gltf.scene)
+            }, undefined, (error) => {
+
+                console.error(error);
+
+            })
+
+
     }, []);
+
 
     // const container = useMemo(() => {
     //     return [].push(<mesh onClick={handleClick} onWheel={wheelMovement}>
@@ -150,17 +138,16 @@ const PoIPoster = (props) => {
         container.push(
             <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[1.5708, 0, 0]}
                   visible={eventState !== TimelineState.ZOOM} position={props.position}>
-                <planeGeometry args={[6.5, 7.7]} />
-                <meshStandardMaterial map={croppedTexture} needsUpdate={true} />
+                <planeGeometry args={[6.5, 7.7]}/>
+                <meshStandardMaterial map={croppedTexture} needsUpdate={true}/>
             </mesh>)
     } else {
         container.push('')
     }
 
     if (model) {
-        model.scene.visible = eventState !== TimelineState.ZOOM;
+        model.visible = eventState !== TimelineState.ZOOM;
     }
-
 
 
     return (
@@ -171,8 +158,8 @@ const PoIPoster = (props) => {
                 onClick={handleClick}
                 onWheel={wheelMovement}
             >
-                <planeGeometry args={[6.5, imageHeight / 220]} />
-                <meshStandardMaterial map={texture} needsUpdate={true} />
+                <planeGeometry args={[6.5, imageHeight / 220]}/>
+                <meshStandardMaterial map={texture} needsUpdate={true}/>
             </mesh>
             <PoIAlbum event={props.event} position={[posX + 5.5, posY, 2]} />
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}

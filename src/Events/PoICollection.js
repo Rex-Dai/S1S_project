@@ -32,10 +32,10 @@ const PoICollection = (props) => {
 
     function calcPosterPos() {
 
-        const posterXOffset = 20
+        const posterXOffset = 35
         const posterYOffset = 40
         const posterYInterval = 13
-        const posterZ = 0
+        const posterZ = -5
         const positions = []
         let australiaIndex = 0
         let worldIndex = 0
