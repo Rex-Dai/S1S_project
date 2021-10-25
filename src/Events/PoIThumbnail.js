@@ -62,10 +62,10 @@ export const PoIThumbnail = (props) => {
                 <planeGeometry args={[9, 9]} />
                 <meshBasicMaterial map={texture} />
             </mesh>
-            <mesh position={[0,0,-0.3]}>
+            {/* <mesh position={[0,0,-0.3]}>
                 <boxGeometry args={[12.9,10.8,0.5]}/>
                 <meshBasicMaterial map={props.brickTexture}/>
-            </mesh>
+            </mesh> */}
         </group>
     )
 }
