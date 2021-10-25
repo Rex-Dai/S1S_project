@@ -8,8 +8,8 @@ import tweenCamera from "./CameraTravese";
 
 const PoICollection = (props) => {
 
-    // const eventData = require("./eventData.json")
-    const eventData = require("./testData.json")
+    const eventData = require("./eventData.json")
+    // const eventData = require("./testData.json")
     const { eventState, setEventState, timelinePos, cameraOffset } = useContext(EventContext)
     const { camera } = useThree();
 
