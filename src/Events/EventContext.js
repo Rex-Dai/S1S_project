@@ -16,6 +16,8 @@ export const EventContext = React.createContext({
     setActivePoster: () => {},
     items: [],
     setItems: () => {},
+    loaded:false,
+    setLoaded: () => {},
 })
 
 export const TimelineState = {

@@ -6,6 +6,7 @@ import {useThree} from "@react-three/fiber";
 import PoIAlbum from "./PoIAlbum";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
+import { HtmlAlbum } from './HtmlAlbum';
 
 
 const PoIPoster = (props) => {
@@ -161,7 +162,8 @@ const PoIPoster = (props) => {
                 <planeGeometry args={[6.5, imageHeight / 220]}/>
                 <meshStandardMaterial map={texture} needsUpdate={true}/>
             </mesh>
-            <PoIAlbum event={props.event} position={[posX + 5.5, posY, -3]} rotation={[1.5708, 0, 0]} index={props.index}/>
+            <HtmlAlbum event={props.event} position={[posX + 3.5, posY, -1]} visible={eventState === TimelineState.ZOOM && activePoster === props.index ? "visible" : "invisible"}/>
+            {/* <PoIAlbum event={props.event} position={[posX + 5.5, posY, -3]} rotation={[1.5708, 0, 0]} index={props.index}/> */}
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )

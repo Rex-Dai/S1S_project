@@ -25,7 +25,6 @@ const PoIMarker = (props) => {
     const { camera } = useThree();
     const geometry = props.category === "Australia" ? <planeGeometry args={[3,2]}/> :<sphereGeometry />
 
-    const popup = <InfoPopup />
     // props has coordinates as array of 3 elements.
 
     const [hovered, setHover] = useState(false)
@@ -78,7 +77,7 @@ const PoIMarker = (props) => {
             {/* <sphereGeometry /> */}
             {/* <boxGeometry /> */}
             <meshBasicMaterial map={props.category === "World" ? globeTexture : australiaTexture}/>
-            <InfoPopup text={props.text} className={hovered && eventState === TimelineState.TIMELINE ? "info-active" : "info-inactive"}/>
+            <InfoPopup text={props.text} className={hovered && eventState === TimelineState.TIMELINE ? "visible" : "invisible"}/>
         </mesh>
 
     )
