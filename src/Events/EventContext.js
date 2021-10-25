@@ -13,7 +13,9 @@ export const EventContext = React.createContext({
     timelinePos: [0,0,0],
     setTimelinePos: () => {},
     activePoster: null,
-    setActivePoster: () => {}
+    setActivePoster: () => {},
+    items: [],
+    setItems: () => {},
 })
 
 export const TimelineState = {
