@@ -174,7 +174,7 @@ const PoIPoster = (props) => {
                 <planeGeometry args={[6.5, imageHeight / 220]} />
                 <meshStandardMaterial map={texture} needsUpdate={true} />
             </mesh>
-            <PoIAlbum event={props.event} position={[1, 0, 0]} rotation={[1.5708, 0, 0]} />
+            <PoIAlbum event={props.event} position={[posX + 5.5, posY, 2]} />
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )

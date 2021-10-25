@@ -78,8 +78,9 @@ const PoIAlbum = (props) => {
         // scene.add(mesh);
         container.push(
             <mesh  position={props.position} visible={visibility}
+                rotation={[1.5708, 0, 0]}
                   onClick={() => setIndex((index + 1) % filteredPicTexture.length)}>
-                <planeGeometry args={[5, 5]}/>
+                <planeGeometry args={[4, 4]}/>
                 <meshBasicMaterial map={filteredPicTexture[index]}/>
             </mesh>)
     } else {

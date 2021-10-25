@@ -1,0 +1,33 @@
+{
+    "events": [
+        
+        {
+            "id": 7,
+            "date": "1916",
+            "category": "Australia",
+            "thumbnail": "1916.jpg",
+            "thumbnailWidth": 1080,
+            "thumbnailHeight": 720,
+            "poster": "1916.png",
+            "posterWidth": 1400,
+            "posterHeight": 5063,
+            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
+            "databaseQuery": "jones"
+        },
+
+        {
+            "id": 8,
+            "date": "1918-6-28",
+            "category": "Australia",
+            "thumbnail": "28_June_1918.jpg",
+            "thumbnailWidth": 1080,
+            "thumbnailHeight": 720,
+            "poster": "28_June_1918.png",
+            "posterWidth": 1400,
+            "posterHeight": 5063,
+            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
+            "databaseQuery": "jones"
+        }
+    
+    ]
+}

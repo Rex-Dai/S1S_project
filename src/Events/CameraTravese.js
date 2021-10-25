@@ -9,8 +9,8 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
 
     // offset for traversal towards the poster
     const posterPosOffset = [0, -5.5, 0]
-    const zoomInPosOffset = [1.1, -3.2, 1.7]
-    const zoomInTargetOffset = [1.1, 0, 1.7]
+    const zoomInPosOffset = [2.1, -4, 1.2]
+    const zoomInTargetOffset = [2.1, 0, 1.2]
     const cameraCurrentPos = new THREE.Vector3().copy(camera.position);
     const cameraTargetPos = new THREE.Vector3(
         targetCoords[0],
