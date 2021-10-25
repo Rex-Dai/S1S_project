@@ -13,7 +13,7 @@ const PoIAlbum = (props) => {
 
     const [index, setIndex] = useState(0);
 
-    const {eventState, items} = useContext(EventContext);
+    const {eventState, items, activePoster} = useContext(EventContext);
 
 
     // const initialState = {count: 0};
@@ -58,14 +58,14 @@ const PoIAlbum = (props) => {
         // const mesh = new THREE.Mesh(geometry,material);
         // scene.add(mesh);
         container.push(
-            <group position={props.position} visible={eventState === TimelineState.ZOOM}>
+            <group position={props.position} visible={eventState === TimelineState.ZOOM && activePoster === props.index} key={props.event.id}>
                 <mesh rotation={props.rotation}
                       onClick={() => setIndex((index + 1) % filteredPicTexture.length)}>
-                    <planeGeometry args={[5, 5]}/>
+                    <planeGeometry args={[4, 4]}/>
                     <meshBasicMaterial map={filteredPicTexture[index][0]}/>
                 </mesh>
-                <TextLabel position={[-2, 0, -3]} text={filteredPicTexture[index][1]}
-                           colour={"#ffff00"} height={0.04} size={0.3}/>
+                <TextLabel position={[-2, 0, -2.3]} text={filteredPicTexture[index][1]}
+                           colour={"#ffff00"} height={0.01} size={0.1}/>
             </group>
         )
     } else {

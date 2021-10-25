@@ -36,7 +36,7 @@ const TextLabel = (props) => {
      */
 
     return (
-        <mesh rotation={[120.9, 0, 0]} position={props.position} ref={ref}>
+        <mesh rotation={[1.5708, 0, 0]} position={props.position} ref={ref}>
             <textGeometry attach={'geometry'} args={[props.text, textOptions]} />
             <meshBasicMaterial attach="material" color={"#ffffff"} />
         </mesh>

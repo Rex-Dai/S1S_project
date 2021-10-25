@@ -136,7 +136,7 @@ const PoIPoster = (props) => {
     if (croppedTexture) {
 
         container.push(
-            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[1.5708, 0, 0]}
+            <mesh onClick={handleClick} onWheel={wheelMovement} rotation={[1.5708, 0, 0]} key={props.index}
                   visible={eventState !== TimelineState.ZOOM} position={props.position}>
                 <planeGeometry args={[6.5, 7.7]}/>
                 <meshStandardMaterial map={croppedTexture} needsUpdate={true}/>
@@ -161,7 +161,7 @@ const PoIPoster = (props) => {
                 <planeGeometry args={[6.5, imageHeight / 220]}/>
                 <meshStandardMaterial map={texture} needsUpdate={true}/>
             </mesh>
-            <PoIAlbum event={props.event} position={[posX + 5.5, posY, 2]} />
+            <PoIAlbum event={props.event} position={[posX + 5.5, posY, -3]} rotation={[1.5708, 0, 0]} index={props.index}/>
             {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
         </group>
     )

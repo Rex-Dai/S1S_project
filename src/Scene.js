@@ -33,7 +33,7 @@ const Scene = () => {
     categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate,
         labelY, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
     categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate + 12.5,
-        labelY, -3]} text={"World"} key="Australia" colour={"#ffff00"} />)
+        labelY, -3]} text={"World"} key="World" colour={"#ffff00"} />)
 
 
     const TWEEN = require('@tweenjs/tween.js');
