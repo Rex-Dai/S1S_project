@@ -10,11 +10,11 @@
             "poster": "1_August_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
             "title": "Life in Australia",
-            "imageField": "High resolution image",
-            "contentField": "Title of image"
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 1,
@@ -26,9 +26,11 @@
             "poster": "4_August_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Australia's involvement"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Australia's involvement",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 2,
@@ -40,9 +42,11 @@
             "poster": "11_Sep_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Battle of Bita Paka"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Battle of Bita Paka",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 3,
@@ -54,9 +58,11 @@
             "poster": "12_Sep_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Life in Australia"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Life in Australia",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 4,
@@ -69,8 +75,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "First victory"
+            "databaseQuery": "1914",
+            "title": "First victory",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 5,
@@ -83,8 +91,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "soldier",
-            "title": "Gallipoli landings"
+            "databaseQuery": "1915",
+            "title": "Gallipoli landings",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 6,
@@ -96,9 +106,12 @@
             "poster": "27_Oct_1915.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Andrew Fisher resigns"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1915",
+            "title": "Andrew Fisher resigns",
+            "imageField": "500_pixel",
+            "contentField": "title"
+  
         },
         {
             "id": 7,
@@ -111,8 +124,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Middle east campaign"
+            "databaseQuery": "1916",
+            "title": "Middle east campaign",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 8,
@@ -124,9 +139,11 @@
             "poster": "28_June_1918.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "End of the war"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1918",
+            "title": "End of the war",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 9,
@@ -139,8 +156,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Battle of Hamel"
+            "databaseQuery": "1918",
+            "title": "Battle of Hamel",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 10,
@@ -152,9 +171,11 @@
             "poster": "28_June_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Sarajevo incident"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Sarajevo incident",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 11,
@@ -166,9 +187,11 @@
             "poster": "5_July_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Germany's blank cheque"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Germany's blank cheque",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 12,
@@ -180,9 +203,11 @@
             "poster": "Dec_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Christmas truce"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1914",
+            "title": "Christmas truce",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 13,
@@ -194,9 +219,11 @@
             "poster": "23_May_1915.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Italy declares war"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1915",
+            "title": "Italy declares war",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 14,
@@ -209,8 +236,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Beginning of second battle"
+            "databaseQuery": "1915",
+            "title": "Beginning of second battle",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 15,
@@ -223,8 +252,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Battle of Jutland"
+            "databaseQuery": "1916",
+            "title": "Battle of Jutland",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 16,
@@ -237,8 +268,10 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "Battle of the Somme"
+            "databaseQuery": "1916",
+            "title": "Battle of the Somme",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 17,
@@ -250,9 +283,11 @@
             "poster": "Feb_1917.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "The February revolution"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1917",
+            "title": "The February revolution",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 18,
@@ -264,9 +299,11 @@
             "poster": "6_April_1917.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "USA declared war"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1917",
+            "title": "USA declared war",
+            "imageField": "500_pixel",
+            "contentField": "title"
         },
         {
             "id": 19,
@@ -278,11 +315,15 @@
             "poster": "21_March_1918.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "German spring offensives"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1918",
+            "title": "German spring offensives",
+            "imageField": "500_pixel",
+            "contentField": "title"
         }
-
-    
+  
+   
     ]
-}
+ }
+ 
+ 
