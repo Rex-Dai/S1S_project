@@ -26,14 +26,23 @@ export const HtmlAlbum = (props) => {
             })
     }, [])
 
-    console.log(items)
 
     const albumPics = useMemo(() => {
         return shuffle(items.filter(element => {
-            const date = new Date(element["Temporal"]);
+            let year, month;
+            if (element["temporal"]) {
+                year = new Date(element["temporal"]).getFullYear() - 100;
+                month = new Date(element["temporal"]).getMonth()
+            } else if (element["Temporal"]) {
+                year = new Date(element["temporal"]).getFullYear()
+            } else {
+                throw new Error("non defined date")
+            }
             const eventDate = new Date(props.event["date"])
-            return eventDate.getFullYear() === date.getFullYear()
+            return  element
         }).slice(0, 5)).map(item => {
+            console.log(item[props.event.contentField],
+                item[props.event.imageField] )
             const subStr = item[props.event.contentField].replaceAll(",", "\n");
             return [item[props.event.imageField], subStr];
         })

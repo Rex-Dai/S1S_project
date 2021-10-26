@@ -1,20 +1,20 @@
 {
     "events": [
         {
-            "id": 0,
-            "date": "1914-8-1",
-            "category": "Australia",
-            "thumbnail": "1_August_1914.jpeg",
+            "id": 19,
+            "date": "1918-3-21",
+            "category": "World",
+            "thumbnail": "21_March_1918.jpg",
             "thumbnailWidth": 1080,
             "thumbnailHeight": 720,
-            "poster": "1_August_1914.png",
+            "poster": "21_March_1918.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "1914",
-            "title": "Life in Australia",
-            "imageField": "High resolution image",
-            "contentField": "Title of image"
+            "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
+            "databaseQuery": "1918",
+            "title": "German spring offensives",
+            "imageField": "500_pixel",
+            "contentField": "title"
         }
     ]
 }
