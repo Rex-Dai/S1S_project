@@ -12,6 +12,7 @@ export const PoIPosterGroup = (props) => {
         const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
         // make api call
         fetch(databaseUrl + '?q=' + props.eventData.events[0].databaseQuery + '&resource_id=' +
+        // fetch(databaseUrl + '?resource_id=' +
             props.eventData.events[0].databaseID)
             .then(res => res.json())
             .then(response => {
