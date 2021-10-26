@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
-import React, { useContext, useMemo, useState } from "react";
-import { EventContext, TimelineState } from "./EventContext";
+import React, { useContext,useState } from "react";
+import { EventContext } from "./EventContext";
 import './style.css'
 
 export const HtmlAlbum = (props) => {
@@ -9,23 +9,6 @@ export const HtmlAlbum = (props) => {
     const [index, setIndex] = useState(0);
     // get image
     const { items, loaded } = useContext(EventContext);
-    /*
-     U need allow CORS to run following code
-     */
-    // const filteredPic = useMemo(() => {
-    //     console.log(items)
-    //     return items.filter(element => {
-    //         const date = new Date(element["Temporal"]);
-    //         const eventDate = new Date(props.event["date"])
-    //         return eventDate.getFullYear() === date.getFullYear() &&
-    //             date.getMonth() >= eventDate.getMonth() - 4 &&
-    //             date.getMonth() <= eventDate.getMonth() + 4
-    //     }).slice(0, 3)
-    //         .map(item => {
-    //             const subStr = item["Title of image"].replaceAll(",", "\n");
-    //             return [item["High resolution image"], subStr];
-    //         })
-    // }, [items])
 
     const albumPics = items.filter(element => {
         const date = new Date(element["Temporal"]);

@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import React, { useRef } from 'react'
-import { MeshLambertMaterial } from 'three';
 
 
 const TextLabel = (props) => {

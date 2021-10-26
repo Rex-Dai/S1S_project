@@ -1,11 +1,8 @@
 import * as THREE from 'three'
-import img from '../Images/warPic.png'
 import React, {useContext, useMemo} from "react";
 import tweenCamera from "./CameraTravese";
 import {EventContext, TimelineState} from "./EventContext";
 import {useThree} from "@react-three/fiber";
-import PoIAlbum from "./PoIAlbum";
-import {TextureLoader} from "three";
 
 
 export const PoIThumbnail = (props) => {
@@ -13,10 +10,8 @@ export const PoIThumbnail = (props) => {
     const {
         eventState,
         setEventState,
-        timelinePos,
         setTimelinePos,
         setActivePoster,
-        cameraOffset
     } = useContext(EventContext)
 
 
@@ -34,7 +29,6 @@ export const PoIThumbnail = (props) => {
 
             tweenCamera(camera, props.targetCoords, "toPoster", () => setEventState(TimelineState.PoI)
             );
-            // tweenCamera(camera, cameraOffset, props.targetCoords, [0,0,0], props.duration, false, () => {setEventState(TimelineState.PoI)});
             setActivePoster(props.index)
         }
     }
@@ -54,7 +48,6 @@ export const PoIThumbnail = (props) => {
     }
 
     // load thumbnail texture
-    // const texture = useMemo(() => new THREE.TextureLoader().load(eventData.events[props.index].thumbnail.default), []);
     const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     return (

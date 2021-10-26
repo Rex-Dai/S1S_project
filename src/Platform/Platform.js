@@ -1,5 +1,5 @@
 import Line from './Line'
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TextLabel from "./TextLabel";
 
 
@@ -52,13 +52,6 @@ const Platform = (props) => {
             {lineList}
             {indicator}
             {label}
-            {/* <mesh
-            position={[-5,18.5,0]}
-            rotation={[0,0,0]}
-            >
-                <planeGeometry args={[10,3,1]}/>
-                <meshBasicMaterial color={"#ffffff"}/>
-            </mesh> */}
         </group>
     )
 

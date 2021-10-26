@@ -1,6 +1,5 @@
 import React, {useMemo, useCallback, useRef} from 'react'
 import * as THREE from 'three'
-import { MeshLambertMaterial } from 'three';
 
 const Line = (props) => {
     const ref = useRef();

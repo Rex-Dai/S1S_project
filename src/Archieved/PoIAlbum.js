@@ -1,7 +1,7 @@
 // This is the object to display detailed PoI album
 import React, {useContext, useEffect, useLayoutEffect, useMemo, useReducer, useState} from "react";
 import * as THREE from "three";
-import {EventContext, TimelineState} from "./EventContext";
+import {EventContext, TimelineState} from "../Events/EventContext";
 import TextLabel from "../Platform/TextLabel";
 
 

@@ -10,7 +10,7 @@ const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     // const eventData = require("./testData.json")
-    const { eventState, setEventState, timelinePos, cameraOffset } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos } = useContext(EventContext)
     const { camera } = useThree();
 
     // spotlight related
@@ -40,7 +40,7 @@ const PoICollection = (props) => {
         let australiaIndex = 0
         let worldIndex = 0
 
-        eventData.events.forEach((element, index) => {
+        eventData.events.forEach((element) => {
 
             let pos = [0, 0, posterZ]
             if(element.category === "Australia"){

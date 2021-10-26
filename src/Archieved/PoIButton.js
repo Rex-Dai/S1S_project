@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react'
 import * as Three from 'three';
 import img from "../Images/BackButton.png"
-import {EventContext, TimelineState} from "./EventContext";
+import {EventContext, TimelineState} from "../Events/EventContext";
 
 const PoIButton = (props) => {
 

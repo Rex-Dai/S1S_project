@@ -1,9 +1,8 @@
 import * as THREE from 'three'
-import React, {useContext, useEffect, useLayoutEffect, useMemo, useState} from "react";
+import React, {useContext, useLayoutEffect, useMemo, useState} from "react";
 import tweenCamera from "./CameraTravese";
 import {EventContext, TimelineState} from "./EventContext";
 import {useThree} from "@react-three/fiber";
-import PoIAlbum from "./PoIAlbum";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import { HtmlAlbum } from './HtmlAlbum';
@@ -13,11 +12,10 @@ const PoIPoster = (props) => {
 
     const [model, setModel] = useState(null);
 
-    const category = props.event.category;
     
     const container = []
 
-    const {eventState, setEventState, timelinePos, activePoster} = useContext(EventContext)
+    const {eventState, setEventState, activePoster} = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
@@ -32,13 +30,10 @@ const PoIPoster = (props) => {
 
     const [posZ, setPosZ] = useState(props.position[2]);
 
-    // const [posX, setPosX] = useState(props.position[0]);
     const posX = props.position[0]
     const posY = props.position[1];
 
     const texture = useMemo(() => new THREE.TextureLoader().load(posterImg.default), []);
-
-    const zoomedOffset = [0,-3,0]
     
 
     function wheelMovement(event) {
@@ -63,10 +58,6 @@ const PoIPoster = (props) => {
                 tweenCamera(camera, props.position, "poiZoomIn", () => setEventState(TimelineState.ZOOM)
                 );
 
-                // tweenCamera(camera, zoomedOffset, props.position, [0,0,-0.3],
-                //     1000, false,
-                //     () => { setEventState(TimelineState.ZOOM) })
-                // setZoomed(true)
             } else if (eventState === TimelineState.ZOOM) {
 
                 // transition back to POI state
@@ -83,13 +74,6 @@ const PoIPoster = (props) => {
         }
     }
 
-    // const handleTraverseBack = () => {
-    //     if (eventState === TimelineState.PoI) {
-    //         setEventState(TimelineState.DISABLED)
-    //         tweenCamera(camera, [timelinePos.x, timelinePos.y + 5, timelinePos.z], props.duration, true,
-    //             () => setEventState(TimelineState.TIMELINE))
-    //     }
-    // }
 
     useLayoutEffect(() => {
         jimp.read(posterImg.default)
@@ -127,12 +111,6 @@ const PoIPoster = (props) => {
     }, []);
 
 
-    // const container = useMemo(() => {
-    //     return [].push(<mesh onClick={handleClick} onWheel={wheelMovement}>
-    //         <planeGeometry args={[6.5, 7.7]}/>
-    //         <meshStandardMaterial map={croppedTexture} needsUpdate={true}/>
-    //     </mesh>)
-    // }, [isLoaded])
 
     if (croppedTexture) {
 
@@ -162,9 +140,8 @@ const PoIPoster = (props) => {
                 <planeGeometry args={[6.5, imageHeight / 220]}/>
                 <meshStandardMaterial map={texture} needsUpdate={true}/>
             </mesh>
-            <HtmlAlbum event={props.event} position={[posX + 3.5, posY, -1]} visible={eventState === TimelineState.ZOOM && activePoster === props.index ? "visible" : "invisible"}/>
-            {/* <PoIAlbum event={props.event} position={[posX + 5.5, posY, -3]} rotation={[1.5708, 0, 0]} index={props.index}/> */}
-            {/* <PoIButton position={[-3, 2, 0]} clickEvent={handleTraverseBack} /> */}
+            <HtmlAlbum event={props.event} position={[posX + 3.5, posY, -1]} visible={eventState === TimelineState.ZOOM
+            && activePoster === props.index ? "visible" : "invisible"}/>
         </group>
     )
 }

@@ -9,7 +9,6 @@ import {Stars} from "@react-three/drei";
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import TextLabel from "./Platform/TextLabel";
-import {copyValue} from "three/examples/jsm/libs/ecsy.module";
 
 
 const platformSettings = {
@@ -22,18 +21,16 @@ const platformSettings = {
 
 const Scene = () => {
 
-    const { camera, gl, scene } = useThree()
+    const { camera, scene } = useThree()
 
     const { eventState } = useContext(EventContext)
-
-    const [labelY, setLabelY] = useState(platformSettings.horizontalStartCoordinate)
 
     const categoryLabel =[];
 
     categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate,
-        labelY, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
+        platformSettings.horizontalStartCoordinate, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
     categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate + 12.5,
-        labelY, -3]} text={"World"} key="World" colour={"#ffff00"} />)
+        platformSettings.horizontalStartCoordinate, -3]} text={"World"} key="World" colour={"#ffff00"} />)
 
 
     const TWEEN = require('@tweenjs/tween.js');
@@ -78,12 +75,8 @@ const Scene = () => {
         event.preventDefault();
         if (eventState === TimelineState.TIMELINE) {
             camera.position.y -= event.deltaY * 0.005;
-            // setLabelY(labelY - event.deltaY * 0.005);
-            // console.log(labelY)
         }
     }
-
-
 
 
     return (
@@ -105,9 +98,7 @@ export const SceneEventController = () => {
     const [activePoster, setActivePoster] = useState(null)
     const [items, setItems] = useState([])
     const [loaded, setLoaded] = useState(false)
-    // const spotLight = new THREE.SpotLight("white")
-    const { scene } = useThree();
-    // scene.add(spotLight);
+
     const value = { eventState, setEventState, timelinePos, setTimelinePos,
         activePoster, setActivePoster, items, setItems, loaded, setLoaded};
 
@@ -121,31 +112,10 @@ export const SceneEventController = () => {
 const ModelContextProvider = () => {
 
     // load the texture for globe
-    // const [globeTexture, SetGloveTexture] = useState();
     const globeImg = require("./Images/earth-reduced.jpg")
     const globeTexture = useMemo(() => new THREE.TextureLoader().load(globeImg.default), [])
     const australiaImg = require("./Images/australia-reduced.jpg")
     const australiaTexture = useMemo(() => new THREE.TextureLoader().load(australiaImg.default), [])
-    // australiaTexture.offset = new Vector2(0, 0.8)
-
-    // load the 3d model for frame
-    // const [frameModel, setFrameModel] = useState(null);
-    // useLayoutEffect(() => {
-    //     const loader = new GLTFLoader();
-    //     const dracoLoader = new DRACOLoader();
-    //     dracoLoader.setDecoderPath('/examples/js/libs/draco/');
-    //     loader.setDRACOLoader(dracoLoader);
-
-    //     loader.load('frame.gltf'
-    //         , (gltf) => {
-
-    //             setFrameModel(gltf);
-    //         }, undefined, (error) => {
-    //             console.error(error);
-    //         })
-    // })
-    // console.log(frameModel)
-    // const value = { globeTexture, frameModel };
     const value = {globeTexture, australiaTexture}
 
     return (

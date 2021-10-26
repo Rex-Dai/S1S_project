@@ -1,13 +1,9 @@
 import PoIMarker from './PoIMarker';
 import React, { useMemo } from 'react'
-import * as THREE from "three";
 
 export const PoIMarkerGroup = (props) => {
 
     const markerList = useMemo(() => makeMarkers(), [])
-    // const textureImg = require("../Images/earth-reduced.jpg")
-
-    // const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default).then(console.log), []);
 
     function dateToCoordinate(date, category){
         // used to calculate the position of markers
@@ -36,19 +32,16 @@ export const PoIMarkerGroup = (props) => {
             x = x - 8
         }
 
-        // console.log([x,y,z])
         return [x, y, z];
     }
 
     function makeMarkers(){
         const markers = []
-        // console.log("Markers created")
         props.eventData.events.forEach((element, index) => {
 
             markers.push(
                 <PoIMarker 
-                position={dateToCoordinate(element.date, element.category)} 
-                targetCoords={[32, 40, 4]} 
+                position={dateToCoordinate(element.date, element.category)}
                 duration={1000} 
                 targetCoords={props.posterPosList[index]}
                 index={index}

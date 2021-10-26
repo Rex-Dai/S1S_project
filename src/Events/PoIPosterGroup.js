@@ -1,16 +1,12 @@
 import PoIPoster from './PoIPoster'
-import React, {useContext, useLayoutEffect, useMemo, useState} from 'react'
+import React, {useContext, useLayoutEffect, useMemo} from 'react'
 import {EventContext} from "./EventContext";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 
 export const PoIPosterGroup = (props) => {
 
-
-
     const posterList = useMemo(() => makePosters(), [])
 
-    const { setItems, setLoaded, setModel} = useContext(EventContext)
+    const { setItems, setLoaded} = useContext(EventContext)
 
     useLayoutEffect(() => {
         const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';

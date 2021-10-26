@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react'
+import React, { useContext, useState} from 'react'
 import tweenCamera from "./CameraTravese"
 import { useThree } from "@react-three/fiber";
 import { EventContext, TimelineState } from './EventContext';
@@ -20,7 +20,7 @@ import { InfoPopup } from './InfoPopup';
  */
 const PoIMarker = (props) => {
     // const textureImg = require("../Images/earth-reduced.jpg")
-    let { eventState, setEventState, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)
     let { globeTexture, australiaTexture} = useContext(ModelContext)
     const { camera } = useThree();
     const geometry = props.category === "Australia" ? <planeGeometry args={[3,2]}/> :<sphereGeometry />
@@ -60,9 +60,7 @@ const PoIMarker = (props) => {
             setHover(false)
         }
     }
-    // const geo = <sphereGeometry />
 
-    // const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default, console.log), []);
 
     return (
         <mesh
@@ -74,8 +72,6 @@ const PoIMarker = (props) => {
             onPointerOut={handleHoverOut}
         >
             {geometry}
-            {/* <sphereGeometry /> */}
-            {/* <boxGeometry /> */}
             <meshBasicMaterial map={props.category === "World" ? globeTexture : australiaTexture}/>
             <InfoPopup text={props.text} className={hovered && eventState === TimelineState.TIMELINE ? "visible" : "invisible"}/>
         </mesh>
