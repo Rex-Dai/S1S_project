@@ -1,33 +1,20 @@
 {
     "events": [
-        
         {
-            "id": 7,
-            "date": "1916-5",
+            "id": 0,
+            "date": "1914-8-1",
             "category": "Australia",
-            "thumbnail": "1916.jpg",
+            "thumbnail": "1_August_1914.jpeg",
             "thumbnailWidth": 1080,
             "thumbnailHeight": 720,
-            "poster": "1916.png",
+            "poster": "1_August_1914.png",
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
             "databaseQuery": "jones",
-            "title": "Middle east campaign"
-        },
-        {
-            "id": 8,
-            "date": "1918-6-28",
-            "category": "Australia",
-            "thumbnail": "28_June_1918.jpg",
-            "thumbnailWidth": 1080,
-            "thumbnailHeight": 720,
-            "poster": "28_June_1918.png",
-            "posterWidth": 1400,
-            "posterHeight": 5063,
-            "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
-            "title": "End of the war"
+            "title": "Life in Australia",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         }
     ]
 }

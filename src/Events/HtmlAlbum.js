@@ -1,25 +1,37 @@
-import { Html } from '@react-three/drei';
-import React, { useContext, useLayoutEffect, useState } from "react";
-import { EventContext } from "./EventContext";
+import {Html} from '@react-three/drei';
+import React, {useLayoutEffect, useMemo, useState} from "react";
+
 import './style.css'
 
 export const HtmlAlbum = (props) => {
 
+    const shuffle = require("lodash/shuffle")
+
     // img index
     const [index, setIndex] = useState(0);
     // get image
-    const { items, loaded } = useContext(EventContext);
-    
-    const albumPics = items.filter(element => {
-        const date = new Date(element["Temporal"]);
-        const eventDate = new Date(props.event["date"])
-        return eventDate.getFullYear() === date.getFullYear() &&
-            date.getMonth() >= eventDate.getMonth() - 4 &&
-            date.getMonth() <= eventDate.getMonth() + 4
-    }).slice(0, 3).map(item => {
-        const subStr = item["Title of image"].replaceAll(",", "\n");
-        return [item["High resolution image"], subStr];
-    })
+    const [items, setItems] = useState([]);
+
+    const [loaded, setLoaded] = useState(false)
+
+    useLayoutEffect(() => {
+        const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
+        // make api call
+        fetch(databaseUrl + '?q=' + props.event.databaseQuery + '&resource_id=' +
+            props.event.databaseID + "&limit=50")
+            .then(res => res.json())
+            .then(response => {
+                setItems(response.result.records);
+                setLoaded(true)
+            })
+    }, [])
+
+    const albumPics = useMemo(() => {
+        return shuffle(items.map(item => {
+            const subStr = item[props.event.contentField].replaceAll(",", "\n");
+            return [item[props.event.imageField], subStr];
+        })).slice(0,5)
+    }, [loaded])
 
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
     // let variable = "none";
@@ -34,17 +46,14 @@ export const HtmlAlbum = (props) => {
     // console.log(res)
 
 
-
-
     // console.log(filteredPic)
     return (
         <group position={props.position}>
             <Html className={props.visible}>
                 <div className="album">
                     <img src={loaded ? albumPics[index][0] : "../Images/warPic.png"}
-                        onClick={() => setIndex((index + 1) % albumPics.length)}
+                         onClick={() => setIndex((index + 1) % albumPics.length)}
                     >
-
                     </img>
                     <h3 className="img-desc">
                         {loaded ? albumPics[index][1] : ""}
