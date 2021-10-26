@@ -42,7 +42,7 @@ export const PoIMarkerGroup = (props) => {
 
     function makeMarkers(){
         const markers = []
-        console.log("Markers created")
+        // console.log("Markers created")
         props.eventData.events.forEach((element, index) => {
 
             markers.push(
@@ -55,6 +55,7 @@ export const PoIMarkerGroup = (props) => {
                 hoverIn={props.hoverIn}
                 hoverOut={props.hoverOut}
                 category={element.category}
+                text={element.title + ", " + element.date}
                 key={"marker " + element.id}/>)
         })
         return markers

@@ -11,7 +11,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Life in Australia"
         },
         {
             "id": 1,
@@ -24,7 +25,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Australia's involvement"
         },
         {
             "id": 2,
@@ -37,7 +39,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Battle of Bita Paka"
         },
         {
             "id": 3,
@@ -50,7 +53,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Life in Australia"
         },
         {
             "id": 4,
@@ -63,7 +67,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "First victory"
         },
         {
             "id": 5,
@@ -76,7 +81,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Gallipoli landings"
         },
         {
             "id": 6,
@@ -89,7 +95,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Andrew Fisher resigns"
         },
         {
             "id": 7,
@@ -102,7 +109,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Middle east campaign"
         },
         {
             "id": 8,
@@ -115,7 +123,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "End of the war"
         },
         {
             "id": 9,
@@ -128,7 +137,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Battle of Hamel"
         },
         {
             "id": 10,
@@ -141,7 +151,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Sarajevo incident"
         },
         {
             "id": 11,
@@ -154,7 +165,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Germany's blank cheque"
         },
         {
             "id": 12,
@@ -167,7 +179,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Christmas truce"
         },
         {
             "id": 13,
@@ -180,7 +193,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Italy declares war"
         },
         {
             "id": 14,
@@ -193,7 +207,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Beginning of second battle"
         },
         {
             "id": 15,
@@ -206,7 +221,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Battle of Jutland"
         },
         {
             "id": 16,
@@ -219,7 +235,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Battle of the Somme"
         },
         {
             "id": 17,
@@ -232,7 +249,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "The February revolution"
         },
         {
             "id": 18,
@@ -245,7 +263,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "USA declared war"
         },
         {
             "id": 19,
@@ -258,7 +277,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "German spring offensives"
         }
 
     

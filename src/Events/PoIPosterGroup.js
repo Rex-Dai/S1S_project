@@ -10,7 +10,7 @@ export const PoIPosterGroup = (props) => {
 
     const posterList = useMemo(() => makePosters(), [])
 
-    const { setItems, setModel} = useContext(EventContext)
+    const { setItems, setLoaded, setModel} = useContext(EventContext)
 
     useLayoutEffect(() => {
         const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
@@ -20,6 +20,7 @@ export const PoIPosterGroup = (props) => {
             .then(res => res.json())
             .then(response => {
                 setItems(response.result.records);
+                setLoaded(true)
             })
 
 

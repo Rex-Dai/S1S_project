@@ -4,6 +4,7 @@ import { useThree } from "@react-three/fiber";
 import { EventContext, TimelineState } from './EventContext';
 import * as THREE from "three";
 import { ModelContext } from './ModelContext';
+import { InfoPopup } from './InfoPopup';
 
 /* 
     This is what draws PoI objects and control events related.
@@ -22,11 +23,7 @@ const PoIMarker = (props) => {
     let { eventState, setEventState, setTimelinePos, setActivePoster, cameraOffset } = useContext(EventContext)
     let { globeTexture, australiaTexture} = useContext(ModelContext)
     const { camera } = useThree();
-    const geometry = props.category === "Australia" ? 
-        <planeGeometry 
-        args={[3,2]}
-        /> :
-        <sphereGeometry />
+    const geometry = props.category === "Australia" ? <planeGeometry args={[3,2]}/> :<sphereGeometry />
 
     // props has coordinates as array of 3 elements.
 
@@ -80,6 +77,7 @@ const PoIMarker = (props) => {
             {/* <sphereGeometry /> */}
             {/* <boxGeometry /> */}
             <meshBasicMaterial map={props.category === "World" ? globeTexture : australiaTexture}/>
+            <InfoPopup text={props.text} className={hovered && eventState === TimelineState.TIMELINE ? "visible" : "invisible"}/>
         </mesh>
 
     )

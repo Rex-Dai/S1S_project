@@ -3,7 +3,7 @@
         
         {
             "id": 7,
-            "date": "1916",
+            "date": "1916-5",
             "category": "Australia",
             "thumbnail": "1916.jpg",
             "thumbnailWidth": 1080,
@@ -12,9 +12,9 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "Middle east campaign"
         },
-
         {
             "id": 8,
             "date": "1918-6-28",
@@ -26,8 +26,8 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones"
+            "databaseQuery": "jones",
+            "title": "End of the war"
         }
-    
     ]
 }
