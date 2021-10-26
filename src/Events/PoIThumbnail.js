@@ -3,6 +3,7 @@ import React, {useContext, useMemo} from "react";
 import tweenCamera from "./CameraTravese";
 import {EventContext, TimelineState} from "./EventContext";
 import {useThree} from "@react-three/fiber";
+import { ModelContext } from './ModelContext';
 
 
 export const PoIThumbnail = (props) => {
@@ -13,7 +14,8 @@ export const PoIThumbnail = (props) => {
         setTimelinePos,
         setActivePoster,
     } = useContext(EventContext)
-
+    const {wallTexture} = useContext(ModelContext)
+    console.log(wallTexture)
 
     const {camera} = useThree();
     // offset from poster
@@ -64,7 +66,7 @@ export const PoIThumbnail = (props) => {
             </mesh>
             <mesh position={[0, 0, -0.3]}>
                 <boxGeometry args={[12.9, 10.8, 0.5]}/>
-                <meshBasicMaterial map={props.brickTexture}/>
+                <meshBasicMaterial map={wallTexture}/>
             </mesh>
         </group>
     )

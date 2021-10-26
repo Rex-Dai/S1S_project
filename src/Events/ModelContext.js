@@ -11,6 +11,7 @@ export const ModelContext = React.createContext({
     
     globeTexture: null,
     australiaTexture: null,
+    wallTexture: null,
     frameModel: null
 
 })

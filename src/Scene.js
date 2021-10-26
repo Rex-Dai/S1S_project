@@ -116,7 +116,9 @@ const ModelContextProvider = () => {
     const globeTexture = useMemo(() => new THREE.TextureLoader().load(globeImg.default), [])
     const australiaImg = require("./Images/australia-reduced.jpg")
     const australiaTexture = useMemo(() => new THREE.TextureLoader().load(australiaImg.default), [])
-    const value = {globeTexture, australiaTexture}
+    const wallImg = require('./Images/brickWall.jpg')
+    const wallTexture = useMemo(() =>  new THREE.TextureLoader().load(wallImg.default),[])
+    const value = {globeTexture, australiaTexture, wallTexture}
 
     return (
         <ModelContext.Provider value={value}>

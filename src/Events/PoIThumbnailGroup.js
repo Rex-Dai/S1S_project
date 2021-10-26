@@ -5,12 +5,12 @@ import {TextureLoader} from "three";
 
 export const PoIThumbnailGroup = (props) => {
 
-    const brickTexture = useMemo(() => {
-        return new TextureLoader().load(require('../Images/pexels-tim-mossholder-3105407.jpeg').default)
-    },[])
+    // const brickTexture = useMemo(() => {
+    //     return new TextureLoader().load(require('../Images/pexels-tim-mossholder-3105407.jpeg').default)
+    // },[])
 
 
-    const thumbnailList = useMemo(() => makeThumbnails(), [brickTexture])
+    const thumbnailList = useMemo(() => makeThumbnails(), [])
     // render thumbnails
     function makeThumbnails() {
         
@@ -47,7 +47,7 @@ export const PoIThumbnailGroup = (props) => {
                 hoverOut={props.hoverOut}
                 targetCoords={props.posterPosList[index]} // to be calculated
                 key={"thumbnail " + element.id}
-                brickTexture={brickTexture}
+                // brickTexture={brickTexture}
             />)
         })
         return thumbnails

@@ -19,6 +19,10 @@ export const PoIMarkerGroup = (props) => {
 
         // todo need to decide the x axis mapping;
         x = day/31 * 8
+        if(year === 1914 && (day === 4 || day == 12)){
+            // offset so they don't cascade
+            x += 3
+        }
 
         y = (year - 1914) * props.platformSettings.horizontalInterval +
             props.platformSettings.horizontalStartCoordinate +
