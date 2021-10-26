@@ -20,7 +20,7 @@ import { InfoPopup } from './InfoPopup';
  */
 const PoIMarker = (props) => {
     // const textureImg = require("../Images/earth-reduced.jpg")
-    let { eventState, setEventState, setTimelinePos, setActivePoster } = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster, setAmbientIntensity } = useContext(EventContext)
     let { globeTexture, australiaTexture} = useContext(ModelContext)
     const { camera } = useThree();
     const geometry = props.category === "Australia" ? <planeGeometry args={[3,2]}/> :<sphereGeometry />
@@ -37,7 +37,10 @@ const PoIMarker = (props) => {
         if (eventState === TimelineState.TIMELINE) {
             setEventState(TimelineState.DISABLED);
             setTimelinePos(curPosition)
-            tweenCamera(camera, props.targetCoords, "timeline", () => setEventState(TimelineState.PoI)
+            tweenCamera(camera, props.targetCoords, "timeline", () => {
+                setEventState(TimelineState.PoI)
+                setAmbientIntensity(1)
+            }
             );
             // activate poster
             setActivePoster(props.index)

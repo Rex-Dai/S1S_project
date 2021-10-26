@@ -15,7 +15,7 @@ const PoIPoster = (props) => {
     
     const container = []
 
-    const {eventState, setEventState, activePoster} = useContext(EventContext)
+    const {eventState, setEventState, activePoster, setAmbientIntensity} = useContext(EventContext)
 
     const posterImg = require("../Images/POI-posters/" + props.event.category + "/" + props.event.poster)
 
@@ -55,7 +55,10 @@ const PoIPoster = (props) => {
                 setPosZ(props.position[2] - imageHeight/440 + 4)
                 
 
-                tweenCamera(camera, props.position, "poiZoomIn", () => setEventState(TimelineState.ZOOM)
+                tweenCamera(camera, props.position, "poiZoomIn", () => {
+                    setEventState(TimelineState.ZOOM)
+                    setAmbientIntensity(0.15)
+                }
                 );
 
             } else if (eventState === TimelineState.ZOOM) {

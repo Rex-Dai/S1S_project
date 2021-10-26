@@ -13,6 +13,7 @@ export const PoIThumbnail = (props) => {
         setEventState,
         setTimelinePos,
         setActivePoster,
+        setAmbientIntensity
     } = useContext(EventContext)
     const {wallTexture} = useContext(ModelContext)
 
@@ -28,7 +29,10 @@ export const PoIThumbnail = (props) => {
             console.log(curPosition)
             setTimelinePos(curPosition)
 
-            tweenCamera(camera, props.targetCoords, "toPoster", () => setEventState(TimelineState.PoI)
+            tweenCamera(camera, props.targetCoords, "toPoster", () => {
+                setEventState(TimelineState.PoI)
+                setAmbientIntensity(1)
+            }
             );
             setActivePoster(props.index)
         }

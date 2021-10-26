@@ -18,6 +18,8 @@ export const EventContext = React.createContext({
     setItems: () => {},
     loaded:false,
     setLoaded: () => {},
+    ambientIntensity:0,
+    setAmbientIntensity: () => {},
 })
 
 export const TimelineState = {

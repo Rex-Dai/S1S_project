@@ -98,9 +98,13 @@ export const SceneEventController = () => {
     const [activePoster, setActivePoster] = useState(null)
     const [items, setItems] = useState([])
     const [loaded, setLoaded] = useState(false)
+    const [ambientIntensity, setAmbientIntensity] = useState(0.15)
 
     const value = { eventState, setEventState, timelinePos, setTimelinePos,
-        activePoster, setActivePoster, items, setItems, loaded, setLoaded};
+        activePoster, setActivePoster, items, setItems, loaded, setLoaded,
+        ambientIntensity, setAmbientIntensity
+
+    };
 
     return (
         <EventContext.Provider value={value}>

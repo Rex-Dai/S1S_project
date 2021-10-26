@@ -10,13 +10,18 @@ const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     // const eventData = require("./testData.json")
-    const { eventState, setEventState, timelinePos } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, ambientIntensity  } = useContext(EventContext)
     const { camera } = useThree();
 
     // spotlight related
     const [lightPos, SetlightPos] = useState([0, -1, 1])
     const [lightTarget, SetlightTarget] = useState([0, 0, 0])
     const [lightIntensity, SetlightIntensity] = useState([0])
+    
+    
+    const ambientLight = useMemo(() => 
+    <ambientLight color="#fff" intensity={ambientIntensity} />, [ambientIntensity])
+
     const light = useMemo(() => <rectAreaLight
         position={lightPos}
         intensity={lightIntensity}
@@ -64,7 +69,7 @@ const PoICollection = (props) => {
         // this sets the offset
         SetlightPos([posterPosList[index][0], posterPosList[index][1] - 5, posterPosList[index][2] + 9])
         SetlightTarget([posterPosList[index][0], posterPosList[index][1], posterPosList[index][2]])
-        SetlightIntensity(5)
+        SetlightIntensity(3)
 
     }
 
@@ -103,6 +108,7 @@ const PoICollection = (props) => {
                 posterPosList={posterPosList}
                 // activePoster={activePoster}
             />
+            {ambientLight}
             {light}
         </group>
     )
