@@ -12,7 +12,9 @@
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
             "databaseQuery": "jones",
-            "title": "Life in Australia"
+            "title": "Life in Australia",
+            "imageField": "High resolution image",
+            "contentField": "Title of image"
         },
         {
             "id": 1,
@@ -81,7 +83,7 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "a46b4d2b-243f-41f9-9a61-a231f1d1b6d0",
-            "databaseQuery": "jones",
+            "databaseQuery": "soldier",
             "title": "Gallipoli landings"
         },
         {

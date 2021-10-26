@@ -15,7 +15,6 @@ export const PoIThumbnail = (props) => {
         setActivePoster,
     } = useContext(EventContext)
     const {wallTexture} = useContext(ModelContext)
-    console.log(wallTexture)
 
     const {camera} = useThree();
     // offset from poster
