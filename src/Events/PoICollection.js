@@ -62,9 +62,9 @@ const PoICollection = (props) => {
     function onHoverIn(index) {
         
         // this sets the offset
-        SetlightPos([posterPosList[index][0], posterPosList[index][1] - 5, posterPosList[index][2] + 10])
+        SetlightPos([posterPosList[index][0], posterPosList[index][1] - 5, posterPosList[index][2] + 9])
         SetlightTarget([posterPosList[index][0], posterPosList[index][1], posterPosList[index][2]])
-        SetlightIntensity(3)
+        SetlightIntensity(5)
 
     }
 

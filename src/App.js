@@ -12,7 +12,7 @@ const App = () => {
             <Canvas>
                 <SceneEventController/>
                 <color attach="background" args={"#0f1117"} />
-                 <ambientLight color="#fff" intensity={1} />
+                 <ambientLight color="#fff" intensity={0.15} />
             </Canvas>
             <Loader/>
         </>

@@ -17,8 +17,8 @@ export const HtmlAlbum = (props) => {
     useLayoutEffect(() => {
         const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
         // make api call
-        fetch(databaseUrl + '?q=' + props.event.databaseQuery + '&resource_id=' +
-            props.event.databaseID + "&limit=50")
+        fetch(databaseUrl + '?q=' + props.event.databaseQuery+ '&resource_id=' +
+            props.event.databaseID)
             .then(res => res.json())
             .then(response => {
                 setItems(response.result.records);
@@ -29,16 +29,16 @@ export const HtmlAlbum = (props) => {
 
     const albumPics = useMemo(() => {
         return shuffle(items.filter(element => {
-            let year, month;
-            if (element["temporal"]) {
-                year = new Date(element["temporal"]).getFullYear() - 100;
-                month = new Date(element["temporal"]).getMonth()
-            } else if (element["Temporal"]) {
-                year = new Date(element["temporal"]).getFullYear()
-            } else {
-                throw new Error("non defined date")
-            }
-            const eventDate = new Date(props.event["date"])
+            // let year, month;
+            // if (element["temporal"]) {
+            //     year = new Date(element["temporal"]).getFullYear() - 100;
+            //     month = new Date(element["temporal"]).getMonth()
+            // } else if (element["Temporal"]) {
+            //     year = new Date(element["Temporal"]).getFullYear()
+            // } else {
+            //     throw new Error("non defined date")
+            // }
+            // const eventDate = new Date(props.event["date"])
             return  element
         }).slice(0, 5)).map(item => {
             console.log(item[props.event.contentField],
@@ -47,6 +47,8 @@ export const HtmlAlbum = (props) => {
             return [item[props.event.imageField], subStr];
         })
     }, [loaded])
+
+    console.log(albumPics.length)
 
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
     // let variable = "none";
