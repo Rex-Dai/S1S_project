@@ -10,7 +10,7 @@ const PoICollection = (props) => {
 
     const eventData = require("./eventData.json")
     // const eventData = require("./testData.json")
-    const { eventState, setEventState, timelinePos, ambientIntensity  } = useContext(EventContext)
+    const { eventState, setEventState, timelinePos, ambientIntensity, setAmbientIntensity  } = useContext(EventContext)
     const { camera } = useThree();
 
     // spotlight related
@@ -80,9 +80,12 @@ const PoICollection = (props) => {
 
     const handleTraverseBack = () => {
         if (eventState === TimelineState.PoI) {
+            setAmbientIntensity(0.15)
             setEventState(TimelineState.DISABLED)
             tweenCamera(camera, [timelinePos.x, timelinePos.y, timelinePos.z], "toTimeline",
-                () => setEventState(TimelineState.TIMELINE))
+                () => {
+                    setEventState(TimelineState.TIMELINE)
+                })
         }
     }
 

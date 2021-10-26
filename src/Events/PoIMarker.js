@@ -39,7 +39,7 @@ const PoIMarker = (props) => {
             setTimelinePos(curPosition)
             tweenCamera(camera, props.targetCoords, "timeline", () => {
                 setEventState(TimelineState.PoI)
-                setAmbientIntensity(1)
+                setAmbientIntensity(0.5)
             }
             );
             // activate poster

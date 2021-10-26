@@ -31,7 +31,7 @@ export const PoIThumbnail = (props) => {
 
             tweenCamera(camera, props.targetCoords, "toPoster", () => {
                 setEventState(TimelineState.PoI)
-                setAmbientIntensity(1)
+                setAmbientIntensity(0.5)
             }
             );
             setActivePoster(props.index)

@@ -57,7 +57,6 @@ const PoIPoster = (props) => {
 
                 tweenCamera(camera, props.position, "poiZoomIn", () => {
                     setEventState(TimelineState.ZOOM)
-                    setAmbientIntensity(0.15)
                 }
                 );
 
