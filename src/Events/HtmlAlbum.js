@@ -26,11 +26,17 @@ export const HtmlAlbum = (props) => {
             })
     }, [])
 
+    console.log(items)
+
     const albumPics = useMemo(() => {
-        return shuffle(items.map(item => {
+        return shuffle(items.filter(element => {
+            const date = new Date(element["Temporal"]);
+            const eventDate = new Date(props.event["date"])
+            return eventDate.getFullYear() === date.getFullYear()
+        }).slice(0, 5)).map(item => {
             const subStr = item[props.event.contentField].replaceAll(",", "\n");
             return [item[props.event.imageField], subStr];
-        })).slice(0,5)
+        })
     }, [loaded])
 
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
