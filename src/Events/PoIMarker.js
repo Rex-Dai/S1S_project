@@ -65,7 +65,7 @@ const PoIMarker = (props) => {
     return (
         <mesh
             position={props.position}
-            scale={hovered ? 1 : 0.8}
+            scale={hovered ? 1.2 : 1}
             rotation={[1.5708, 0, 0]}
             onClick={handleClick}
             onPointerOver={handleHoverIn}
