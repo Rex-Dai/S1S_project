@@ -44,6 +44,7 @@ const PoIMarker = (props) => {
             );
             // activate poster
             setActivePoster(props.index)
+            setHover(false)
         }
     }
 
