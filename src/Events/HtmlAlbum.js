@@ -1,8 +1,6 @@
 import {Html} from '@react-three/drei';
 import React, {useLayoutEffect, useMemo, useState} from "react";
 
-import './style.css'
-
 export const HtmlAlbum = (props) => {
 
     const shuffle = require("lodash/shuffle")

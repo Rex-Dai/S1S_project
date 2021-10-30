@@ -5,6 +5,7 @@ import { PoIThumbnailGroup } from './PoIThumbnailGroup';
 import { PoIPosterGroup } from './PoIPosterGroup';
 import { useThree } from "@react-three/fiber";
 import tweenCamera from "./CameraTravese";
+import { AboutUs } from './AboutUs';
 
 const PoICollection = (props) => {
 
@@ -17,7 +18,9 @@ const PoICollection = (props) => {
     const [lightPos, SetlightPos] = useState([0, -1, 1])
     const [lightTarget, SetlightTarget] = useState([0, 0, 0])
     const [lightIntensity, SetlightIntensity] = useState([0])
-    
+    // const aboutUsButton = useMemo(() =>
+    //     <AboutUs />, [camera]
+    // )
     
     const ambientLight = useMemo(() => 
     <ambientLight color="#fff" intensity={ambientIntensity} />, [ambientIntensity])
@@ -93,6 +96,7 @@ const PoICollection = (props) => {
         <group
             onPointerMissed={handleTraverseBack}
         >
+            {/* {aboutUsButton} */}
             <PoIMarkerGroup
                 eventData={eventData}
                 platformSettings={props.platformSettings}

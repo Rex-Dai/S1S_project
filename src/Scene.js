@@ -9,6 +9,7 @@ import {Stars} from "@react-three/drei";
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import TextLabel from "./Platform/TextLabel";
+import { AboutUs } from './Events/AboutUs';
 
 
 const platformSettings = {
@@ -22,7 +23,7 @@ const platformSettings = {
 const Scene = () => {
 
     const { camera, scene } = useThree()
-
+    // var aboutY = 0
     const { eventState } = useContext(EventContext)
 
     const categoryLabel =[];
@@ -81,6 +82,7 @@ const Scene = () => {
 
     return (
         <group>
+            <AboutUs />
             <Platform platformSettings={platformSettings} />
             <PoICollection platformSettings={platformSettings} />\
             {categoryLabel}
