@@ -29,6 +29,9 @@ export const HtmlAlbum = (props) => {
 
     const albumPics = useMemo(() => {
         return shuffle(items.filter(element => {
+            /*
+                filter by date
+             */
             // let year, month;
             // if (element["temporal"]) {
             //     year = new Date(element["temporal"]).getFullYear() - 100;
@@ -39,13 +42,20 @@ export const HtmlAlbum = (props) => {
             //     throw new Error("non defined date")
             // }
             // const eventDate = new Date(props.event["date"])
-            return  element
+
+            /*
+             filter by valid http
+             */
+            return  element[props.event.imageField].startsWith('http')
         }).slice(0, 5)).map(item => {
             return [ "//images.weserv.nl/?url=" + item[props.event.imageField],
                 item[props.event.contentField].replaceAll(",", "\n")];
         })
     }, [loaded])
 
+    if (loaded) {
+        console.log(albumPics[0][0])
+    }
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
     // let variable = "none";
     // // just query the database and filter!
