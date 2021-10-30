@@ -41,14 +41,10 @@ export const HtmlAlbum = (props) => {
             // const eventDate = new Date(props.event["date"])
             return  element
         }).slice(0, 5)).map(item => {
-            console.log(item[props.event.contentField],
-                item[props.event.imageField] )
-            const subStr = item[props.event.contentField].replaceAll(",", "\n");
-            return [item[props.event.imageField], subStr];
+            return [ "//images.weserv.nl/?url=" + item[props.event.imageField],
+                item[props.event.contentField].replaceAll(",", "\n")];
         })
     }, [loaded])
-
-    console.log(albumPics.length)
 
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
     // let variable = "none";
