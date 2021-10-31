@@ -12,7 +12,7 @@ export const AboutUs = (props) => {
 
     // just a geometry that takes us to the position
     let { eventState, setEventState, setTimelinePos, setActivePoster, activePoster } = useContext(EventContext)
-    const geometry = <planeGeometry args={[10, 3, 1]} />
+    const geometry = <planeGeometry args={[6, 1.8, 1]} />
     const targetCoords = [0,0,30]
     const { camera } = useThree();
     const [hovered, setHover] = useState(false)
@@ -52,7 +52,7 @@ export const AboutUs = (props) => {
 
     return (
         <mesh
-            position={[17, 20, -3]}
+            position={[16, 20, -2]}
             scale={hovered ? 1.1 : 1}
             rotation={[1.5708, 0, 0]}
             onClick={handleClick}
