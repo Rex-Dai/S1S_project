@@ -10,6 +10,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import TextLabel from "./Platform/TextLabel";
 import { AboutUs } from './Events/AboutUs';
+import {Source} from "./Events/Source";
 
 
 const platformSettings = {
@@ -83,6 +84,7 @@ const Scene = () => {
     return (
         <group>
             <AboutUs />
+            <Source />
             <Platform platformSettings={platformSettings} />
             <PoICollection platformSettings={platformSettings} />\
             {categoryLabel}
