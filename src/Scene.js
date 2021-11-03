@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useMemo} from 'react'
+import React, {useContext, useEffect, useState, useMemo, Suspense} from 'react'
 import {useFrame, useThree} from '@react-three/fiber'
 import Platform from "./Platform/Platform";
 import {EventContext, TimelineState} from './Events/EventContext';
@@ -11,6 +11,7 @@ import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import TextLabel from "./Platform/TextLabel";
 import { AboutUs } from './Events/AboutUs';
 import {Source} from "./Events/Source";
+import Birds from "./Birds";
 
 
 const platformSettings = {
@@ -131,6 +132,11 @@ const ModelContextProvider = () => {
     return (
         <ModelContext.Provider value={value}>
             <Scene />
+            <Suspense fallback={null}>
+                <mesh rotation={[1.5708, 0, 0]}>
+                    <Birds />
+                </mesh>
+            </Suspense>
             <Stars factor={7} fade={true} />
         </ModelContext.Provider>
     );
