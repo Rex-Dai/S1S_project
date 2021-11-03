@@ -15,7 +15,8 @@ export const HtmlAlbum = (props) => {
     useLayoutEffect(() => {
         const databaseUrl = 'https://www.data.qld.gov.au/api/3/action/datastore_search';
         // make api call
-        fetch(databaseUrl + '?q=' + props.event.databaseQuery+ '&resource_id=' +
+        console.log(JSON.stringify(props.event.databaseQuery))
+        fetch(databaseUrl + '?q=' + JSON.stringify(props.event.databaseQuery) + '&resource_id=' +
             props.event.databaseID)
             .then(res => res.json())
             .then(response => {

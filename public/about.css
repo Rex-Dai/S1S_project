@@ -58,3 +58,7 @@ ul li{
 .about-footer > *:first-child{
     text-align: center;
 }
+
+.source-footer{
+    text-align: start;
+}

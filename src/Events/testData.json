@@ -11,7 +11,7 @@
             "posterWidth": 1400,
             "posterHeight": 5063,
             "databaseID": "cf4d43d8-2aad-4512-99e6-f6be2bf24466",
-            "databaseQuery": "1918",
+            "databaseQuery": {"title": "1914"},
             "title": "German spring offensives",
             "imageField": "500_pixel",
             "contentField": "title"
