@@ -99,6 +99,8 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback, 
         .onUpdate(() => camera.quaternion.copy(cameraCurrentQuat))
         .onComplete(() => camera.quaternion.copy(cameraTargetQuat))
 
+
+
     posTween.start();
     viewTween.start();
 }

@@ -5,7 +5,7 @@ import { PoIThumbnailGroup } from './PoIThumbnailGroup';
 import { PoIPosterGroup } from './PoIPosterGroup';
 import { useThree } from "@react-three/fiber";
 import tweenCamera from "./CameraTravese";
-import { AboutUs } from './AboutUs';
+import { AboutUs } from '../More/AboutUs';
 
 const PoICollection = (props) => {
 

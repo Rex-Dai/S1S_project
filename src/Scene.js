@@ -7,11 +7,7 @@ import * as THREE from 'three'
 import { ModelContext } from './Events/ModelContext';
 import {Stars} from "@react-three/drei";
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
-import TextLabel from "./Platform/TextLabel";
-import { AboutUs } from './Events/AboutUs';
-import {More} from "./Events/More";
-import Birds from "./Birds";
-import tweenCamera from "./Events/CameraTravese";
+import MoreCollection from "./More/MoreCollection";
 
 
 const platformSettings = {
@@ -26,18 +22,7 @@ const Scene = () => {
 
     const { camera, scene } = useThree()
     // var aboutY = 0
-    const { eventState, timelinePos, setAmbientIntensity, setEventState} = useContext(EventContext)
-
-    const birdPosition = [10,170,-162];
-
-
-    const categoryLabel =[];
-
-    categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate,
-        platformSettings.horizontalStartCoordinate, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
-    categoryLabel.push(<TextLabel position={[platformSettings.verticalStartCoordinate + 12.5,
-        platformSettings.horizontalStartCoordinate, -3]} text={"World"} key="World" colour={"#ffff00"} />)
-
+    const { eventState } = useContext(EventContext)
 
     const TWEEN = require('@tweenjs/tween.js');
     // take over the rendering loop
@@ -81,41 +66,11 @@ const Scene = () => {
         }
     }
 
-    const manageTraverseBackAtBird = () => {
-        if (eventState === TimelineState.BIRD) {
-            setAmbientIntensity(0.15)
-            setEventState(TimelineState.DISABLED)
-            tweenCamera(camera, [timelinePos.x, timelinePos.y, timelinePos.z], "toTimeline",
-                () => {
-                    setEventState(TimelineState.TIMELINE)
-                },  2500)
-        } else if (eventState === TimelineState.INFO) {
-            setEventState(TimelineState.BIRD)
-            tweenCamera(camera, birdPosition, "bird", () => {
-                // display the about us html
-                // random number to stop triggering other posters
-            }, 1500);
-        }
-    }
-
-
     return (
         <group>
-            <group className={"handleVisibility"} visible={eventState === TimelineState.BIRD ||
-            eventState === TimelineState.INFO}>
-                <group className={"handleLabels"} onPointerMissed={manageTraverseBackAtBird} >
-                    <AboutUs birdPosition={birdPosition}/>
-                </group>
-                <Suspense fallback={null}>
-                    <mesh className={"handleBirdsPositions"} position={birdPosition}>
-                        <Birds />
-                    </mesh>
-                </Suspense>
-            </group>
-            <More birdPosition={birdPosition} />
+            <MoreCollection />
             <Platform platformSettings={platformSettings} />
             <PoICollection platformSettings={platformSettings} />\
-            {categoryLabel}
         </group>
     )
 }

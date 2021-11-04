@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo} from 'react'
-import tweenCamera from "./CameraTravese"
-import { EventContext, TimelineState } from './EventContext';
+import tweenCamera from "../Events/CameraTravese"
+import { EventContext, TimelineState } from '../Events/EventContext';
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import {Html} from '@react-three/drei';
@@ -9,11 +9,10 @@ import TextLabel from "../Platform/TextLabel";
 // this is the component to display the about us page
 // About us only accessible from the timeline state.
 // uses disabled state when looking at about us
-export const More = (props) => {
+export const MoreButton = (props) => {
 
     // just a geometry that takes us to the position
-    let { eventState, setEventState, setTimelinePos, setActivePoster, activePoster, setAmbientIntensity } = useContext(EventContext)
-    const targetCoords = [0,0,30]
+    let { eventState, setEventState, setTimelinePos, setActivePoster,  setAmbientIntensity } = useContext(EventContext)
     const { camera } = useThree();
 
 
@@ -36,7 +35,7 @@ export const More = (props) => {
 
     return (
         <mesh
-            position={[13.5, 20.5, -5]}
+            position={[13.5, 20, -3]}
             onClick={handleClick}
         >
             <mesh position={[4,0.5,0]} rotation={[1.5708, 0, 0]} visible={false}>
@@ -44,27 +43,7 @@ export const More = (props) => {
                 <meshBasicMaterial />
             </mesh>
             <TextLabel text={"More"}/>
-            {/*<SourceHtml position={targetCoords} visible={eventState === TimelineState.PoI*/}
-            {/*&& activePoster === 101 ? "visible" : "invisible"} />*/}
         </mesh>
     )
 }
 
-// // this is the html page that will display.
-// const SourceHtml = (props) => {
-//
-//     return(
-//         <group position={[-85,50,80]} rotation={[1.5708, 0, 0]}>
-//             <Html className={props.visible}>
-//                 {/* <div className="about-container"> */}
-//
-//                 <iframe src="source.html" title="source" className="about-container">
-//
-//                 </iframe>
-//
-//                 {/* </div> */}
-//             </Html>
-//         </group>
-//
-//     )
-// }

@@ -45,7 +45,12 @@ const Platform = (props) => {
     horiStart + (19 - 14) * horiInt, -3]} text={(1900 + 19).toString()}
         colour={"#ffffff"}
         key="end" />);
+    label.push(<TextLabel position={[props.platformSettings.verticalStartCoordinate,
+        props.platformSettings.horizontalStartCoordinate, -3]} text={"Australia"} key="Australia" colour={"#ffff00"} />)
+    label.push(<TextLabel position={[props.platformSettings.verticalStartCoordinate + 12.5,
+        props.platformSettings.horizontalStartCoordinate, -3]} text={"World"} key="World" colour={"#ffff00"} />)
     // these are the category labels
+    console.log(label)
 
     return (
         <group>
