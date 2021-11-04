@@ -1,4 +1,4 @@
-##2021 - DECO7180 - Team S1S - Time Traveller
+# 2021 - DECO7180 - Team S1S - Time Traveller
 
 Our Time:\
 Natalia Sarabia Fretes\
