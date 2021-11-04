@@ -2,9 +2,9 @@
 
 Our Time:\
 Natalia Sarabia Fretes\
-Myoungseok Jeong (Jerry)\
-Yuhze Dai (Rex)\
-Yilin Jiang (Amy)\
+Jerry Jeong \
+Rex Dai \
+Amy Jiang \
 Roberto O’Connor
 
 ## Instructions
