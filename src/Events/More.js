@@ -21,10 +21,10 @@ export const More = (props) => {
         const curPosition = new THREE.Vector3().copy(camera.position);
         if (eventState === TimelineState.TIMELINE) {
             setAmbientIntensity(1)
-            setEventState(TimelineState.TOBIRD);
+            //reduce lag and make birds visible while traverse
+            setEventState(TimelineState.BIRD);
             setTimelinePos(curPosition)
             tweenCamera(camera, props.birdPosition, "bird", () => {
-                setEventState(TimelineState.BIRD)
                 // display the about us html
                 // random number to stop triggering other posters
                 setActivePoster(99)

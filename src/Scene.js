@@ -90,9 +90,8 @@ const Scene = () => {
                     setEventState(TimelineState.TIMELINE)
                 },  2500)
         } else if (eventState === TimelineState.INFO) {
-            setEventState(TimelineState.TOBIRD);
+            setEventState(TimelineState.BIRD)
             tweenCamera(camera, birdPosition, "bird", () => {
-                setEventState(TimelineState.BIRD)
                 // display the about us html
                 // random number to stop triggering other posters
             }, 1500);
@@ -103,7 +102,7 @@ const Scene = () => {
     return (
         <group>
             <group className={"handleVisibility"} visible={eventState === TimelineState.BIRD ||
-            eventState === TimelineState.TOBIRD || eventState === TimelineState.INFO}>
+            eventState === TimelineState.INFO}>
                 <group className={"handleLabels"} onPointerMissed={manageTraverseBackAtBird} >
                     <AboutUs birdPosition={birdPosition}/>
                 </group>

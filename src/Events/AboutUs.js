@@ -22,9 +22,8 @@ export const AboutUs = (props) => {
 
     function handleClick() {
         if (eventState === TimelineState.BIRD) {
-            setEventState(TimelineState.TOBIRD);
+            setEventState(TimelineState.INFO)
             tweenCamera(camera, targetCoords, "timeline", () => {
-                setEventState(TimelineState.INFO)
                 // display the about us html
                 // random number to stop triggering other posters
                 setActivePoster(100)
