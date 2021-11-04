@@ -1,10 +1,10 @@
 # 2021 - DECO7180 - Team S1S - Time Traveller
 
-Our Time:\
+Our Team:\
 Natalia Sarabia Fretes\
-Myoungseok Jeong (Jerry)\
-Yuhze Dai (Rex)\
-Yilin Jiang (Amy)\
+Jerry Jeong \
+Rex Dai \
+Amy Jiang \
 Roberto O’Connor
 
 ## Instructions
