@@ -14,7 +14,6 @@ const App = () => {
             <Canvas>
                 <SceneEventController/>
                 <color attach="background" args={"#0f1117"} />
-                <ambientLight insensity={1} />
             </Canvas>
             <Loader/>
         </>

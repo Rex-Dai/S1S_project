@@ -7,11 +7,11 @@ import * as THREE from 'three'
 import { ModelContext } from './Events/ModelContext';
 import {Stars} from "@react-three/drei";
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import TextLabel from "./Platform/TextLabel";
 import { AboutUs } from './Events/AboutUs';
-import {Source} from "./Events/Source";
+import {More} from "./Events/More";
 import Birds from "./Birds";
+import tweenCamera from "./Events/CameraTravese";
 
 
 const platformSettings = {
@@ -26,7 +26,10 @@ const Scene = () => {
 
     const { camera, scene } = useThree()
     // var aboutY = 0
-    const { eventState } = useContext(EventContext)
+    const { eventState, timelinePos, setAmbientIntensity, setEventState} = useContext(EventContext)
+
+    const birdPosition = [10,170,-162];
+
 
     const categoryLabel =[];
 
@@ -46,17 +49,14 @@ const Scene = () => {
     useEffect(() => {
         camera.position.set(0, -10, 8);
         camera.lookAt(0, 5, 0);
+
         const loader = new GLTFLoader();
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('/examples/js/libs/draco/');
-        loader.setDRACOLoader(dracoLoader);
 
         loader.load('scene.gltf', function (gltf) {
 
-            gltf.scene.position.set(-650, 100, -300)
-            gltf.scene.scale.set(5, 5, 5)
+            gltf.scene.position.set(-100, 50, -50)
+            gltf.scene.scale.set(1, 1, 1)
             scene.add(gltf.scene);
-            console.log("added")
 
         }, undefined, function (error) {
 
@@ -76,16 +76,44 @@ const Scene = () => {
 
     function onMouseWheel(event) {
         event.preventDefault();
-        if (eventState === TimelineState.TIMELINE) {
+        if (eventState === TimelineState.TIMELINE && TimelineState.BIRD) {
             camera.position.y -= event.deltaY * 0.005;
+        }
+    }
+
+    const manageTraverseBackAtBird = () => {
+        if (eventState === TimelineState.BIRD) {
+            setAmbientIntensity(0.15)
+            setEventState(TimelineState.DISABLED)
+            tweenCamera(camera, [timelinePos.x, timelinePos.y, timelinePos.z], "toTimeline",
+                () => {
+                    setEventState(TimelineState.TIMELINE)
+                },  2500)
+        } else if (eventState === TimelineState.INFO) {
+            setEventState(TimelineState.TOBIRD);
+            tweenCamera(camera, birdPosition, "bird", () => {
+                setEventState(TimelineState.BIRD)
+                // display the about us html
+                // random number to stop triggering other posters
+            }, 1500);
         }
     }
 
 
     return (
         <group>
-            <AboutUs />
-            <Source />
+            <group className={"handleVisibility"} visible={eventState === TimelineState.BIRD ||
+            eventState === TimelineState.TOBIRD || eventState === TimelineState.INFO}>
+                <group className={"handleLabels"} onPointerMissed={manageTraverseBackAtBird} >
+                    <AboutUs birdPosition={birdPosition}/>
+                </group>
+                <Suspense fallback={null}>
+                    <mesh className={"handleBirdsPositions"} position={birdPosition}>
+                        <Birds />
+                    </mesh>
+                </Suspense>
+            </group>
+            <More birdPosition={birdPosition} />
             <Platform platformSettings={platformSettings} />
             <PoICollection platformSettings={platformSettings} />\
             {categoryLabel}
@@ -132,11 +160,6 @@ const ModelContextProvider = () => {
     return (
         <ModelContext.Provider value={value}>
             <Scene />
-            <Suspense fallback={null}>
-                <mesh rotation={[1.5708, 0, 0]}>
-                    <Birds />
-                </mesh>
-            </Suspense>
             <Stars factor={7} fade={true} />
         </ModelContext.Provider>
     );

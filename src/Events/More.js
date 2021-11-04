@@ -9,10 +9,10 @@ import TextLabel from "../Platform/TextLabel";
 // this is the component to display the about us page
 // About us only accessible from the timeline state.
 // uses disabled state when looking at about us
-export const Source = (props) => {
+export const More = (props) => {
 
     // just a geometry that takes us to the position
-    let { eventState, setEventState, setTimelinePos, setActivePoster, activePoster } = useContext(EventContext)
+    let { eventState, setEventState, setTimelinePos, setActivePoster, activePoster, setAmbientIntensity } = useContext(EventContext)
     const targetCoords = [0,0,30]
     const { camera } = useThree();
 
@@ -20,14 +20,15 @@ export const Source = (props) => {
     function handleClick() {
         const curPosition = new THREE.Vector3().copy(camera.position);
         if (eventState === TimelineState.TIMELINE) {
-            setEventState(TimelineState.DISABLED);
+            setAmbientIntensity(1)
+            setEventState(TimelineState.TOBIRD);
             setTimelinePos(curPosition)
-            tweenCamera(camera, targetCoords, "timeline", () => {
-                setEventState(TimelineState.PoI)
+            tweenCamera(camera, props.birdPosition, "bird", () => {
+                setEventState(TimelineState.BIRD)
                 // display the about us html
                 // random number to stop triggering other posters
-                setActivePoster(101)
-            });
+                setActivePoster(99)
+            }, 2500);
             // activate poster
         }
     }
@@ -42,28 +43,28 @@ export const Source = (props) => {
                 <planeGeometry args={[6.5,2]}/>
                 <meshBasicMaterial />
             </mesh>
-            <TextLabel text={"Source"} position={[0,0,0]}/>
-            <SourceHtml position={targetCoords} visible={eventState === TimelineState.PoI
-            && activePoster === 101 ? "visible" : "invisible"} />
+            <TextLabel text={"More"}/>
+            {/*<SourceHtml position={targetCoords} visible={eventState === TimelineState.PoI*/}
+            {/*&& activePoster === 101 ? "visible" : "invisible"} />*/}
         </mesh>
     )
 }
 
-// this is the html page that will display.
-const SourceHtml = (props) => {
-
-    return(
-        <group position={[-85,50,80]} rotation={[1.5708, 0, 0]}>
-            <Html className={props.visible}>
-                {/* <div className="about-container"> */}
-
-                <iframe src="source.html" title="source" className="about-container">
-
-                </iframe>
-
-                {/* </div> */}
-            </Html>
-        </group>
-
-    )
-}
+// // this is the html page that will display.
+// const SourceHtml = (props) => {
+//
+//     return(
+//         <group position={[-85,50,80]} rotation={[1.5708, 0, 0]}>
+//             <Html className={props.visible}>
+//                 {/* <div className="about-container"> */}
+//
+//                 <iframe src="source.html" title="source" className="about-container">
+//
+//                 </iframe>
+//
+//                 {/* </div> */}
+//             </Html>
+//         </group>
+//
+//     )
+// }

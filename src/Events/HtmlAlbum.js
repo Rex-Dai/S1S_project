@@ -51,9 +51,6 @@ export const HtmlAlbum = (props) => {
         })
     }, [loaded])
 
-    if (loaded) {
-        console.log(albumPics[0][0])
-    }
     // const albumPics = ["../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png", "../Images/warPic.png"]
     // let variable = "none";
     // // just query the database and filter!

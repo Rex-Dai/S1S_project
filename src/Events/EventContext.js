@@ -26,6 +26,9 @@ export const TimelineState = {
     TIMELINE: "timeline",
     PoI: "poi",
     ZOOM: "zoomed",
-    DISABLED: "disabled"
+    DISABLED: "disabled",
+    BIRD: "bird",
+    INFO:"info",
+    TOBIRD:"toBird"
 }
 

@@ -13,24 +13,22 @@ export const AboutUs = (props) => {
 
     // just a geometry that takes us to the position
     let { eventState, setEventState, setTimelinePos, setActivePoster, activePoster } = useContext(EventContext)
-    const geometry = <planeGeometry args={[6, 1.8, 1]} />
-    const targetCoords = [0,0,30]
+    const geometry = <planeGeometry args={[20, 5, 1]} />
+    const targetCoords = [props.birdPosition[0],props.birdPosition[1] - 50,props.birdPosition[2] - 20]
     const { camera } = useThree();
     const [hovered, setHover] = useState(false)
     const textureImg = require("../Images/about.png")
     const texture = useMemo(() => new THREE.TextureLoader().load(textureImg.default), []);
 
     function handleClick() {
-        const curPosition = new THREE.Vector3().copy(camera.position);
-        if (eventState === TimelineState.TIMELINE) {
-            setEventState(TimelineState.DISABLED);
-            setTimelinePos(curPosition)
+        if (eventState === TimelineState.BIRD) {
+            setEventState(TimelineState.TOBIRD);
             tweenCamera(camera, targetCoords, "timeline", () => {
-                setEventState(TimelineState.PoI)
+                setEventState(TimelineState.INFO)
                 // display the about us html
                 // random number to stop triggering other posters
                 setActivePoster(100)
-            });
+            }, 1500);
             // activate poster
             setHover(false)
         }
@@ -53,17 +51,20 @@ export const AboutUs = (props) => {
 
     return (
         <mesh
-            position={[16, 20, -2]}
+            position={[props.birdPosition[0] - 6, props.birdPosition[1] , props.birdPosition[2] + 2]}
             scale={hovered ? 1.1 : 1}
-            rotation={[1.5708, 0, 0]}
             onClick={handleClick}
-            onPointerOver={handleHoverIn}
-            onPointerOut={handleHoverOut}
+            rotation={[-0.9,0,0]}
+            // onPointerOver={handleHoverIn}
+            // onPointerOut={handleHoverOut}
         >
-            {geometry}
-            <meshBasicMaterial  map={texture}/>
-            <AboutUsHtml position={targetCoords} visible={eventState === TimelineState.PoI
-            && activePoster === 100 ? "visible" : "invisible"}/>
+            <mesh position={[10,1,0]} visible={false}>
+                {geometry}
+                <meshBasicMaterial/>
+            </mesh>
+            <TextLabel rotation={[0,0,0]} text={"About Us"} height={0.3} size={3}/>
+            <AboutUsHtml position={targetCoords}
+                         visible={eventState === TimelineState.INFO && activePoster === 100 ? "visible" : "invisible"}/>
         </mesh>
     )
 }
@@ -72,7 +73,7 @@ export const AboutUs = (props) => {
 const AboutUsHtml = (props) => {
 
     return(
-        <group position={[-42,50,0]}>
+        <group rotation={[-0.9,0,0]} position={[-50,-10,8]}>
             <Html className={props.visible}>
                 {/* <div className="about-container"> */}
                     

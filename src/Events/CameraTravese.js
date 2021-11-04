@@ -1,15 +1,17 @@
 import * as THREE from "three";
+import {useMemo} from "react";
 
 const TWEEN = require('@tweenjs/tween.js');
 
 
-export default function tweenCamera(camera, targetCoords, type, finishCallback) {
+export default function tweenCamera(camera, targetCoords, type, finishCallback, duration = 1000) {
 
 
     // offset for traversal towards the poster
     const posterPosOffset = [0, -5.5, 0]
     const zoomInPosOffset = [2.1, -4, 1.2]
     const zoomInTargetOffset = [2.1, 0, 1.2]
+    const birdOffset = [0, 25, 20]
     const cameraCurrentPos = new THREE.Vector3().copy(camera.position);
     const cameraTargetPos = new THREE.Vector3(
         targetCoords[0],
@@ -21,6 +23,7 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
         targetCoords[1],
         targetCoords[2]);
 
+
     // obtain current and target quaternion
     // is this the best way???
     const cameraCurrentQuat = new THREE.Quaternion().copy(camera.quaternion);
@@ -30,7 +33,7 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
         // for going back to timeline
         camera.position.set(0, -10, 5)
         targetObjectPos.set(0, 5, 0)
-        
+
     } else if (type === "poiZoomIn") {
 
         cameraTargetPos.set(
@@ -44,6 +47,21 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
             targetCoords[1] + zoomInTargetOffset[1],
             targetCoords[2] + zoomInTargetOffset[2])
         camera.position.copy(cameraTargetPos)
+    } else if (type === "bird") {
+
+
+        cameraTargetPos.set(
+            targetCoords[0] + birdOffset[0],
+            targetCoords[1] + birdOffset[1],
+            targetCoords[2] + birdOffset[2])
+
+        targetObjectPos.set(
+            targetCoords[0],
+            targetCoords[1],
+            targetCoords[2])
+
+        camera.position.copy(cameraTargetPos)
+
     } else {
 
         cameraTargetPos.set(
@@ -55,13 +73,13 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
 
     camera.lookAt(targetObjectPos)
     cameraTargetQuat = new THREE.Quaternion().copy(camera.quaternion);
-    
+
     camera.position.copy(cameraCurrentPos);
     camera.quaternion.copy(cameraCurrentQuat)
 
     // this is the tween to interpolate the position
     let posTween = new TWEEN.Tween(cameraCurrentPos)
-        .to(cameraTargetPos, 1000)
+        .to(cameraTargetPos, duration)
         .easing(TWEEN.Easing.Quadratic.InOut)
         .onUpdate(() => {
             camera.position.copy(cameraCurrentPos);
@@ -76,7 +94,7 @@ export default function tweenCamera(camera, targetCoords, type, finishCallback) 
     // this is the tween to interpolate camera angle
     // tried, but I think there's a better way
     let viewTween = new TWEEN.Tween(cameraCurrentQuat)
-        .to(cameraTargetQuat, 1000)
+        .to(cameraTargetQuat, duration)
         .easing(TWEEN.Easing.Quadratic.InOut)
         .onUpdate(() => camera.quaternion.copy(cameraCurrentQuat))
         .onComplete(() => camera.quaternion.copy(cameraTargetQuat))
