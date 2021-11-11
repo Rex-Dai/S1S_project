@@ -1,0 +1,8 @@
+{
+  "short_name": "S1S Project",
+  "name": "The project implementation of DECO7180 -Team Ferret aka S1S",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

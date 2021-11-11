@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+a{
+    color: #42a5f5;
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #42a5f5;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #42a5f5;
+}
+
+h3{
+    margin-bottom: 10px;
+    color: #42a5f5;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.about-article{
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    /* height: 100%; */
+}
+.about-article > *{
+    margin: 10px;
+}
+
+.about-footer{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.about-footer *{
+    flex-grow: 1;
+}
+.about-footer > *:first-child{
+    text-align: center;
+}
+
+.source-footer{
+    text-align: start;
+}
