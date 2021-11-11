@@ -11,7 +11,7 @@ const TextLabel = (props) => {
     const ref = useRef();
     const loader = new THREE.FontLoader();
     const request = new XMLHttpRequest();
-    request.open("GET", "/Fonts/helvetiker_regular.typeface.json", false);
+    request.open("GET", "./Fonts/helvetiker_regular.typeface.json", false);
     request.send(null)
     const my_JSON_object = JSON.parse(request.responseText);
     const font = loader.parse(my_JSON_object);
